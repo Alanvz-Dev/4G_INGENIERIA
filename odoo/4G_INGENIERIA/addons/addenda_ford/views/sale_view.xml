@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_sale_order_ford" model="ir.ui.view">
+        <field name="name">sale.order.form.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="cdfi_invoice.view_sale_order_form_inherit" />
+        <field name="arch" type="xml">
+            <field name="uso_cfdi" position="after">
+                    <field name="ford_addenda" />
+            </field>
+        </field>
+    </record>
+</odoo>

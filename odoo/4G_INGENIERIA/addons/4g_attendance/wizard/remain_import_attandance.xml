@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+    <record id="remain_import_attendance_from_view" model="ir.ui.view">
+        <field name="name">remain.import.attendance.from.view</field>
+        <field name="model">remain.import.attendance</field>
+        <field name="arch" type="xml">
+            <form string="Reamin Import Attendance">
+                <group>
+                    <field name="employee_id" />
+                    <field name="line_no" />
+                    <field name="date" />
+                    <field name="error_text" />
+                </group>
+            </form>
+        </field>
+    </record>
+    <record id="remain_import_attendance_tree_view" model="ir.ui.view">
+        <field name="name">remain.import.attendance.tree.view</field>
+        <field name="model">remain.import.attendance</field>
+        <field name="arch" type="xml">
+            <tree string="Reamin Import Attendance">
+                <field name="employee_id" />
+                <field name="line_no" />
+                <field name="date" />
+                <field name="error_text" />
+            </tree>
+        </field>
+    </record>
+    <record id="remain_import_attendance_action" model="ir.actions.act_window">
+            <field name="name">Remain Import Attendances</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">remain.import.attendance</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem action="remain_import_attendance_action" 
+    			id="menu_remaain_import_attendance_root"
+     			parent="hr_attendance.menu_hr_attendance_root"
+        		sequence="220" 
+        		/>    
+  </data>
+</odoo>

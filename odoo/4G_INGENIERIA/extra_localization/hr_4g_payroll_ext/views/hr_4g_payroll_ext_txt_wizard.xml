@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+        <record id="hr_4g_payroll_ext.txt_wizard_view_form" model="ir.ui.view">
+            <field name="name">hr_4g_payroll_ext.txt_wizard.view.form</field>
+            <field name="model">hr_4g_payroll_ext.txt_wizard</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <sheet>
+                        <group>
+                            
+                            <field name="tipo_incidencia" />
+                            <field name="busqueda_avanzada" />
+                            <field name="employee_id" attrs="{'invisible': [('busqueda_avanzada','!=',True)]}"/>
+                            <field name="state" attrs="{'invisible': [('busqueda_avanzada','!=',True)]}" />
+                            <field name="tipo" attrs="{'invisible': [('busqueda_avanzada','!=',True)]}" />
+                            <field name="state_pago" attrs="{'invisible': [('busqueda_avanzada','!=',True)]}"/>
+                            <field name="date_from" attrs="{'invisible': [('busqueda_avanzada','!=',True)]}"/>
+                            <field name="date_to" attrs="{'invisible': [('busqueda_avanzada','!=',True)]}" />                    
+                        </group>
+                        <div>
+                            <button name="get_resume" class="oe_highlight" string="Ver Reporte INC" type="object" default_focus="1" />                
+                        </div>                    
+                    </sheet>                      
+                </form>
+            </field>
+        </record>
+
+        <record id="hr_4g_payroll_ext.txt_wizard_act" model="ir.actions.act_window">
+            <field name="name">Reporte INC TXT</field>
+            <field name="res_model">hr_4g_payroll_ext.txt_wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">inline</field>
+        </record>
+
+
+
+
+
+        
+
+    </data>
+</odoo>

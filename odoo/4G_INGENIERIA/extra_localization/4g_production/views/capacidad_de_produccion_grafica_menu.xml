@@ -1,0 +1,15 @@
+<odoo>
+    <data>
+  
+      <!-- Top menu item -->
+  
+      <!-- <menuitem name="Capacidad de Producción" id="mrp.capacidad_de_produccion" parent="mrp.menu_mrp_root" action="mrp.capacidad_de_produccion_grafica_act"/> -->
+  <menuitem name="Capacidad de Producción" id="mrp.capacidad_de_produccion" parent="mrp.menu_mrp_root" />
+  <menuitem name="Capacidad de Producción(Día)" id="mrp.capacidad_de_produccion_dia" parent="mrp.capacidad_de_produccion" action="mrp.mrp_capacidad_prod_action_server_dia"/>
+  <!-- <menuitem name="Capacidad de Producción(Mes)" id="mrp.capacidad_de_produccion_mes" parent="mrp.capacidad_de_produccion" action="mrp.capacidad_de_produccion_grafica_act"/> -->
+  
+
+  
+  
+    </data>
+  </odoo>

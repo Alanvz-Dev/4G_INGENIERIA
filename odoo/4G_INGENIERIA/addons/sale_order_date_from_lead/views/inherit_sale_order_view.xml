@@ -1,0 +1,36 @@
+<odoo>
+
+    <data>
+        <!-- record model="ir.ui.view" id="sale_order_date_from_lead">
+            <field name="name">sale.order.form.date.from.lead</field>
+            <field name="model">sale.order</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+
+                <field name="partner_shipping_id" position="after">
+                    <field name="date_from_lead"/>
+                </field>
+               
+	     </field>
+        </record -->
+
+        <!-- record model="ir.ui.view" id="sale_order_date_from_lead_buttons">
+            <field name="name">sale.order.form.date.from.lead.buttons</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="sale_crm.crm_case_form_view_oppor"/>
+            <field name="arch" type="xml">
+                <button name="%(sale_crm.sale_action_quotations_new)d" position="attributes" attrs="{'invisible': [('probability', '>', 0)]}">
+                    <attribute name="context">{'search_default_partner_id': partner_id,
+                                      'default_partner_id': partner_id,
+                                      'default_team_id': team_id, 'default_date_from_lead': date_deadline}</attribute>
+                </button>
+                <button name="%(sale_crm.sale_action_quotations_new)d" position="attributes" attrs="{'invisible': [('probability', '=', 0)]}">
+                    <attribute name="context">{'search_default_partner_id': partner_id,
+                                      'default_partner_id': partner_id,
+                                      'default_team_id': team_id, 'default_date_from_lead': date_deadline}</attribute>
+                </button>
+            </field>
+        </record-->
+    </data>
+</odoo>

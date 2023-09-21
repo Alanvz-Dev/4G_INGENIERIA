@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+        <record id="nomina_cfdi_ext.run_inherit_version_cfdi" model="ir.ui.view">
+            <field name="name">hr.payslip.run.view.form.inherit</field>
+            <field name="model">hr.payslip.run</field>
+            <field name="inherit_id" ref="nomina_cfdi.hr_payslip_run_form_nomina_cfdi" />
+            <field name="arch" type="xml">
+                <field name="name" position="before">
+                    <div class="oe_button_box" name="button_box">
+                        <button class="oe_stat_button" name='view_slip_ids' type="object" icon="fa-file-text-o">
+                            <div class="o_stat_info">
+                                <field name="slips_count" class="o_stat_value" />
+                                <span class="o_stat_text">Recibos de Nómina</span>
+                            </div>
+                        </button>
+                    </div>
+                </field>
+                <field name="tipo_nomina" position="before">
+                    <field name="version_cfdi" />
+                </field>
+            </field>
+        </record>
+    </data>
+</odoo>

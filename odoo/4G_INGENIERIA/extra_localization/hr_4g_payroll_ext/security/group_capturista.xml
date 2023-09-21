@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+  <data noupdate="0">
+
+    <record model="ir.module.category" id="module_management">
+      <!-- <field name="name">Categoria</field> -->
+      <!-- <field name="description">Permisos de acceso para el módulo de Incidencias</field> -->
+      <field name="name">Incidencias para Nómina/Control de Acceso</field>
+      <field name="description">Permisos de acceso para el módulo de Incidencias</field>
+      <field name="sequence">20</field>
+    </record>
+
+
+
+    <record id="hr_4g_payroll_ext.guardias" model="res.groups">
+      <!-- <field name="name">Tipo de permiso</field> -->
+      <field name="name">Guardia</field>
+      <field name="category_id" ref="module_management" />
+    </record>
+    
+    <record id="hr_4g_payroll_ext.group_capturista" model="res.groups">
+      <!-- <field name="name">Tipo de permiso</field> -->
+      <field name="name">Capturista</field>
+      <field name="category_id" ref="module_management" />
+      <field name="implied_ids" eval="[(4, ref('hr_4g_payroll_ext.guardias'))]" />
+
+    </record>
+    <record id="hr_4g_payroll_ext.group_gerente" model="res.groups">
+      <field name="name">Gerente</field>
+      <field name="category_id" ref="module_management" />
+      <field name="implied_ids" eval="[(4, ref('hr_4g_payroll_ext.group_capturista'))]" />
+    </record>
+
+
+    <record id="group_recursos_humanos" model="res.groups">
+      <field name="name">Recursos Humanos</field>
+      <field name="category_id" ref="module_management" />
+      <field name="implied_ids" eval="[(4, ref('hr_4g_payroll_ext.group_capturista')),(4, ref('hr_4g_payroll_ext.group_gerente'))]" />
+    </record>
+  </data>
+</odoo>

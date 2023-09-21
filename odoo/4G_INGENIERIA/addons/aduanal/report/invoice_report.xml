@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+     <data>
+        <template id="complemento_aduanal" inherit_id="cdfi_invoice.report_invoice_document">
+            <xpath expr="//span[@t-field='l.name']" position="after">
+                     <t t-if="l.pedimento">
+                          <br/> Pedimento: <span t-field="l.pedimento" />
+                     </t>
+            </xpath>
+        </template>
+     </data>
+</odoo>

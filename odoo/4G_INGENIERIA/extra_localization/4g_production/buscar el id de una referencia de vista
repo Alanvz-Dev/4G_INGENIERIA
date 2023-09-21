@@ -1,0 +1,28 @@
+All the xml records are stored in "ir.model.data" object. There is a method called "get_object_reference" which gives you the database ID from xml ID.
+
+In this method you have to pass module name where xml record is created and xml ID of the record.
+
+Example:
+
+V7:
+
+self.pool.get('ir.model.data').get_object_reference(cr, uid, 'module_name', 'xml_id_of_record')[1]
+V8:
+
+record_id = self.env.ref('module_name.xml_id_of_record').id
+record_id = self.env.ref('model_capacidad_de_produccion_grafica').id
+
+
+en caso de que el nombre del modelo no corresponda al nombre del modulo 
+se debera de poner antes el campo de nombre del modulo
+
+
+odoo debug
+
+
+-m ptvsd --host localhost --port 5678 /opt/odoo/odoo/odoo-bin --xmlrpc-port=8069 --addons-path=/opt/odoo/odoo/addons,/opt/odoo/odoo/extra_localization
+
+
+
+
+todo en milimetros  y camb

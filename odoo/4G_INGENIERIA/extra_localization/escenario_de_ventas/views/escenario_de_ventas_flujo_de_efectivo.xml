@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+        <record id="escenario_de_ventas_flujo_efectivo_view_pivot" model="ir.ui.view">
+            <field name="name">Flujo de Efectivo</field>
+            <field name="model">escenario_de_ventas.flujo_de_efectivo</field>
+            <field name="arch" type="xml">
+                <pivot>
+                    <field name="sale_id" type="row" />
+                    <field name="test_1" type="measure" />
+                    <field name="test_2" type="measure" />
+                    <field name="test_3" type="measure" />
+                    <field name="test_4" type="measure" />
+                    <field name="test_5" type="measure" />
+                    <field name="test_6" type="measure" />
+                    <field name="test_7" type="measure" />
+                    <field name="test_8" type="measure" />
+                    <field name="test_9" type="measure" />
+                    <field name="test_10" type="measure" />
+                    <field name="line_id" type="row" />
+                </pivot>
+            </field>
+        </record>
+
+
+
+        <record id="flujo_de_efectivo_action" model="ir.actions.act_window">
+            <field name="name">Flujo De Efectivo</field>
+            <field name="res_model">escenario_de_ventas.flujo_de_efectivo</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">pivot,tree,form</field>
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+        </record>
+
+        <menuitem name="Flujo De Efectivo" id="escenario_de_ventas.flujo_de_efectivo" parent="sale.sale_menu_root" action="escenario_de_ventas.flujo_de_efectivo_action" />
+    </data>
+</odoo>

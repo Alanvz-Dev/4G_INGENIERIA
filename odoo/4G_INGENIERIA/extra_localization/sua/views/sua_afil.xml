@@ -1,0 +1,87 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+        <record id="sua_afil_view_tree" model="ir.ui.view">
+            <field name="name">Lista Datos Afiliatorios</field>
+            <field name="model">sua.afil</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name" />
+                                        <field name="create_uid" />
+                    <field name="create_date" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="sua_afil_view_form" model="ir.ui.view">
+            <field name="name">Formulario Datos Afiliatorios</field>
+            <field name="model">sua.afil</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <field name="estado_idse" widget="statusbar" clickable="1" />
+                    </header>
+                    <header>
+                        <field name="estado_sua" widget="statusbar" clickable="1" />
+                    </header>
+                    <sheet>
+                        <group col='4'>
+                            <field name="registro_patronal_imss" />
+                            <field name="digito_verificador_registro_patronal" />
+                            <field name="numero_de_seguridad_social" />
+                            <field name="digito_verificador_numero_de_seguridad_social" />
+                            <field name="codigo_postal" />
+                            <field name="fecha_de_nacimiento" />
+                            <field name="lugar_de_nacimiento" />
+                            <field name="unidad_de_medicina_familiar" />
+                            <field name="clave_lugar_de_nacimiento" />
+                            <field name="ocupacion" />
+                            <field name="sexo" />
+                            <field name="tipo_de_salario" />
+                            <field name="hora" />
+                            <field name="complete_row_afil" />
+                            <field name="employee_id" />
+                                                <field name="create_uid" />
+                    <field name="create_date" />
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button name="get_sua_file" string="Descargar archivo SUA" type="object" class="oe_highlight" />
+                        <!-- <button name="get_idse_file" string="Descargar archivo IMSS" type="object" class="oe_highlight" /> -->
+                        <button string="Cancel" special="cancel" class="oe_link" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="sua_afil_action" model="ir.actions.act_window">
+            <field name="name">Formulario de Datos Afiliatorios SUA</field>
+            <field name="res_model">sua.afil</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+            <field name="help" type="html">
+                <!-- TEXT HERE -->
+                <p>
+                    Hola
+                    <!-- DETAILS -->
+                </p>
+            </field>
+        </record>
+
+
+        <record id="sua.get_file_afil" model="ir.actions.server">
+            <field name="name">Descargar AFIL.TXT</field>
+            <field name="model_id" ref="model_sua_afil" />
+            <field name="binding_model_id" ref="model_sua_afil" />
+            <field name="state">code</field>
+            <field name="code">
+                if records:
+                    action = records.get_sua_file()
+            </field>
+        </record>
+
+        <menuitem id="sua_afil_list" name="AFIL.txt" action="sua_afil_action" parent="sua_aseg_root_menu" sequence="6" />
+    </data>
+</odoo>

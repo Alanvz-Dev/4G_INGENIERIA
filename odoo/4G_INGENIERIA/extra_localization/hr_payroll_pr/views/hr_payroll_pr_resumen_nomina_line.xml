@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+        <record id="hr_payroll_pr.resumen_nomina_line_view_tree" model="ir.ui.view">
+            <field name="name">Resumen Nómina Line</field>
+            <field name="model">hr_payroll_pr.resumen_nomina_line</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="operador" />
+                    <field name="dia1" />
+                    <field name="dia2" />
+                    <field name="dia3" />
+                    <field name="dia4" />
+                    <field name="dia5" />
+                    <field name="dia6" />
+                    <field name="dia7" />
+                    <field name="bono_ids" widget="many2many_tags" />
+                    <field name="incidencia_ids" widget="many2many_tags" />
+                    <field name="total_de_horas" />
+                    
+                    
+                </tree>
+            </field>
+        </record>
+
+        <record id="hr_payroll_pr.resumen_nomina_line_view_form" model="ir.ui.view">
+            <field name="name">Resumen de Nómina Line</field>
+            <field name="model">hr_payroll_pr.resumen_nomina_line</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                              <field name="operador" />
+                              <!-- readonly="1" -->
+                            </h1>
+                          </div>
+                        <group>
+                            <field name="bono_ids" widget="many2many_tags" readonly="1" />
+                            <field name="incidencia_ids" widget="many2many_tags" readonly="1" />
+                        </group>
+                        <group class="form-group">
+                            <div class="col">
+                                Día 1:
+                                <field name="dia1" class="form-control" readonly="1" />
+                            </div>
+                            <div class="col">
+                                Día 2:
+                                <field name="dia2" class="form-control" readonly="1" />
+                            </div>
+                            <div class="col">
+                                Día 3:
+                                <field name="dia3" class="form-control" readonly="1" />
+                            </div>
+                            <div class="col">
+                                Día 4:
+                                <field name="dia4" class="form-control" readonly="1" />
+                            </div>
+                            <div class="col">
+                                Día 5:
+                                <field name="dia5" class="form-control" readonly="1" />
+                            </div>
+                            <div class="col">
+                                Día 6:
+                                <field name="dia6" class="form-control" readonly="1" />
+                            </div>
+                            <div class="col">
+                                Día 7:
+                                <field name="dia7" class="form-control" readonly="1" />
+                            </div>
+                        </group>
+                        <group class="oe_subtotal_footer oe_right" colspan="2">
+                            <field name="total_de_horas" readonly="1" string="Hora(s) A Pagar" class="oe_subtotal_footer_separator" widget="monetary" />
+                        </group>
+
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

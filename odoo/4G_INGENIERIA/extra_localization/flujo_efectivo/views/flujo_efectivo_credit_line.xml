@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+        <!-- <record id="flujo_efectivo.credit_line_form" model="ir.ui.view">
+            <field name="name">Línea de Crédito</field>
+            <field name="model">flujo_efectivo.credit_line</field>
+            <field name="arch" type="xml">
+                <form string="Línea de Crédito">
+                    <sheet>
+                        <field name="date_line_credit"/>
+                        <field name="name"/>
+                        <field name="required_amount"/>
+                        <field name="descripcion"/>
+                    </sheet>
+                </form>
+            </field>
+        </record> -->
+
+
+        <record id="flujo_efectivo.credit_line_tree" model="ir.ui.view">
+            <field name="name">Línea de Crédito</field>
+            <field name="model">flujo_efectivo.credit_line</field>
+            <field name="arch" type="xml">
+                <tree string="Línea de Crédito">
+                    <field name="date_line_credit"/>
+                    <field name="fecha_pago"/>
+                    <field name="name"/>
+                    <field name="required_amount"/>
+                    <field name="descripcion"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="flujo_efectivo.credit_line_action" model="ir.actions.act_window">
+            <field name="name">Línea de Crédito</field>
+            <field name="res_model">flujo_efectivo.credit_line</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem name="Líneas de Crédito" id="flujo_efectivo.menu_linea_credito" parent="flujo_efectivo.menu_root" action="flujo_efectivo.credit_line_action" />
+    </data>
+</odoo>

@@ -1,0 +1,237 @@
+<odoo>
+    <data>
+        <!-- Vista de arbol CXP proveedores -->
+        <record model="ir.ui.view" id="vista_de_arbol_proveedores">
+            <field name="name">Mis Facturas</field>
+            <field name="model">cuentas_por_pagar.proveedor.model</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field string=" Folio" name="id" />
+                    <field name="invoice_select_name"/>
+                    <field name="partner_id" />
+                    <field name="fecha_pago"/>
+                    <field name="xmlname" invisible="0"/>
+                    <field name="pdfname" invisible="0"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+        <!-- Form para agregar un nuevo proveedor -->
+        <record model="ir.ui.view" id="formulario_proveedores">
+            <field name="name">cuentas_por_pagar.proveedor.model.form</field>
+            <field name="model">cuentas_por_pagar.proveedor.model</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <!-- <form string="Registro de Proveedores"> -->
+                <form string="Mis Facturas" delete="false" duplicate="false">
+                    <header>
+                        <button name="confirm" type="object" icon="gtk-quit" states="valid" string="Abrir"/>
+                        <button name="paid" type="object" icon="terp-check" states="paid" string="Pagar"/>
+                        <!-- <button name="valid" type="object" icon="gtk-print-preview" states="draft" string="Validar" class="btn-primary"/> -->
+                        <button name="draft" type="object" icon="gtk-print-preview" states="confirm,paid" string="Borrador" class="btn-primary"/>
+                        <field name="state" widget="statusbar" />
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <label class="oe_edit_only" for="id" string="Identificador No."/>
+                            <h3>
+                            Referencia Cuentas por Pagar
+                                <field name="id"/>
+                            </h3>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="partner_id" domain="[('supplier','=',True)]" context="{'search_default_customer':1, 'show_address': 1}" options="{'no_create_edit': True,'no_create': True}"/>
+                                <field name="rfc"/>
+                                <field name="email"/>
+                                <field name="phone"/>
+                                <field name="modified_by_user" invisible="1"/>
+                                <field name="invoice_select" required="1" attrs="{'invisible':[('modified_by_user','=',True)]}"/>
+                                <field name="invoice_select_name" required="1" attrs="{'readonly':[('modified_by_user','=',True)]}" />
+                            </group>
+                            <group>
+                                <field name="fecha_pago" invisible="1"/>
+                                <field name="fecha"/>
+                                <!-- field name="fechafactura"/><field name="fechavencimiento"/ -->
+                            </group>
+                            <group string="Archivos de Factura">
+                                <field name="xmlname" invisible="1" />
+                                <field name="xml" filename="xmlname" />
+                                <field name="pdfname" invisible="1" />
+                                <field name="pdf" filename="pdfname" />
+                            </group>
+                            <group string="Evidencia de Entrega">
+                                <field name="file_one_name" invisible="1" />
+                                <field name="file_one" filename="file_one_name" />
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!-- Evento action(evento que mustra el formulario para insertar un proveedor)     -->
+        <record model="ir.actions.act_window" id="action_abrir_formulario_proveedores">
+            <field name="name">Mis Facturas</field>
+            <!-- Ese action abrirar el formulario en base al modelo de proveedores, es decir
+            mostrara los campos del modelo de proveedores -->
+            <field name="res_model">cuentas_por_pagar.proveedor.model</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('search_ids', '=',1)]</field>
+
+        </record>
+        <!-- Vista de arbol de complemento de pago -->
+        <record model="ir.ui.view" id="vista_de_arbol_complemento_de_pago">
+            <field name="name">cuentas_por_pagar.complemento_de_pago_proveedor.model.tree</field>
+            <field name="model">cuentas_por_pagar.complemento_de_pago_proveedor.model</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Formulario de Registro" colors="red:state=='draft';blue:state=='done' ">
+                    <field string=" Folio " name="id" />
+                    <field name="partner_id" />
+                    <field name="fechafactura_xcp_cdp"/>
+                    <!-- <field name="invoice_select_cdp_ids"/> -->
+                    <field name="xmlname_cxp_cdp" invisible="1"/>
+                    <field name="xml_cxp_cdp" filename="xmlname_cxp_cdp"/>
+                    <field name="pdfname_cxp_cdp" invisible="1"/>
+                    <field name="pdf_cxp_cdp" filename="pdfname_cxp_cdp"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+        <!-- Formulario de complemento de pago -->
+        <record model="ir.ui.view" id="formulario_complemento_de_pago">
+            <field name="name">cuentas_por_pagar.complemento_de_pago_proveedor.model.form</field>
+            <field name="model">cuentas_por_pagar.complemento_de_pago_proveedor.model</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Mis Complementos de Pago">
+                    <header>
+                        <!-- <button name="valid_cxp_cdp" type="object" icon="gtk-quit" states="draft" string="Validar"/> -->
+                        <field name='state' widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <group colspan="4">
+                            <group colspan="2">
+                                <span class="oe_inline" attrs="{'invisible':[('state', '=','done')]}">
+                                    <h2>Complemento de pago No.<field name="id" />
+                                    </h2>
+                                </span>
+                            </group>
+                            <group>
+                                <field name="partner_id" domain="[('supplier','=',True)]" context="{'search_default_customer':1, 'show_address': 1}" options="{'no_create_edit': True,'no_create': True}"/>
+                                <field name="rfc"/>
+                                <field name="email"/>
+                                <field name="phone"/>
+                                <field name="fechafactura_xcp_cdp"/>
+                                <field name="xmlname_cxp_cdp" invisible="1" />
+                                <field name="xml_cxp_cdp" filename="xmlname_cxp_cdp" attrs="{'readonly':[('state','=','done')],'required':[('state', '=','draft')]}"/>
+                                <field name="pdfname_cxp_cdp" invisible="1" />
+                                <field name="modified_by_user" invisible="1"/>
+                                <field name="pdf_cxp_cdp" filename="pdfname_cxp_cdp" attrs="{'readonly':[('state','=','done')],'required':[('state', '=','draft')]}"/>
+                                <field name="invoice_select_cdp" attrs="{'invisible':[('modified_by_user','=',True)]}"/>
+                                <field name="invoice_select_name_cdp" attrs="{'readonly':[('modified_by_user','=',True)]}" />
+                            </group>
+                        </group>
+                        <!-- <notebook attrs="{'readonly':[('state','=','done')]}">
+                            <page>
+                                <field name="invoice_select_cdp_ids" attrs="{'readonly':[('state','=','done')]}">
+                                    <tree string="Facturas" editable="bottom">
+                                        <field name="facturas_id"/>
+                                        <field name="factura_select_name"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook> -->
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!-- Evento action(evento que mustra el formulario para insertar un complemto de pago)     -->
+        <record model="ir.actions.act_window" id="action_abrir_formulario_complemento_de_pago">
+            <field name="name">Registro de Complemento de pago</field>
+            <field name="res_model">cuentas_por_pagar.complemento_de_pago_proveedor.model</field>
+            <!-- <field name="view_type">form</field> -->
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('search_ids', '=',1)]</field>
+            <!-- <field name="domain">[('search_self_invoice', '=', 1)]</field> -->
+            <!-- <field name="domain_force">[('user_id','=',3)]</field> -->
+        </record>
+        <!-- Vista de arbol de cumplimiento de pago -->
+        <record model="ir.ui.view" id="vista_de_arbol_cumplimiento_de_pago">
+            <field name="name">cuentas_por_pagar.cumplimiento_de_pago.model.tree</field>
+            <field name="model">cuentas_por_pagar.cumplimiento_de_pago.model</field>
+            <field name="type">tree</field>
+            <!-- <field name="domain_force">[('create_uid', '=', user.id)]</field> -->
+
+            <field name="arch" type="xml">
+                <tree string="Registro de Opinion del Cumplimiento de Pago">
+                    <field string=" Folio " name="id" />
+                    <field name="month" />
+                    <field name="pdfname" invisible="1"/>
+                    <field name="pdf" filename="pdfname"/>
+
+                </tree>
+            </field>
+        </record>
+
+
+        <!-- <record id="cumplimeinto_search_view" model="ir.ui.view">
+            <field name="name">cumplimiento.search.view</field>
+            <field name="model">cuentas_por_pagar.cumplimiento_de_pago.model</field>
+            <field name="arch" type="xml">
+                <search string="Mis Cumplimientos de Pago">
+                <field name="partner_id"/>
+                <field name="month"/>
+                <field name="create_date"/>
+                    <group expand="0" string="Group By">
+                    <filter name="groupby_partner_id" string="Partner" domain="[('partner_id','=','3')]" context="{group_by:'partner_id'}" help="Hola"/>                    
+                    <filter name="groupby_create_date" string="Creacion" context="{group_by:'create_date'}" help="Hola"/>                    
+                    </group>
+            <filter name="filter_by_month" string="Mes" domain="[('create_uid','=','3')]" help="Hola"/>                    
+                </search>
+            </field>
+        </record> -->
+
+        <!-- Formulario de opinio de cumplimiento de poago -->
+        <record model="ir.ui.view" id="formulario_cumplimiento_de_pago">
+            <field name="name">cuentas_por_pagar.cumplimiento_de_pago.model.form</field>
+            <field name="model">cuentas_por_pagar.cumplimiento_de_pago.model</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Opinion del cumplimiento de pago">
+                    <sheet>
+                        <group colspan="4">
+                            <group colspan="2">
+                                <span class="oe_inline">
+                                    <h2>FAVOR DE SUBIR EL PDF DE LA OPINION DEL CUMPLIMIENTO CORRESPONDIENTE AL MES</h2>
+                                </span>
+                            </group>
+                            <group>
+                                <!--field name="partner_id" domain="[('supplier','=',True)]" context="{'search_default_customer':1, 'show_address': 1}" options="{'no_create_edit': True,'no_create': True}"/><field name="rfc"/><field name="phone"/-->
+                                <field name="month" required="1"/>
+                                <field name="pdfname" invisible="1"/>
+                                <field name="pdf" required="1" filename="pdfname"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!-- Evento action(evento que mustra el formulario para insertar una opinion de complemto de pago)     -->
+        <record model="ir.actions.act_window" id="action_abrir_formulario_cumplimiento_de_pago">
+            <field name="name">Opinion del cumplimiento</field>
+            <field name="res_model">cuentas_por_pagar.cumplimiento_de_pago.model</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('search_ids', '=',1)]</field>
+        </record>
+        <!-- Nombre de la aplicacion en la barra de aplicaciones -->
+        <menuitem id="id_principal_cxp" name="Cuentas por Pagar" web_icon="cuentas_por_pagar,satic/icon_cxp.jpg"/>
+        <!-- Nombre del primer submenu -->
+        <menuitem id="id_menu_cxp" parent='id_principal_cxp' name="Proveedores" sequence="0"/>
+        <!-- Hijo 1 del submenu que llamara a act_proveedores_cxp Evento action(evento que mustra el formulario para insertar un proveedor)-->
+        <menuitem id="id_menu_cxp__act" parent="id_menu_cxp" name="Facturas" action="action_abrir_formulario_proveedores" sequence="0"/>
+        <menuitem id="id_menu_cxp__act_cdp" parent="id_menu_cxp" name="Complementos de pago" action="action_abrir_formulario_complemento_de_pago" sequence="1"/>
+        <menuitem id="id_menu_cumplimiento_pago" parent="id_menu_cxp" name="Opinion de Cumplimiento" action="action_abrir_formulario_cumplimiento_de_pago" sequence="1"/>
+    </data>
+</odoo>

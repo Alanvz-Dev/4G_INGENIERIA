@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+        <record id="nomina_cfdi.modify_slip_view_form" model="ir.ui.view">
+            <field name="name">nomina_cfdi.modify_slip.view.form</field>
+            <field name="model">nomina_cfdi.modify_slip</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <sheet>
+                        <group>
+                            <field name="slips_ids" />
+                            <field name="uso_cfdi" />
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button name="modify" string="Modificar" type="object" class="oe_highlight"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

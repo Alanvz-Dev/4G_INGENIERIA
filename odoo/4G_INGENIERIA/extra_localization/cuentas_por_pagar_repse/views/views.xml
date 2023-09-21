@@ -1,0 +1,87 @@
+<odoo>
+  <data>
+
+    <record id="cuentas_por_pagar_repse.lines_view_form" model="ir.ui.view">
+      <field name="name">cuentas_por_pagar_repse.view.form</field>
+      <field name="model">cuentas_por_pagar_repse.repse</field>
+      <field name="arch" type="xml">
+        <form string="">
+          <sheet>
+            <group>
+              <field name="file1" />
+              <field name="file1_name" />
+              <field name="type" />
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+    <!-- explicit list view definition -->
+
+    <record model="ir.ui.view" id="cuentas_por_pagar.repse_history_list">
+      <field name="name">cuentas_por_pagar_repse_history list</field>
+      <field name="model">cuentas_por_pagar_repse.history</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="partner_id" readonly="1"/>
+          <field name="mes" />
+          <field name="ano"/>
+          <field name="state" string="Estado de Verificación" />
+          <field name="repse_lines" string="Cantidad de Archivos"/>
+        </tree>
+      </field>
+    </record>
+
+
+    <record id="cuentas_por_pagar_repse_history_view_form" model="ir.ui.view">
+      <field name="name">cuentas_por_pagar_repse.history.view.form</field>
+      <field name="model">cuentas_por_pagar_repse.history</field>
+      <field name="arch" type="xml">
+        <form duplicate="false">
+          <header>
+            <field name="state" widget="statusbar" statusbar_colors='{"draft":"red","done":"green"}'/>
+            <button string="Validar" states="draft" name="action_valid" groups="cuentas_por_pagar_repse.group_cuentas_por_pagar_admin" type="object" class="oe_highlight"/>
+            <button string="Borrador" states="done" name="action_draft" groups="cuentas_por_pagar_repse.group_cuentas_por_pagar_admin" type="object" class="oe_link"/>
+          </header>
+          <sheet>
+            <group>
+              <group>
+                <field name="mes" />
+              </group>
+              <group>
+                <field name="ano" />
+              </group>
+              <group>
+                <field name="partner_id" readonly="1"/>
+              </group>
+            </group>
+
+            <field name="repse_lines">
+              <tree>
+                <field name="type"/>
+                <field name="file1_name" />
+                <field name="file1" filename="filename" widget="binary"/>
+              </tree>
+            </field>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <!-- actions opening views on models -->
+
+
+
+    <record model="ir.actions.server" id="cuentas_por_pagar.repse_history_action_window">
+      <field name="name">REPSE</field>
+      <field name="model_id" ref="model_cuentas_por_pagar_repse_history"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = model.return_views()
+      </field>
+    </record>
+
+    <!-- Top menu item -->
+    <menuitem name="REPSE" id="cuentas_por_pagar_repse.repse_usuario" parent="cuentas_por_pagar.id_principal_cxp" action="cuentas_por_pagar.repse_history_action_window" groups="group_cuentas_por_pagar_usuario" />
+  </data>
+</odoo>

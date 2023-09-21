@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+        <record id="gr_inherit_account_invoice" model="ir.ui.view">
+            <field name="name">account.invoice.view.form.inherit</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form" />
+            <field name="arch" type="xml">
+                <field name="cash_rounding_id" position="after">
+                    <field name="gr" />
+                    <field name="gr_count" force_save="1" />
+                    <field name="evidencia_recibida" />
+                </field>
+            </field>
+        </record>
+
+        <record id="view_tree_pedidos_venta" model="ir.ui.view">
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_tree" />
+            <field name="arch" type="xml">
+
+
+                <field name="amount_total" position="after">
+                    <field name="amount_pending_delivery" widget="monetary" />
+                </field>
+
+                <!-- <xpath expr="//tree" position="attributes">
+                    <attribute name="decoration-danger">amount_pending_delivery>0.1</attribute>
+                    <attribute name="decoration-success">amount_pending_delivery==0</attribute>
+                </xpath> -->
+
+            </field>
+        </record>
+
+
+        <record id="account.invoice_view_all_invoice_tree" model="ir.ui.view">
+            <field name="name">account.invoice.view.view_all.invoice.tree</field>
+            <field name="model">account.invoice</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="partner_id" groups="base.group_user" string="Customer"/>
+                    <field name="date_invoice"/>
+                    <field name="number"/>
+                    <field name="commercial_partner_id" invisible="1"/>
+                    <field name="reference" invisible="1"/>
+                    <field name="name" invisible="1"/>
+                    <field name="journal_id" invisible="1"/>
+                    <field name="company_id" groups="base.group_multi_company" options="{'no_create': True}"/>
+                    <field name="user_id"/>
+                    <field name="date_due"/>
+                    <field name="origin"/>
+                    <field name="amount_total_signed" string="Total" sum="Total"/>
+                    <field name="residual_signed" string="Amount Due" sum="Amount Due"/>
+                    <field name="currency_id" invisible="1"/>
+                    <field name="company_currency_id" invisible="1"/>
+                    <field name="state"/>
+                    <field name="type" invisible="context.get('type',True)"/>
+                </tree>
+            </field>
+        </record>
+
+<!-- menu_finance -->
+<record id="all_invoices_action" model="ir.actions.act_window">
+    <field name="name">All Invoices</field>
+    <field name="res_model">account.invoice</field>
+    <field name="view_id" ref="account.invoice_view_all_invoice_tree"/>
+    <field name="view_mode">tree,form,pivot,graph,calendar,kanban</field>
+    <field name="domain">[]</field>
+</record>
+
+
+
+
+<!-- groups="groups_id" -->
+<menuitem
+    id="all_invoices_menu"
+    name="Todas Las Facturas"
+    action="all_invoices_action"
+    parent="account.menu_finance"
+    sequence="10"/>
+    </data>
+    
+</odoo>

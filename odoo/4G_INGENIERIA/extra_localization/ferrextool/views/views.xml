@@ -1,0 +1,74 @@
+<odoo>
+  <data>
+
+
+        <!-- Explicit form definition -->
+        <record id="ferrextool.form" model="ir.ui.view">
+          <field name="name">Lento Movimiento y Exceso de Inventario</field>
+          <field name="model">ferrextool.reports</field>
+          <field name="arch" type="xml">
+            <form create='false' edit='false' duplicate='false' >
+              <notebook>
+                <page string="Lento Movimiento y Exceso de Inventario">
+                  <group>
+                    <field name="start_date" />
+                    <field name="end_date"/>
+                    <field name="report_type"/>
+                    <button name="button_download_contract" type="object"  string="Descargar Reporte" icon="fa-download"/>
+
+                  </group>
+                </page>
+              </notebook>
+            </form>
+          </field>
+        </record>
+   
+
+    <!-- actions opening views on models -->
+    
+    <record model="ir.actions.act_window" id="ferrextool.action_window">
+      <field name="name">ferrextool window</field>
+      <field name="res_model">ferrextool.reports</field>
+      <field name="view_mode">form</field>
+      <field name="target">inline</field>
+    </record>
+   
+
+   
+
+    <report
+    id="slow_excess"
+    model="ferrextool.reports"
+    string="Imprimir Reportes Lento Movimiento y Exceso de Inventario"
+    report_type="xlsx"
+    name="ferrextool.slow_excess_report"
+    file="Lento Movimiento y Exceso de Inventario"
+    attachment_use="True"
+/>
+<!-- <report
+id="partner_xlsx"
+model="res.partner"
+string="Print to XLSX"
+report_type="xlsx"
+name="module_name.report_name"
+file="res_partner"
+attachment_use="False"
+/> -->
+
+    <!-- Top menu item -->
+    
+    <menuitem name="Ferrextool" id="ferrextool.menu_root" web_icon="ferrextool,src/description/logo_ferrextool.png"/>
+   
+    <!-- menu categories -->
+    
+    <menuitem name="Reportes" id="ferrextool.menu_1" parent="ferrextool.menu_root"/>
+
+   
+    <!-- actions -->
+    
+    <menuitem name="Reportes Ecxeso y Lento Movimiento" id="ferrextool.menu_1_list" parent="ferrextool.menu_1"
+              action="ferrextool.action_window"/>
+
+   
+  </data>
+</odoo>

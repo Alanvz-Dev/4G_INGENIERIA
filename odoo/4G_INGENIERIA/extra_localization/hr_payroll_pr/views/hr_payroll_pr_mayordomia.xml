@@ -1,0 +1,100 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+
+    <record model="ir.ui.view" id="hr_payroll_pr.detalle_horas_de_trabajo_list">
+      <field name="name">Mayordiomía</field>
+      <field name="model">hr_payroll_pr.mayordomia</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="record_name" />
+        </tree>
+      </field>
+    </record>
+
+    <!-- actions opening views on models -->
+
+    <record model="ir.actions.act_window" id="hr_payroll_pr.detalle_horas_de_trabajo_action_window">
+      <field name="name">Mayordomía</field>
+      <field name="res_model">hr_payroll_pr.mayordomia</field>
+      <field name="view_mode">tree,form</field>
+      <field name="target">current</field>
+    </record>
+
+    <record id="hr_payroll_pr_form_view" model="ir.ui.view">
+      <field name="name">Mayordomía </field>
+      <field name="model">hr_payroll_pr.mayordomia</field>
+      <field name="arch" type="xml">
+        <form create="true" edit="true">
+          <header>
+            <button string="Entradas/Salidas Axtrax" name="get_horas_checador" type="object" class="oe_highlight" />
+            <button string="Calcular" name="calcular_mayordomia" type="object" class="oe_highlight" />
+            <button string="Cerrar" name="cerrar_dia" type="object" class="oe_highlight" />
+            <button string="Contar Incidencias" name="set_compute_incidencias_count" type="object" class="oe_highlight" /> 
+            <button string="Bloquear Creción de Incidencias" name="bloquear_dia" type="object" class="oe_highlight" /> 
+            <button string="Desbloquear Creción de Incidencias" name="des_bloquear_dia" type="object" class="oe_highlight" /> 
+            <field name="state" widget="statusbar" clickable="True" />
+          </header>
+          <sheet>
+
+            <div>
+              <div class="oe_button_box" name="button_box5">
+                <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive">
+                  <field name="active" widget="boolean_button" options="{&quot;terminology&quot;: &quot;archive&quot;}" />
+                </button>
+              </div>
+              <div>
+                <h1 style=" margin-top: 3px; margin-bottom: 3px; margin-right: 3px; margin-left: 3px;">
+                  <field name="fecha" style=" margin-top: 3px; margin-bottom: 3px; margin-right: 3px; margin-left: 3px;" />
+                </h1>
+                <button name="get_todos_los_registros" class="oe_stat_button" icon="fa-laptop" type="object" style=" margin-top: 3px; margin-bottom: 3px; margin-right: 3px; margin-left: 3px;">
+                  <field string="Todos los Registros" name="registros_count" widget="statinfo" />
+                </button>
+                <button name="get_con_proyecto" class="oe_stat_button" icon="fa-laptop" type="object" style=" margin-top: 3px; margin-bottom: 3px; margin-right: 3px; margin-left: 3px;">
+                  <field string="Con Proyecto" name="empleados_con_proyecto_count" widget="statinfo" />
+                </button>
+                <button name="get_sin_proyecto" class="oe_stat_button" icon="fa-laptop" type="object" style=" margin-top: 3px; margin-bottom: 3px; margin-right: 3px; margin-left: 3px;">
+                  <field string="Sin Proyecto" name="empleados_sin_proyecto_count" widget="statinfo" />
+                </button>
+                <button name="get_empleados_con_horas" class="oe_stat_button" icon="fa-laptop" type="object" style=" margin-top: 3px; margin-bottom: 3px; margin-right: 3px; margin-left: 3px;">
+                  <field string="Con Horas Registradas" name="empleados_con_horas_count" widget="statinfo" />
+                </button>
+                <button name="get_empleados_sin_horas" class="oe_stat_button" icon="fa-laptop" type="object" style=" margin-top: 3px; margin-bottom: 3px; margin-right: 3px; margin-left: 3px;">
+                  <field string="Sin Horas Registradas" name="empleados_sin_horas_count" widget="statinfo" />
+                </button>
+                <button name="get_revisados" class="oe_stat_button" icon="fa-laptop" type="object" style=" margin-top: 3px; margin-bottom: 3px; margin-right: 3px; margin-left: 3px;">
+                  <field string="Revisados" name="revisados_count" widget="statinfo" />
+                </button>
+                <button name="get_no_revisados" class="oe_stat_button" icon="fa-laptop" type="object" style=" margin-top: 3px; margin-bottom: 3px; margin-right: 3px; margin-left: 3px;">
+                  <field string="Por Revisar" name="no_revisados_count" widget="statinfo" />
+                </button>
+                <button name="get_incidencias" class="oe_stat_button" icon="fa-laptop" type="object" style=" margin-top: 3px; margin-bottom: 3px; margin-right: 3px; margin-left: 3px;">
+                  <field string="Total de Incidencias" name="incidencias_count" widget="statinfo" />
+                </button>
+                <button name="get_incidencias_validadas" class="oe_stat_button" icon="fa-laptop" type="object" style=" margin-top: 3px; margin-bottom: 3px; margin-right: 3px; margin-left: 3px;">
+                  <field string="Incidencias Validadas" name="incidencias_validadas_count" widget="statinfo" />
+                </button>
+                <button name="get_incidencias_no_validadas" class="oe_stat_button" icon="fa-laptop" type="object" style=" margin-top: 3px; margin-bottom: 3px; margin-right: 3px; margin-left: 3px;">
+                  <field string="Incidencias Pendientes de Validar" name="incidencias_no_validadas_count" widget="statinfo" />
+                </button>
+              </div>
+            </div>
+            <field name="mayordomia_lines" mode="tree" attrs="{'readonly' : [('state', '!=','draft')]}">
+              <tree decoration-success="revision=='done'" decoration-danger="revision=='draft'">
+                <field name="revision" invisible="1" />
+                <field name="departamento" readonly="1" />
+                <field name="operador" readonly="1" />
+                <field name="bonos_ids" widget="many2many_tags" />
+                <field name="horas_proyecto_ids" widget="many2many_tags" />
+                <field name="entradas_salidas" widget="many2many_tags" />
+                <field name="incidencia_ids" widget="many2many_tags" options="{'color_field': 'color'}" />
+                <field name="total_de_horas" string="Horas en Proyectos" />
+                <field name="horas_a_pagar" />
+              </tree>
+            </field>
+          </sheet>
+        </form>
+      </field>
+    </record>
+  </data>
+</odoo>

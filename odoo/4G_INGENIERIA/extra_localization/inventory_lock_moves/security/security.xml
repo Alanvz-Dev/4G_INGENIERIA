@@ -1,0 +1,7 @@
+<odoo>
+    <data>
+        <record id="model_inventory_lock_moves_inventory_lock_moves" model="res.groups">
+            <field name="name">Bloqueo Ajsutes de Inventario 4G</field>
+        </record>
+    </data>
+</odoo>

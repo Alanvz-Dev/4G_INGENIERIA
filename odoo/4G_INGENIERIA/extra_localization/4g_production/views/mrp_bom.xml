@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="mrp_bom_form_view_4g_production" model="ir.ui.view">
+        <field name="name">4g_production.view.mrp.bom.form</field>
+        <field name="model">mrp.bom</field>
+        <field name="inherit_id" ref="mrp.mrp_bom_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='routing_id']/parent::group" position="after">
+                <field name="imagen_de_referencia" widget="html" class="oe_memo"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

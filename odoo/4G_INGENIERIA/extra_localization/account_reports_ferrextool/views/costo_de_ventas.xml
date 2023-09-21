@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="costo_de_ventas_view_form" model="ir.ui.view">
+        <field name="name">costo_de_ventas.vista.view.form</field>
+        <field name="model">costo_de_ventas.vista</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <header>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,done,cancel" />
+                    <button string="Validar" name="validar" states="draft" type="object" class="oe_highlight"/>
+                    <button string="Borrador" name="borrador" states="done" type="object" class="oe_highlight"/>
+                </header>
+                <sheet>
+                    <group>
+                        <field name="mes" />
+                        <field name="ano" />
+                        <field name="total" />
+                    </group>
+                    <group>
+                    <field name="move_id" readonly="1"/>
+                    </group>
+                    <group>
+                    <button string="Calcular" name="calcular_costo_de_ventas" type="object" class="oe_highlight"/>
+                    </group>
+
+                    <field name="cdv_lines">
+                        <tree>
+                            <field name="concepto" required="1"/>
+                            <field name="importe" sum="Costo de Ventas"/>
+                        </tree>
+                    </field>
+
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="costo_de_ventas_view_tree" model="ir.ui.view">
+        <field name="name">costo_de_ventas.vista.view.tree</field>
+        <field name="model">costo_de_ventas.vista</field>
+        <field name="arch" type="xml">
+            <tree string="">
+                <field name="mes" />
+                <field name="ano" />
+                <field name="total" readonly='1'/>
+                <field name="state" />
+            </tree>
+        </field>
+    </record>
+
+
+    <record id="costo_de_ventas" model="ir.actions.act_window">
+        <field name="name">Costo de Ventas</field>
+        <field name="res_model">costo_de_ventas.vista</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- <act_window id="account_reports_ferrextool.costo_de_ventas" name="Costo de Ventas" res_model="trial.balance" view_type="form" view_mode="form" view_id="account_reports_ferrextool.trial_balance_wizard_4g" target="new" /> -->
+
+    <menuitem parent="contabilidad_cfdi.menu_contabilidad_electonica" action="account_reports_ferrextool.costo_de_ventas" id="account_reports_ferrextool.costo_de_ventas_ferrex" name="Costo de Ventas" sequence="15" groups="group_account_rep_ferrex"/>
+
+</odoo>

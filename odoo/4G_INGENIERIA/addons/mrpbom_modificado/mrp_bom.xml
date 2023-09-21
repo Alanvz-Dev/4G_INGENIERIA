@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+        <act_window
+            name="Creacion de Presupuestos"
+            res_model="asistente.material.required"
+            src_model="asistente.material.required"
+            view_mode="form" target="new"
+            key2="client_action_multi"
+            id="asistente_material_required_form_action"/>
+
+
+
+        <record model="ir.ui.view" id="mrp_production_form_view_analytic_account">
+            <field name="name">mrp.production_analytic</field>
+            <field name="model">mrp.bom</field>
+            <field name="inherit_id"
+                   ref="mrp.mrp_bom_form_view"/>
+             <field name="arch" type="xml">
+
+                    <button name='%(asistente_material_required_form_action)d' type='action' string='Solicitud de Abastecimiento'  icon="fa-cogs"/>
+            </field>
+        </record>
+
+</odoo>

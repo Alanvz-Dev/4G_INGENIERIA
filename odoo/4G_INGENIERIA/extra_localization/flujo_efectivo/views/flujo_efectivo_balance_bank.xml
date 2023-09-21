@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+        <!-- <record id="flujo_efectivo.balance_bank_view_form" model="ir.ui.view">
+            <field name="name">Balance de Bancos</field>
+            <field name="model">flujo_efectivo.balance_bank</field>
+            <field name="arch" type="xml">
+                <form string="Balance de Bancos">
+                    <sheet>
+                        <group>
+                            <field name="date_balance" />
+                            <field name="name" />
+                            <field name="balance_today" />
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+
+            <record id="flujo_efectivo.balance_bank_tree" model="ir.ui.view">
+                <field name="name">Balance de Bancos</field>
+                <field name="model">flujo_efectivo.balance_bank</field>
+                <field name="arch" type="xml">
+                    <tree string="Balance de Bancos">
+                        <field name="date_balance" />
+                        <field name="name" />
+                        <field name="balance_today" />
+                    </tree>
+                </field>
+            </record>
+        </record> -->
+
+        <record id="flujo_efectivo.balance_bank_action" model="ir.actions.act_window">
+            <field name="name">Saldo de Bancos</field>
+            <field name="res_model">flujo_efectivo.balance_bank</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem name="Saldos de Banco" id="flujo_efectivo.menu_saldo_banco" parent="flujo_efectivo.menu_root" action="flujo_efectivo.balance_bank_action" />
+    </data>
+</odoo>

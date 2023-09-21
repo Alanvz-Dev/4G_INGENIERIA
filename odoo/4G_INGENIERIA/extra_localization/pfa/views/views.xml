@@ -1,0 +1,143 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+
+    <record model="ir.ui.view" id="pfa.list">
+      <field name="name">pfa list</field>
+      <field name="model">pfa.summary</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name" />
+          <field name="de" />
+          <field name="al" />
+          <field name="fecha_pago" />
+          <field name="pfa_ids" />
+        </tree>
+      </field>
+    </record>
+
+
+    <record id="pfa_summary_view_form" model="ir.ui.view">
+      <field name="name">pfa_summary.view.form</field>
+      <field name="model">pfa.summary</field>
+      <field name="arch" type="xml">
+        <form>
+          <header>
+            <button string="Generar Nòmina" name="create_slip_run" type="object" class="oe_highlight" />
+
+            <button string="Generar Resumen" name="create_records" type="object" class="oe_highlight" />
+          </header>
+          <sheet>
+            <group>
+              <field name="name" />
+              <group>
+                <field name="de" />
+                <field name="al" />
+                <field name="fecha_pago" />
+              </group>
+            </group>
+            <field name="pfa_ids" />
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <!-- actions opening views on models -->
+
+    <record model="ir.actions.act_window" id="pfa.action_window">
+      <field name="name">pfa window</field>
+      <field name="res_model">pfa.summary</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <record id="pfa.pfa_tree" model="ir.ui.view">
+      <field name="name">pfa.pfa.tree</field>
+      <field name="model">pfa.pfa</field>
+      <field name="arch" type="xml">
+        <tree string="Fondo de Ahorro">
+          <field name="employee_id" />
+          <field name="monto_a_pagar" sum="Total" />
+          <field name="pfa_line_ids" />
+          <button name="get_slips" string="Ver Recibos" type="object" class="oe_highlight" />
+          <field name="recibo_de_nomina" />
+        </tree>
+      </field>
+    </record>
+
+
+    <record id="pfa.pfa_form" model="ir.ui.view">
+      <field name="name">pfa.pfa.form</field>
+      <field name="model">pfa.pfa</field>
+      <field name="arch" type="xml">
+        <form string="Fondo de Ahorro">
+          <sheet>
+            <group>
+              <field name="employee_id" />
+              <field name="monto_a_pagar" readonly="0"/>
+              <field name="recibo_de_nomina" />
+            </group>
+            <button name="get_slips" string="Ver Recibos" type="object" class="oe_highlight" />
+            <field name="pfa_line_ids" />
+          </sheet>
+
+        </form>
+      </field>
+    </record>
+
+
+    <record id="pfa.pfa_line_tree" model="ir.ui.view">
+      <field name="name">pfa.pfa_line.tree</field>
+      <field name="model">pfa.pfa_line</field>
+      <field name="arch" type="xml">
+        <tree string="Detalle Fondo de Ahorro">
+          <field name="nomina" />
+          <field name="recibo_de_nomina" />
+          <field name="de" />
+          <field name="al" />
+          <field name="estructura_salarial" />
+          <field name="regla_salarial" />
+          <field name="code" />
+          <field name="monto" sum="Total"/>
+        </tree>
+      </field>
+    </record>
+
+
+    <record id="pfa.pfa_line_form" model="ir.ui.view">
+      <field name="name">pfa.pfa_line.form</field>
+      <field name="model">pfa.pfa_line</field>
+      <field name="arch" type="xml">
+        <form string="Detalle Fondo de Ahorro">
+          <sheet>
+            <group>
+              <field name="nomina" />
+              <field name="de" />
+              <field name="al" />
+              <field name="estructura_salarial" />
+              <field name="monto" sum="Total"/>
+              <field name="regla_salarial" />
+              <field name="code" />
+              <field name="recibo_de_nomina" />
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+    <!-- Top menu item -->
+
+    <menuitem name="pfa" id="pfa.menu_root" />
+
+    <!-- menu categories -->
+
+    <menuitem name="Menu 1" id="pfa.menu_1" parent="pfa.menu_root" />
+    <!-- <menuitem name="Menu 2" id="pfa.menu_2" parent="pfa.menu_root"/> -->
+
+    <!-- actions -->
+
+    <menuitem name="List" id="pfa.menu_1_list" parent="pfa.menu_1" action="pfa.action_window" />
+    <!-- <menuitem name="Server to list" id="pfa" parent="pfa.menu_2"
+              action="pfa.action_server"/> -->
+
+  </data>
+</odoo>

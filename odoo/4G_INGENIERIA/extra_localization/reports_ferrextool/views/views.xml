@@ -1,0 +1,81 @@
+<odoo>
+  <data>
+    <!--  explicit list view definition  -->
+    <record model="ir.ui.view" id="reports_ferrextool.exceso_de_inventario">
+      <field name="name">Reporte Exceso de Inventario</field>
+      <field name="model">reports_ferrextool.exceso_de_inventario</field>
+      <field name="arch" type="xml">
+        <form>
+          <group colspan="1">
+            <group colspan="2">
+              <span class="oe_inline">
+                <h2 style="color: Blue;">
+                  <center>Generar reporte de exceso de inventario</center>
+                </h2>
+              </span>
+            </group>
+            <group>
+              <h3 style="color: Green;"> Desde : </h3>
+              <field name="start_date" class="oe_inline" string="Fecha inicial de reporte" style="text-align:left; color: white;"/>
+              <h3 style="color: Green;"> Hasta : </h3>
+              <field name="end_date" class="oe_inline" string="Fecha final de reporte" style="text-align:left; color: white;"/>
+            </group>
+          </group>
+          <widget name="custom_download_button" model="reports_ferrextool.exceso_de_inventario" string="Descargar Reporte de Ecxel"/>
+        </form>
+      </field>
+    </record>
+
+
+    <record model="ir.ui.view" id="reports_ferrextool.lento_movimiento">
+      <field name="name">Reporte de Lento Movimiento</field>
+      <field name="model">reports_ferrextool.lento_movimiento</field>
+      <field name="arch" type="xml">
+        <form>
+          <group colspan="1">
+            <group colspan="2">
+              <span class="oe_inline">
+                <h2 style="color: Blue;">
+                  <center>Generar reporte de Lento Movimiento</center>
+                </h2>
+              </span>
+            </group>
+            <group>
+              <h3 style="color: Green;"> Desde : </h3>
+              <field name="start_date" class="oe_inline" string="Fecha inicial de reporte" style="text-align:left; color: white;"/>
+              <h3 style="color: Green;"> Hasta : </h3>
+              <field name="end_date" class="oe_inline" string="Fecha final de reporte" style="text-align:left; color: white;"/>
+            </group>
+          </group>
+          <widget name="custom_download_button" model="reports_ferrextool.lento_movimiento" string="Descargar Reporte de Ecxel"/>
+        </form>
+      </field>
+    </record>
+
+
+    <!--  actions opening views on models  -->
+    <record model="ir.actions.act_window" id="reports_ferrextool.action_window">
+      <field name="name">reports_ferrextool window</field>
+      <field name="res_model">reports_ferrextool.exceso_de_inventario</field>
+       <field name="view_id" ref="reports_ferrextool.exceso_de_inventario"/>
+      <field name="view_mode">form</field>
+      <field name="target">inline</field>
+    </record>
+    <!--  server action to the one above  -->
+    <record model="ir.actions.act_window" id="reports_ferrextool.action_window2">
+      <field name="name">reports_ferrextool window</field>
+      <field name="res_model">reports_ferrextool.lento_movimiento</field>
+      <field name="view_id" ref="reports_ferrextool.lento_movimiento"/>
+      <field name="view_mode">form</field>
+      <field name="target">inline</field>
+    </record>
+ 
+    <!--  Top menu item  -->
+    <menuitem name="Reportes" id="reports_ferrextool.menu_root"/>
+    <!--  menu categories  -->
+    <menuitem name="Reportes" id="reports_ferrextool.menu_1" parent="reports_ferrextool.menu_root"/>
+    <!--  actions  -->
+    <menuitem name="Exceso de Inventario" id="reports_ferrextool.menu_1_list" parent="reports_ferrextool.menu_1" action="reports_ferrextool.action_window"/>
+    <menuitem name="Lento Movimiento" id="reports_ferrextool" parent="reports_ferrextool.menu_1" action="reports_ferrextool.action_window2"/>
+  </data>
+</odoo>

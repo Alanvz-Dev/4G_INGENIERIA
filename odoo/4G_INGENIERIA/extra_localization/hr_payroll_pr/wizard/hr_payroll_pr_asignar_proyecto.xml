@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+        <record id="hr_payroll_pr.asign_proyecto_wizard_view_form" model="ir.ui.view">
+            <field name="name">Asignar Proyecto</field>
+            <field name="model">hr_payroll_pr.asign_proyecto</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <field name="mayordomia_line_ids"></field>
+                        <group>
+                            <field name="analytic_account_id" />
+                            <field name="centro_de_trabajo"/>
+                            <field name="horas" />
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button name="asign" string="Asignar" type="object" class="oe_highlight" />                        
+                        <button string="Cancel" special="cancel" class="oe_link"/>                        
+                    </footer>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

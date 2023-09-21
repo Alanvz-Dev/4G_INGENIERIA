@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+        <record id="hr_payroll_pr.in_out_view_tree" model="ir.ui.view">
+            <field name="name">Entradas y Salidas</field>
+            <field name="model">hr_payroll_pr.in_out</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="date_in" />
+                    <field name="date_out" />
+                    <field name="total" />
+                    <field name="total_checador" />
+                    <field name="bono_puntualidad" />
+                </tree>
+            </field>
+        </record>
+    </data>
+</odoo>

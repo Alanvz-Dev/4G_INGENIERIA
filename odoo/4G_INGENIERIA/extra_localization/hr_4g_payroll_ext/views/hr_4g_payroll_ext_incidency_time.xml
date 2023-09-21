@@ -1,0 +1,251 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+        <record id="hr_4g_payroll_ext.view_form" model="ir.ui.view">
+            <field name="name">hr_4g_payroll_ext.view.form</field>
+            <field name="model">hr_4g_payroll_ext.incidency</field>
+            <field name="arch" type="xml">
+                <form string="TXT">
+                    <header>
+                        <button string="Validar" attrs="{'invisible': [('state','in',['done'])]}" groups="hr_4g_payroll_ext.group_recursos_humanos" name="valid" type="object" class="oe_highlight" />
+                        <button string="Rechazar" attrs="{'invisible': [('state','not in',['done'])]}" groups="hr_4g_payroll_ext.group_recursos_humanos" name="reject" type="object" class="oe_highlight" />
+                        <button string="Entradas/Salidas Checador" groups="hr_4g_payroll_ext.group_recursos_humanos" name="checador" type="object" class="oe_highlight" />
+                        <field name="state" widget="statusbar"/>
+                        <!-- <field name="tipo_incidencia" widget="statusbar"/> -->
+                    </header>
+                    <header>
+                        <button string="Aprobar" attrs="{'invisible': [('state_guard','in',['done'])]}" groups="hr_4g_payroll_ext.group_gerente" name="guard_verification_valid" type="object" class="oe_highlight" />
+                        <button string="Rechazar" attrs="{'invisible': [('state_guard','not in',['done'])]}" groups="hr_4g_payroll_ext.group_gerente" name="guard_verification_cancel" type="object" class="oe_highlight" />
+                        <field name="state_guard" widget="statusbar"/>
+                    </header>
+                    <header>
+                        <field name="state_pago" widget="statusbar" />
+                    </header>
+                    <sheet>
+
+
+                        <div name="button_box" position="before">
+                            <div class=" oe_button_box " name="button_box">
+                                <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive">
+                                    <field name="active" widget="boolean_button" options="{&quot;terminology&quot;: &quot;archive&quot;}" />
+                                </button>
+                            </div>
+                        </div>
+                        <div>
+                            <h1>
+                                <field name="name" />
+                            </h1>
+                        </div>
+                        <!-- colspan="5" col='4' -->
+                        <group>
+                            <group>
+                                <field name="employee_id" attrs="{'required': [('tipo_incidencia','not in', ['EXT'])],'invisible': [('tipo_incidencia','in', ['EXT'])]}" options="{'no_create_edit':True,'no_quick_create':True,'no_create': True,'no_open': True}" />
+                                <field name="nombre_externo" attrs="{'invisible': [('tipo_incidencia','not in', ['EXT'])],'required': [('tipo_incidencia','in', ['EXT'])]}" />
+                                <field name="tipo_incidencia" />
+                                <field name="tipo" required="1" />
+                                <field name="monto_bono" attrs="{'invisible': [('tipo_incidencia','not in', ['BO'])]}" />
+                                <field name="proyecto" attrs="{'invisible': [('tipo_incidencia','not in', ['BO'])]}" />
+                                <field name="fecha_bono" attrs="{'invisible': [('tipo_incidencia','not in', ['BO'])]}" />
+                            </group>
+                            <group>
+                                <field name="date_from" string="Fecha Incial:" attrs="{'invisible': [('tipo_incidencia','in', ['BO'])]}" />
+                                <field name="date_to" string="Fecha Final" attrs="{'invisible': [('tipo_incidencia','in', ['BO'])]}" />
+                                <field name="considerar_dias" attrs="{'invisible': [('tipo_incidencia','in', ['BO'])]}" />
+                                <field name="horas" widget="float_time" attrs="{'invisible': [('tipo_incidencia','in', ['BO'])]}" />
+                                <field name="dias" attrs="{'invisible': [('tipo_incidencia','in', ['BO'])]}" />
+                                <separator />
+                                <field name="horas_checador" attrs="{'invisible': [('horas_checador','=', 0)]}" widget="float_time" />
+                                <field name="horas_a_considerar" widget="float_time" attrs="{'invisible': [('tipo_incidencia','in', ['BO'])]}" />
+
+                            </group>
+                            <group>
+
+                                <!-- <field name="calendario"/> -->
+                            </group>
+                            <separator />
+                            <group>
+
+                                <field name="nomina_de_pago" attrs="{'invisible': [('state_pago','in', ['draft'])]}" />
+                                <field name="holiday_id" string="Incidencia" attrs="{'invisible': [('holiday_id','in', [False])]}" />
+                            </group>
+                        </group>
+
+                        <group>
+                            <field name="uuid" attrs="{'invisible': [('uuid','in', [False])]}" />
+                            <!-- <field name="calendario"/> -->
+                        </group>
+
+
+                        <field name="incapacidad_ids" attrs="{'invisible': [('tipo_incidencia','not in',['INC_EG','INC_RT','INC_MAT'])]}">
+                            <tree>
+                                <field name="ramo_seguro" />
+                                <field name="tipo_de_riesgo" />
+                                <field name="secuela" />
+                                <field name="control" />
+                                <field name="control2" />
+                                <field name="folio_incapacidad" />
+                                <field name="porcentaje" />
+                            </tree>
+                        </field>
+                        <group groups="hr_4g_payroll_ext.guardias">
+                            <group attrs="{'invisible': [('tipo_incidencia','in', ['BO'])]}">
+                                <button string="Registrar Entrada" name="register_in" type="object" class="oe_highlight" attrs="{'invisible': [('tipo_incidencia','in', ['BO'])]}" />
+                            </group>
+                            <group attrs="{'invisible': [('tipo_incidencia','in', ['BO'])]}">
+                                <button string="Registrar Salida" name="register_out" type="object" class="oe_highlight" attrs="{'invisible': [('tipo_incidencia','in', ['BO'])]}" />
+                            </group>
+                        </group>
+
+
+                        <field name="entradas_salidas" readonly="1" attrs="{'invisible': [('tipo_incidencia','in', ['BO'])]}">
+                            <tree>
+                                <field name="date_in" />
+                                <field name="date_out" />
+                            </tree>
+                        </field>
+                        <field name="entrada_salida_ids" attrs="{'invisible': [('tipo_incidencia','in', ['BO'])]}">
+                            <tree>
+                                <field name="id_axtraxng" />
+                                <field name="employee_name" />
+                                <field name="departamento" />
+                                <field name="dia" />
+                                <field name="fecha" />
+                                <field name="entrada" />
+                                <field name="salida" />
+                                <field name="tiempo_total" />
+                                <field name="tiempo_total_horas" sum="Tiempo Total" widget="float_time" />
+                            </tree>
+                        </field>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers" />
+                        <field name="message_ids" widget="mail_thread" />
+                        <field name="activity_ids" widget="mail_activity" />
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="hr_4g_payroll_ext.view_tree" model="ir.ui.view">
+            <field name="name">hr_4g_payroll_ext.view.tree</field>
+            <field name="model">hr_4g_payroll_ext.incidency</field>
+            <field name="arch" type="xml">
+                <tree string="Tiempo por Tiempo">
+                    <field name="employee_id" />
+                    <field name="date_from" />
+                    <field name="tipo" />
+                    <field name="tipo_incidencia" />
+                    <field name="horas" />
+                    <field name="state" />
+                    <field name="state_guard" string="Estatus Gerente" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="hr_4g_payroll_ext.view_pivot" model="ir.ui.view">
+            <field name="name">hr_4g_payroll_ext.view.pivot</field>
+            <field name="model">hr_4g_payroll_ext.incidency</field>
+            <field name="arch" type="xml">
+                <pivot string="sdsd" disable_linking="true">
+                    <field name="employee_id" />
+                    <field name="tipo" />
+                    <field name="tipo_incidencia" />
+                    <!-- <field name="dias" /> -->
+                    <field name="horas" />
+                    <field name="state" />
+                </pivot>
+            </field>
+        </record>
+
+        <record id="hr_4g_payroll_ext.view_graph" model="ir.ui.view">
+            <field name="name">model_name.view.graph</field>
+            <field name="model">hr_4g_payroll_ext.incidency</field>
+            <field name="arch" type="xml">
+                <graph string="" type="bar">
+                    <field name="employee_id" />
+                    <field name="tipo" />
+                    <field name="tipo_incidencia" />
+                    <!-- <field name="dias" /> -->
+                    <field name="horas" />
+                    <field name="state" />
+                </graph>
+            </field>
+        </record>
+
+
+        <!-- sequence -->
+        <record id="hr_4g_payroll_ext.sequence_incidency" model="ir.sequence">
+            <field name="name">Incidencias</field>
+            <field name="code">hr_4g_payroll_ext.incidency</field>
+            <field name="prefix">INCIDENCIA</field>
+            <field name="padding">4</field>
+            <field name="number_increment">1</field>
+            <field name="company_id" eval="False" />
+        </record>
+
+        <record id="hr_4g_payroll_ext.incidency_action" model="ir.actions.act_window">
+            <field name="name">Incidencias</field>
+            <field name="res_model">hr_4g_payroll_ext.incidency</field>
+            <field name="view_mode">tree,form,pivot,graph</field>
+        </record>
+
+
+        <record id="hr_4g_payroll_ext.incidency_action_server" model="ir.actions.server">
+            <field name="name">Validación Multiple</field>
+            <field name="model_id" ref="model_hr_4g_payroll_ext_incidency" />
+            <field name="binding_model_id" ref="model_hr_4g_payroll_ext_incidency" />
+            <field name="state">code</field>
+            <field name="code">
+        action = records.guard_verification_valid()
+    </field>
+        </record>
+
+        <record id="hr_4g_payroll_ext.incidency_view_search" model="ir.ui.view">
+            <field name="name">hr_4g_payroll_ext.incidency.view.search</field>
+            <field name="model">hr_4g_payroll_ext.incidency</field>
+            <field name="arch" type="xml">
+                <search string="Filtros">
+                    <field name="name" />
+                    <field name="employee_id" />
+                    <field name="nombre_externo" />
+                    <field name="department" />
+                    <field name="tipo" />
+                    <field name="state" />
+                    <field name="state_guard" />
+                    <field name="state_pago" />
+                    <field name="tipo_incidencia" />
+                    <separator />
+                    <filter string="Entradas(Guardias)" domain="[('state_guard','in',['done']),('date_from','&lt;',time.strftime('%Y-%%m-%d 23:59:59')),('date_from','&gt;=',(datetime.date.today()-datetime.timedelta(days=7)).strftime('%Y-%m-%d 00:00:00'))]" context="{'order_by':'date_from desc'}" name="Entradas(Guardias)" help="Filtro que verán los Guardias en la Entrada" />
+                    <separator />
+                    <filter string="Tiempo Por Tiempo Por Aprobar" name="Tiempo Por Tiempo Por Aprobar" domain="[('tipo_incidencia','=','TXT'),('state','=','pending'),('state_guard','=','draft')]" help="Filtra el Tiempo Por Tiempo Que Necesita Ser Aprobado Por Gerencia" />
+                    <filter string="Tiempo Por Tiempo Por Validar" name="Tiempo Por Tiempo Por Validar" domain="[('tipo_incidencia','=','TXT'),('state','=','pending'),('state_guard','=','done')]" help="Filtra el Tiempo por Tiempo Que necesita Ser Validado Por Recursos Humanos" />
+                    <separator />
+                    <filter string="Tiempo Extra Por Aprobar" name="Tiempo Extra Por Aprobar" domain="[('tipo_incidencia','in',['HEX1','HEX2','HEX3']),('state','=','pending'),('state_guard','=','draft')]" help="Filtra el Tiempo Extra Que Necesita Ser Aprobado Por Gerencia" />
+                    <filter string="Tiempo Extra Por Validar" name="Tiempo Extra Por Validar" domain="[('tipo_incidencia','in',['HEX1','HEX2','HEX3']),('state','=','pending'),('state_guard','=','done')]" help="Filtra el Tiempo Extra Que necesita Ser Validado Por Recursos Humanos" />
+                    <separator />
+                    <filter string="Incidencias Creadas Por Mi" name="Incidencias Creadas Por Mi" domain="['|',('create_uid','=',False),('create_uid','=',context.get('uid'))]" help="Muestra Las Incidencias Creadas Por El Usuario Actual" />
+                    <separator />
+                    <filter string="Estatus RH es Validado" name="Estatus RH es Validado" domain="[('state','=','done')]" />
+                    <filter string="Estatus RH es Pendiente" name="Estatus RH es Pendiente" domain="[('state','=','pending')]" />
+                    <filter string="Estatus RH es Rechazado" name="Estatus RH es Rechazado" domain="[('state','=','draft')]" />
+                    <separator />
+                    <filter string="Estatus Gerencia es Validado" name="Estatus Gerencia es Validado" domain="[('state_guard','=','done')]" />
+                    <filter string="Estatus Gerencia es NO Validado" name="Estatus Gerencia es NO Validado" domain="[('state_guard','!=','done')]" />
+                    <separator />
+                    <group expand='0' string='Agrupar Por...'>
+                        <filter string='Empleado' domain="[]" context="{'group_by': 'employee_id'}" />
+                        <filter string='Departamento' domain="[]" context="{'group_by' : 'department'}" />
+                        <filter string='Estatus Recursos Humanos' domain="[]" context="{'group_by' : 'state'}" />
+                        <filter string='Estatus Gerencia' domain="[]" context="{'group_by' : 'state_guard'}" />
+                        <filter string='Tipo Incidencia' domain="[]" context="{'group_by': 'tipo_incidencia'}" />
+                        <filter string='Identificador Incidencia Masiva' domain="[]" context="{'group_by': 'uuid'}" />
+                    </group>
+
+                </search>
+            </field>
+        </record>
+
+
+    </data>
+
+</odoo>

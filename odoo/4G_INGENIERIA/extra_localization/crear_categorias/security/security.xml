@@ -1,0 +1,7 @@
+<odoo>
+    <data>
+        <record id="group_crear_categorias" model="res.groups">
+            <field name="name">Creación de Categorías</field>
+        </record>
+    </data>
+</odoo>

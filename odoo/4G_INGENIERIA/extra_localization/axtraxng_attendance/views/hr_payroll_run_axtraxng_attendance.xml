@@ -1,0 +1,21 @@
+
+<odoo>
+    <data>
+      <record id="hr_payslip_run_axtraxng_attendance" model="ir.ui.view">
+            <field name="name">Asistencias</field>
+            <field name="model">hr.payslip.run</field>
+            <field name="priority">51</field>
+            <field name="inherit_id" ref="nomina_cfdi.hr_payslip_run_form_nomina_cfdi"/>
+            <field name="arch" type="xml">
+                <xpath expr="/form/sheet/notebook/page[1]/group[2]" position="inside">
+                                  <group string="Reporte Asistencia">
+                                       <field name="axtraxng_attendance" readonly="1" />
+                                 </group>
+                </xpath>
+            </field>
+       </record>
+
+
+
+    </data>
+</odoo>

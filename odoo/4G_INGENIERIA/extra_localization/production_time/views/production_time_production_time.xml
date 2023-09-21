@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <record id="production_time_production_time_view_tree" model="ir.ui.view">
+        <field name="name">production_time.production_time.view.tree</field>
+        <field name="model">production_time.production_time</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom">
+                <field name="producto" />
+                <field name="fecha_programada" />
+                <field name="piezas_x_dia" />
+                <field name="horas_x_dia" />  
+            </tree>
+        </field>
+    </record>
+
+
+
+
+
+
+    <record model="ir.actions.server" id="production_time.action_server">
+        <field name="name">Tiempo de Producción</field>
+        <field name="model_id" ref="production_time.model_production_time_production_time"/>
+        <field name="state">code</field>
+        <field name="code">
+            action = model.test()
+        </field>
+      </record>
+    <!-- <field name="help" type="html">
+            
+    </field> -->
+
+    <!-- <menuitem id="production_time.production_time_menu"  /> -->
+    <menuitem name="Tiempo de Producción" id="production_time.times" />
+    <!-- groups="groups_id"     -->
+    <menuitem id="production_time.time" parent="production_time.times" action="production_time.action_server" sequence="10" />
+</odoo>

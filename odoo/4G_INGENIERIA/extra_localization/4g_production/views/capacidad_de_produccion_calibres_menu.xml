@@ -1,0 +1,12 @@
+<odoo>
+    <data>
+  
+      <!-- Top menu item -->
+  
+      <!-- <menuitem name="Capacidad de Producción" id="mrp.capacidad_de_produccion" parent="mrp.menu_mrp_root" action="mrp.capacidad_de_produccion_grafica_act"/> -->
+  <menuitem name="Configuración de Calibres" id="4g_production.calibres_list" parent="mrp.menu_mrp_root" action="4g_production.calibres_validos_act"/>
+
+  
+  
+    </data>
+  </odoo>

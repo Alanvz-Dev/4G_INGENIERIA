@@ -1,0 +1,46 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+
+    <record model="ir.ui.view" id="servicio_comedor.list">
+      <field name="name">servicio_comedor list</field>
+      <field name="model">servicio_comedor.servicio_comedor</field>
+      <field name="arch" type="xml">
+        <form string="Servicio de Comedor" create="false" edit="false">      
+            <button name="get_servicio_de_comedor" string="Descontar Servicio de Comedor" type="object" class="oe_highlight"/>
+            <button name="importacion_masiva" string="Importacion Masiva" type="object" class="oe_highlight"/>
+          <field name="start_date" string="Fecha Inicial"/>
+          <field name="end_date" string="Fecha Final"/>
+        </form>
+      </field>
+    </record>
+
+
+    <!-- actions opening views on models -->
+
+    <record model="ir.actions.act_window" id="servicio_comedor.action_window">
+      <field name="name">servicio_comedor window</field>
+      <field name="res_model">servicio_comedor.servicio_comedor</field>
+      <field name="view_mode">form</field>
+      <field name="target">inline</field>
+    </record>
+
+
+
+
+    <!-- Top menu item -->
+
+    <menuitem name="Servicio de Comedor" id="servicio_comedor.menu_root"/>
+
+    <!-- menu categories -->
+
+    <menuitem name="Servicio de Comedor" id="servicio_comedor.menu_1" parent="servicio_comedor.menu_root"/>
+    
+
+    <!-- actions -->
+
+    <menuitem name="Descuento" id="servicio_comedor.menu_1_list" parent="servicio_comedor.menu_1" action="servicio_comedor.action_window"/>
+    
+
+  </data>
+</odoo>

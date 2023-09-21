@@ -1,0 +1,25 @@
+Agregar campo en el modelo 
+
+/opt/odoo/odoo/addons/account/models/account_invoice.py
+_name = "account.invoice"
+state_files = fields.Selection([('uploaded','Archivos Subidos'),('pending','Sin Archivos')],default='pending')
+
+
+vista
+/opt/odoo/odoo/addons/account/views/account_invoice_view.xml
+
+<field name="state_files" widget="statusbar" statusbar_visible="upload,pending" />
+
+
+
+
+
+
+/opt/odoo/odoo/addons/account/models/account_payment.py
+_name = "account.payment"
+state_files = fields.Selection([('uploaded','Archivos Subidos'),('pending','Sin Archivos')],default='pending')
+
+
+vista 
+/opt/odoo/odoo/addons/account/views/account_payment_view.xml
+id="view_account_payment_form"

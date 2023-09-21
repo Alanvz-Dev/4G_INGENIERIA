@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+
+        <template id="template_accountinvoice_report">
+            <t t-call="report.html_container">
+                <t t-call="report.external_layout">
+                <t t-foreach="docs" t-as="o">
+                    <div class="page">
+                        <h1>Reporte de productos comprados por poryecto</h1>
+                        <div t-foreach="docs" t-as="o" class="row mt4 mb4">
+                               <table class="table table-condensed">
+                                    <tr class="border-black">
+                                        <td class="text-center"><strong># Factura*</strong></td>
+                                        <td class="text-center"><strong>Cliente*</strong></td>
+                                        <td class="text-center"><strong>Facha Factura*</strong></td>
+                                        <td class="text-center"><strong>Fecha Vencim.*</strong></td>
+                                        <td class="text-center"><strong>OC Cliente*</strong></td>
+                                        <td class="text-center"><strong>Total Factura*</strong></td>
+                                        <td class="text-center"><strong>Estatus*</strong></td>
+                                        <td class="text-center"><strong>Vendedor*</strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div t-foreach="o.show_data_report_account_invoice()" t-as="item" class="row mt4 mb4">
+                                                 <div class="text-center" style="font-size:6px;">;<t t-esc="item[0]"/></div><br/>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div t-foreach="o.show_data_report_account_invoice()" t-as="item" class="row mt4 mb4">
+                                                <div class="text-center" style="font-size:5px;">;<t t-esc="item[1]"/></div><br/>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div t-foreach="o.show_data_report_account_invoice()" t-as="item" class="row mt4 mb4">
+                                                <div class="text-center" style="font-size:4px;">;<t t-esc="item[2]"/></div><br/>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div t-foreach="o.show_data_report_account_invoice()" t-as="item" class="row mt4 mb4">
+                                                <div class="text-center" style="font-size:6px;">;<t t-esc="item[3]"/></div><br/>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div t-foreach="o.show_data_report_account_invoice()" t-as="item" class="row mt4 mb4">
+                                                 <div class="text-center" style="font-size:6px;">;<t t-esc="item[4]"/></div><br/>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div t-foreach="o.show_data_report_account_invoice()" t-as="item" class="row mt4 mb4">
+                                                 <div class="text-center" style="font-size:6px;">;<t t-esc="item[5]"/></div><br/>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div t-foreach="o.show_data_report_account_invoice()" t-as="item" class="row mt4 mb4">
+                                                 <div class="text-center" style="font-size:6px;">;<t t-esc="item[6]"/></div><br/>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div t-foreach="o.show_data_report_account_invoice()" t-as="item" class="row mt4 mb4">
+                                                    <div class="text-center" style="font-size:6px;">;<t t-esc="item[7]"/></div><br/>
+
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <!--positivas <div class="col-md-6"><t t-esc="item[0]" /></div>
+                                totales <div class="col-md-6"><t t-esc="item[1]" /></div>-->
+                            </div>
+    
+                        <!--<div t-foreach="docs" t-as="o" class="row mt4 mb4">
+                            <div t-foreach="o.print_report_ev_proveedores(o.array)" t-as="item" class="row mt4 mb4">
+                                <div class="col-md-6"><t t-esc="item" /></div>
+                            </div>
+                        </div>-->
+                    </div>
+                </t>
+                </t>
+            </t>
+        </template>                      
+                        
+
+        <report 
+            id="template_accountinvoice_report_id"
+            string="Reporte de Productos comprados por proyecto"
+            model="categorycost.product"
+            report_type="qweb-pdf"
+            file="cambios_costos.template_accountinvoice_report"
+            name="cambios_costos.template_accountinvoice_report"
+        />
+
+    </data>
+</odoo>
+
+<!--
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <template id="template_evaluacion_proveedores" name="purchaseorder_costos.template_evaluacion_proveedores">
+            <t t-call="report.html_container">
+                <div t-foreach="docs" t-as="o" class="row mt4 mb4">
+                    <div class="page">
+                        <div class="row">
+                            <div>
+                                <span t-esc="o.ev_total"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </template>
+        <report 
+            id="report_ev_proveedores"
+            string="Reporte de Proveedores"
+            model="ev.proveedores" 
+            report_type="qweb-pdf"
+            file="purchaseorder_costos.template_material_report" 
+            name="purchaseorder_costos.template_material_report"
+        />
+    </data>
+</openerp>
+-->

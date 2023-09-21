@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_reports_ferrextool_reports_ferrextool,reports_ferrextool_exceso_de_inventario,model_reports_ferrextool_reports_ferrextool,,1,0,0,0

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+        <!-- TRIAL BALANCE -->
+        <record id="trial_balance_wizard_pt" model="ir.ui.view">
+            <field name="name">Balanza de comprobación</field>
+            <field name="model">trial.balance.report.wizard.contabilidad.cfdi</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group name="main_info">
+                        <field name="company_id" options="{'no_create': True}" groups="base.group_multi_company" />
+                    </group>
+                    <div>
+                        <group name="filters">
+
+                            <field name="year" />
+                            <field name="month" />                            
+                            <field name="fy_start_date" invisible="1" />
+
+                        </group>
+                    </div>                   
+                    <footer>
+                        <div>
+                            <button name="generar_reporte_pt" string="Reporte ISR" type="object" />                           
+                            <button string="Cancelar" class="oe_link" special="cancel" />
+                        </div>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+
+        <report
+        id="contabilidad_cfdi.id_pt_view_report"
+        model="trial.balance.report.wizard.contabilidad.cfdi"
+        string="Situación Financiera"
+        report_type="xlsx"
+        name="contabilidad_cfdi.pt_report"
+        file="PT"
+        attachment_use="True"
+    />
+
+        <act_window id="account_reports_pt_4g.action_trial_balance_wizard_pt" name="Reporte ISR" res_model="trial.balance.report.wizard.contabilidad.cfdi" view_type="form" view_mode="form" view_id="account_reports_pt_4g.trial_balance_wizard_pt" target="new" />
+
+        <menuitem parent="contabilidad_cfdi.menu_contabilidad_electonica" action="account_reports_pt_4g.action_trial_balance_wizard_pt" id="account_reports_pt_4g.menu_trial_balance_wizard_pt" name="Reporte ISR" sequence="20" />
+
+
+    </data>
+
+
+</odoo>

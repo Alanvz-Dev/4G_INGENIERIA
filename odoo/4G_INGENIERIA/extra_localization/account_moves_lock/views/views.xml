@@ -1,0 +1,38 @@
+<odoo>
+  <data>
+  
+
+     <!-- Explicit form definition -->
+
+
+    <!-- explicit list view definition -->
+    
+    <!-- <record model="ir.ui.view" id="account_moves_lock.list">
+      <field name="name">account_moves_lock list</field>
+      <field name="model">account_moves_lock.account_moves_lock</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+        </tree>
+      </field>
+    </record> -->
+   
+
+    <!-- actions opening views on models -->
+    
+
+    <!-- Top menu item -->
+    
+    <menuitem name="Bloqueo De movimientos" id="account_moves_lock.menu_root" web_icon="account_moves_lock,static/description/icon.jpg" action="account_moves_lock.action_open_wizard_lock_date_ranges"/>
+   
+    <!-- menu categories -->
+    
+    <!-- <menuitem name="Menu 2" id="account_moves_lock.menu_2" parent="account_moves_lock.menu_root"/>
+    -->
+    <!-- actions -->
+<!-- 
+    <menuitem name="Server to list" id="account_moves_lock" parent="account_moves_lock.menu_2"
+              action="account_moves_lock.action_open_wizard_lock_date_ranges"/>
+    -->
+  </data>
+</odoo>

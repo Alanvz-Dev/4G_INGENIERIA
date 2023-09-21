@@ -1,0 +1,99 @@
+<odoo>
+    <data>
+        <template id="template_evaluacion_proveedores">
+            <t t-call="report.html_container">
+                <t t-call="report.external_layout">
+                    <t t-foreach="docs" t-as="o">
+                        <div class="page">
+                            <h1>Cumplimiento de Evaluacion de Proveedores</h1>
+                            <h5>Fecha del 
+                                
+                                <span t-field="o.fecha_inicio"/> al 
+                                
+                                <span t-field="o.fecha_fin"/>
+                            </h5>
+                            <br/>
+                            <br/>
+                            <div t-foreach="docs" t-as="o" class="row mt4 mb4">
+                                <table class="table table-condensed">
+                                    <tr class="border-black">
+                                        <td class="text-center">
+                                            <strong>Nombre de Proveedor</strong>
+                                        </td>
+                                        <td class="text-center">
+                                            <strong>Total de Recepciones</strong>
+                                        </td>
+                                        <td class="text-center">
+                                            <strong>Recepciones Positivas</strong>
+                                        </td>
+                                        <td class="text-center">
+                                            <strong>% de Cumplimiento</strong>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div t-foreach="o.calcula_ev_proveedores_name()" t-as="item" class="row mt4 mb4">
+                                                <div class="text-center">
+                                                    <t t-esc="item.name"/>
+                                                </div>
+                                                <br/>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div t-foreach="o.calcula_ev_proveedores()" t-as="item" class="row mt4 mb4">
+                                                <div class="text-center">
+                                                    <t t-esc="item"/>
+                                                </div>
+                                                <br/>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div t-foreach="o.calcula_ev_proveedores_total_positiva()" t-as="item" class="row mt4 mb4">
+                                                <div class="text-center">
+                                                    <t t-esc="item"/>
+                                                </div>
+                                                <br/>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div t-foreach="o.calcula_ev_proveedores_positiva()" t-as="item" class="row mt4 mb4">
+                                                <div class="text-center">
+                                                    <t t-esc="item"/>%
+                                                
+                                                </div>
+                                                <br/>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <!--positivas <div class="col-md-6"><t t-esc="item[0]" /></div>
+                                totales <div class="col-md-6"><t t-esc="item[1]" /></div>-->
+                            </div>
+                            <!--<div t-foreach="docs" t-as="o" class="row mt4 mb4"><div t-foreach="o.print_report_ev_proveedores(o.array)" t-as="item" class="row mt4 mb4"><div class="col-md-6"><t t-esc="item" /></div></div></div>-->
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+        <report 
+            id="report_ev_proveedores"
+            string="Reporte de Proveedores"
+            model="ev.proveedores" 
+            report_type="qweb-pdf"
+            file="purchaseorder_costos.template_evaluacion_proveedores" 
+            name="purchaseorder_costos.template_evaluacion_proveedores"
+        />
+    </data>
+</odoo>
+<!--
+
+
+<?xml version="1.0" encoding="utf-8"?><odoo><data><template id="template_evaluacion_proveedores" name="purchaseorder_costos.template_evaluacion_proveedores"><t t-call="report.html_container"><div t-foreach="docs" t-as="o" class="row mt4 mb4"><div class="page"><div class="row"><div><span t-esc="o.ev_total"/></div></div></div></div></t></template><report 
+            id="report_ev_proveedores"
+            string="Reporte de Proveedores"
+            model="ev.proveedores" 
+            report_type="qweb-pdf"
+            file="purchaseorder_costos.template_evaluacion_proveedores" 
+            name="purchaseorder_costos.template_evaluacion_proveedores"
+        /></data></odoo>
+-->

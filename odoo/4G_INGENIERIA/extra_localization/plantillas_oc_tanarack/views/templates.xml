@@ -1,0 +1,482 @@
+<odoo>
+    <data>
+        <template id="purchase.report_purchaseorder_document" name="report_purchaseorder_document">
+            <t t-name="purchase.report_purchaseorder_document">
+                <t t-call="web.external_layout">
+                    <t t-set="o" t-value="o.with_context(lang=o.partner_id.lang)" />
+                    <div class="page">
+                        <div class="row" style="font-size:9px">
+                            <table class="table table-condensed">
+                                <thead></thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <center>
+                                                <span t-field="o.company_id.logo" t-field-options="{&quot;widget&quot;: &quot;image&quot;}" />
+                                            </center>
+                                        </td>
+                                        <td>
+                                            <p></p>
+                                            <center>
+                                                <span style="font-size:13px" t-field="o.company_id.partner_id" t-field-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;, &quot;phone&quot;], &quot;no_marker&quot;: true, &quot;phone_icons&quot;: true}" />
+                                                <strong style="font-size:12px">RFC: </strong>
+                                                <span style="font-size:12px" t-field="o.company_id.partner_id.rfc" />
+                                                <br />
+                                                <strong style="font-size:12px">Regimen General de Ley Personas Morales</strong>
+                                            </center>
+                                            <p />
+                                            <p />
+                                        </td>
+                                    </tr>
+                                    <div t-if="o.state == 'draft' or o.state == 'to approve'">
+                                        <tr>
+                                            <td>
+                                                <strong style="font-size:20px">SOLICITUD DE PRESUPUESTO: </strong>
+                                                <br />
+                                                <strong style="font-size:12px">Proveedor: </strong>
+                                                <span t-field="o.partner_id" t-field-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;, &quot;phone&quot;], &quot;no_marker&quot;: true, &quot;phone_icons&quot;: true}" />
+                                                <strong style="font-size:12px">RFC: </strong>
+                                                <span t-field="o.partner_id.rfc" />
+                                                <br />
+                                                <strong style="font-size:12px">Tipo de Moneda: </strong>
+                                                <span style="font-size:10px" t-field="o.currency_id" />
+                                            </td>
+                                            <td>
+                                                <strong style="font-size:12px">Solicitud de Presupuesto # </strong>
+                                                <span style="font-size:10px" t-field="o.name"></span>
+                                                <br />
+                                                <strong style="font-size:12px">Fecha: </strong>
+                                                <span style="font-size:10px" t-field="o.date_order" />
+                                                <br />
+                                                <strong style="font-size:12px">Almacen: </strong>
+                                                <span style="font-size:10px" t-field="o.picking_type_id" />
+                                                <br />
+                                                <strong style="font-size:12px">Fecha de Recepcion: </strong>
+                                                <span style="font-size:10px" t-field="o.date_planned" />
+                                                <br />
+                                                <strong style="font-size:12px">Condicion de pago: </strong>
+                                                <span style="font-size:10px" t-field="o.payment_term_id" />
+                                            </td>
+                                        </tr>
+                                    </div>
+                                    <div t-if="o.state == 'purchase' or o.state == 'done'">
+                                        <tr>
+                                            <td>
+                                                <strong style="font-size:20px">ORDEN DE COMPRA: </strong>
+                                                <br />
+                                                <strong style="font-size:12px">Proveedor: </strong>
+                                                <span t-field="o.partner_id" t-field-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;, &quot;phone&quot;], &quot;no_marker&quot;: true, &quot;phone_icons&quot;: true}" />
+                                                <strong style="font-size:12px">RFC: </strong>
+                                                <span t-field="o.partner_id.rfc" />
+                                                <br />
+                                                <strong style="font-size:12px">Tipo de Moneda: </strong>
+                                                <span style="font-size:10px" t-field="o.currency_id" />
+                                            </td>
+                                            <td>
+                                                <strong style="font-size:12px">Orden de compra # </strong>
+                                                <span style="font-size:10px" t-field="o.name"></span>
+                                                <br />
+                                                <strong style="font-size:12px">Fecha: </strong>
+                                                <span style="font-size:10px" t-field="o.date_order" />
+                                                <br />
+                                                <strong style="font-size:12px">Almacen: </strong>
+                                                <span style="font-size:10px" t-field="o.picking_type_id" />
+                                                <br />
+                                                <strong style="font-size:12px">Fecha de Recepcion: </strong>
+                                                <span style="font-size:10px" t-field="o.date_planned" />
+                                                <br />
+                                                <strong style="font-size:12px">Condicion de pago: </strong>
+                                                <span style="font-size:10px" t-field="o.payment_term_id" />
+                                            </td>
+                                        </tr>
+                                    </div>
+                                    <div t-if="o.state == 'cancel'">
+                                        <tr>
+                                            <td>
+                                                <strong style="font-size:20px">ORDEN CANCELADA: </strong>
+                                                <br />
+                                                <strong style="font-size:12px">Proveedor: </strong>
+                                                <span t-field="o.partner_id" t-field-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;, &quot;phone&quot;], &quot;no_marker&quot;: true, &quot;phone_icons&quot;: true}" />
+                                                <strong style="font-size:12px">RFC: </strong>
+                                                <span t-field="o.partner_id.rfc" />
+                                                <br />
+                                                <strong style="font-size:12px">Tipo de Moneda: </strong>
+                                                <span style="font-size:10px" t-field="o.currency_id" />
+                                            </td>
+                                            <td>
+                                                <strong style="font-size:12px">Orden de compra CANCELADA# </strong>
+                                                <span style="font-size:10px" t-field="o.name"></span>
+                                                <br />
+                                                <strong style="font-size:12px">Fecha: </strong>
+                                                <span style="font-size:10px" t-field="o.date_order" />
+                                                <br />
+                                                <strong style="font-size:12px">Almacen: </strong>
+                                                <span style="font-size:10px" t-field="o.picking_type_id" />
+                                                <br />
+                                                <strong style="font-size:12px">Fecha de Recepcion: </strong>
+                                                <span style="font-size:10px" t-field="o.date_planned" />
+                                                <br />
+                                                <strong style="font-size:12px">Condicion de pago: </strong>
+                                                <span style="font-size:10px" t-field="o.payment_term_id" />
+                                            </td>
+                                        </tr>
+                                    </div>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <table class="table table-condensed" style="font-size:11px">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        <strong>Description</strong>
+                                    </th>
+                                    <th>
+                                        <strong>Taxes</strong>
+                                    </th>
+                                    <th class="text-center">
+                                        <strong>Date Req.</strong>
+                                    </th>
+                                    <th class="text-right">
+                                        <strong>Qty</strong>
+                                    </th>
+                                    <th class="text-right">
+                                        <strong>Unit Price</strong>
+                                    </th>
+                                    <th class="text-right">
+                                        <strong>Net Price</strong>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr t-foreach="o.order_line" t-as="line">
+                                    <td>
+                                        <span t-field="line.name" />
+                                    </td>
+                                    <td>
+                                        <span t-esc="', '.join(map(lambda x: x.name, line.taxes_id))" />
+                                    </td>
+                                    <td class="text-center">
+                                        <span t-field="line.date_planned" />
+                                    </td>
+                                    <td class="text-right">
+                                        <span t-field="line.product_qty" />
+                                        <span t-field="line.product_uom.name" />
+                                    </td>
+                                    <td class="text-right">
+                                        <span t-field="line.price_unit" />
+                                    </td>
+                                    <td class="text-right">
+                                        <span t-field="line.price_subtotal" t-field-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;o.currency_id&quot;}" />
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div class="row">
+                            <div class="col-xs-4 pull-right">
+                                <table class="table table-condensed" style="font-size:11px">
+                                    <tr class="border-black">
+                                        <td>
+                                            <strong>Total Without Taxes</strong>
+                                        </td>
+                                        <td class="text-right">
+                                            <span t-field="o.amount_untaxed" t-field-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;o.currency_id&quot;}" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Taxes</td>
+                                        <td class="text-right">
+                                            <span t-field="o.amount_tax" t-field-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;o.currency_id&quot;}" />
+                                        </td>
+                                    </tr>
+                                    <tr class="border-black">
+                                        <td>
+                                            <strong>Total</strong>
+                                        </td>
+                                        <td class="text-right">
+                                            <span t-field="o.amount_total" t-field-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;o.currency_id&quot;}" />
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <strong>OBSERVACIONES: </strong>
+                        <p t-field="o.notes" />
+                        <br />
+                        <strong>COMPRADOR: </strong>
+                        <li>
+                            <span t-field="o.create_uid" />
+                        </li>
+                        <div t-if="o.state == 'purchase' or o.state == 'done'">
+                            <strong>AUTORIZACIÓN - DIRECCION: </strong>
+                            <li>
+                                Sergio Gallardo
+                                <span style="font-size:10px">, Fecha de Aprobación: </span>
+                                <span style="font-size:10px" t-field="o.write_date" />
+                            </li>
+                        </div>
+                        <div t-if="o.state == 'draft' or o.state == 'to approve'">
+                            <strong>PENDIENTE AUTORIZACIÓN </strong>
+                            <li>NO AUTORIZADO</li>
+                        </div>
+                        <div t-if="o.state == 'cancel'">
+                            <strong>ORDEN CANCELADA </strong>
+                            <li>NO AUTORIZADO</li>
+                        </div>
+                        <div style="font-size:8px">
+                            <tbody style="font-size:8px">
+                                <tr>
+                                    <td>
+                                        <p>
+                                            <br />
+                                            FAVOR DE COMUNICARSE CON EL COMPRADOR EN CASO DE ALGUNA ACLARACIÓN.
+                                            <div style="text-align:justify;">
+                                                EL CORTE DE RECEPCIÓN DE FACTURAS DE FIN DE MES SERÁ UNICAMENTE EL 1ER. DÍA HÁBIL DEL MES SIGUIENTE, EN CASO DE OMITIR LO ANTERIOR SE TENDRÁ QUE REFACTURAR CON FECHA VIGENTE.
+                                            ACUSE DE ENTREGA PARA PROVEEDOR:
+                                            TRAER 1 COPIA DE LA FACTURA ORIGINAL Y ORDEN DE COMPRA, PARA RECABAR SELLO DEL ALMACÉN Y NÚMERO DE ENTRADA.
+                                                <h6>C O M E N T A R I O S: </h6>
+                                                1)  Para los proveedores nacionales con facturas en dólares, el pago será M.N. al tipo de cambio que emita el Diario Oficial de la Federación para Operaciones Comerciales TANARACK S.A. DE C.V.
+                                                <br />
+                                                2)  La fecha límite para la última entrega es la fecha en la que hace referencia por lo que las entregas que se realicen deberán ser de manera dosificada durante el periodo que va desde la fecha de la orden de compra y la fecha límite de entrega.
+                                                <br />
+                                                3)  Se aceptan entregas parciales hasta que se reciba la totalidad de esta ORDEN DE COMPRA dentro del tiempo especificado. Cualquier desviación, a lo antes expresado deberá notificarse de inmediato.
+                                                <br />
+                                                4)  Para la aceptación de los materiales ordenados, TANARACK S.A. DE C.V. lleva un riguroso CONTROL ESTADISTICO sobre la calidad en el servicio e insumo que se compran con cada proveedor. Todos los materiales serán verificados por inspección visual pruebas de laboratorio o certificado de calidad.
+                                                <br />
+                                                5)  El horario para recibo de MATERIA PRIMA será de Lunes a Viernes de 7:00 A.M. a 3:30 P.M.
+                                                <br />
+                                                6)  Las sustancias químicas peligrosas deberán ingresar a la planta con la Etiqueta de identificación y señalización de peligros y riesgos en cada uno de sus contenedores así como con su Hoja de Datos de Seguridad en cumplimiento con las regulaciones gubernamentales contenidas en las siguientes publicaciones, de lo contrario les podrá ser negado el ingreso:
+                                                <br />
+                                                a)  Norma Oficial Mexicana NOM-018-SPTS Norma Oficial Mexicana Sistema Para La Identificación Y Comunicación De Peligros Y Riesgos Por Sustancias Químicas Peligrosas En Los Centros De Trabajo, vigente.
+                                                <br />
+                                                b)  Si el producto es fabricado en Los Estados Unidos de América, la norma equivalente es ""NFPA 704" vigente.
+                                                <br />
+                                                c)  Si el producto es fabricado en un país de América Latina, la norma equivalente es "Acuerdo 170 O.I.T." vigente.
+                                                <br />
+
+                                                <h6>CONDICIONES DE MATERIAL INACEPTABLE </h6>
+                                                Todos los embarques serán cuidadosamente inspeccionados para detectar alguna de las siguientes condiciones inaceptables. El descubrimiento de cualquier de estas condiciones resultará en el rechazo inmediato y definitivo del material:
+                                                <br />
+                                                1.  Cualquier producto de metal que se encuentre Oxidado
+                                                <br />
+                                                2.  Empaques mal cerrados o sellados o con fechas de caducidad previos o próximos a la fecha de la orden de compra
+                                                <br />
+                                                3.  Materiales radioactivos o materiales con señalamientos de precaución sobre radioactividad
+                                                <br />
+                                                4.  Selenio puro, de aleación o recubrimiento; cadmio, plomo, mercurio, cromo hexavalente, Arsenio o antimonio
+                                                <br />
+                                                5.  Productos que se encuentren golpeados y que estos golpes dañen la funcionalidad parcial o total del producto
+                                                <br />
+                                                6.  Placas o láminas de acero dobladas o golpeadas
+                                                <br />
+
+                                                <h6>REPARACIÓN DE DAÑOS </h6>
+                                                El proveedor al surtir material bajo esta Orden de Compra se compromete a entregar materiales libres de cualquier de las sustancias anteriormente mencionadas y a compensar a TANARACK S.A. DE C.V., por cualquier gasto o pago que resulte de la presencia de las sustancias mencionadas. Además, el proveedor será responsable de cualquier limpieza o retiro de la contaminación indicada y de todos los costos asociados con la pérdida de producción en que se incurra.
+                                                <br />
+
+
+                                                <h6>ENVIO OPORTUNO DE FACTURAS ELECTRONICAS</h6>
+                                                Las facturas que se reciban con una antigüedad mayor a 20 días entre la fecha de emisión y fecha de recepción serán rechazadas y requerirán re facturación.
+                                                <br />
+                                                Nuestro método de recepción de facturas ha cambiado y entra en vigor a partir del partir del 1º de Enero de 2022 (Para cualquier duda del nuevo método, favor de contactarnos en el correo Roberto.mejia@4gingenieria.com /enriqueg@4gingenieria.com ).
+                                                <br />
+
+                                                <b>El personal designado por parte de TANARACK S.A. DE C.V. para la autorización de órdenes de compra electrónicas son, JORGE GALLARDO CORONADO, SERGIO GALLARDO CORONADO, SERGIO HUMBERTO MORENO y/o LUIS ENRIQUE GALLARDO CORONADO, en caso de recibir una orden de compra que no esté autorizada por estas personas antes mencionadas, favor de declinar la Orden de Compra.</b>
+                                                <br />
+                                                Es necesario que envíe sus facturas junto con la evidencia de entrega al correo humbertom@tanarack.com.mx para que estas puedan darse de alta en el sistema y a su vez puedan ser procesadas para pago
+                                                <br />
+                                                PROCEDIMIENTO DE PAGO A PROVEEDORES
+                                                <br />
+                                                HORARIO DE RECEPCIÓN: LUNES A VIERNES DE 7:00AM A 3:30PM
+                                                <br />
+                                                REQUISITOS OBLIGATORIOS EN ALMACÉN:
+                                                <br />
+                                                <li>
+                                            ENTREGAR MATERIAL EN ALMACEN DE TANARACK</li>
+                                                <li>
+                                            DEJAR EN ALMACÉN 1 COPIA DE LA FACTURA ORIGINAL</li>
+                                                <li>
+                                            DEJAR EN ALMACÉN 1 COPIA DE LA ORDEN DE COMPRA</li>
+                                                <br />
+                                                <br />
+
+                                                <h6>TRAMITE PARA PAGO DE FACTURA DE PROVEEDOR</h6>
+                                                A) Para que TANARACK S.A. DE C.V. tramite el pago de la factura del proveedor por concepto de materiales, refacciones, equipos o herramientas, es indispensable que el proveedor entregue la mercancía en el AG (Almacén General) de TANARACK S.A. DE C.V. y el proveedor deberá de solicitar sello y firma de recibido y FOLIO del Sistema.
+                                                <br />
+                                                B) Para el trámite de Pago de Facturas de SERVICIOS es requisito indispensable firma de recibido del usuario y FOLIO del Sistema.
+                                                <br />
+                                                D)  TANARACK S.A. DE C.V. no se hará responsable del pago si no cumple con lo anterior.
+                                                <br />
+                                                E)  Una vez entregada la mercancía o servicio el proveedor cuenta con un plazo de 3 meses para presentar la Factura correspondiente de lo contrario TANARACK S.A. DE C.V., se reserva el derecho de recibir dicho documento y por Consiguiente realizar el pago del mismo.
+                                                <h6>ACCESO A INSTALACIONES DEL PROVEEDOR</h6>
+                                                A)  Cuando TANARACK S.A. DE C.V. Lo requiera, el proveedor deberá permitir el acceso a sus instalaciones al personal de TANARACK S.A. DE C.V., de nuestros clientes y/o representantes para verificar el estado de la fabricación y/o Calidad del producto suministrado por el proveedor a TANARACK S.A. DE C.V.
+                                                <br />
+                                                Lo anterior no excluye de responsabilidad al proveedor de hacer la revisión correspondiente a su Producto.
+            ENTREGA EN ALMACEN GENERAL
+                                                <br />
+                                                A)  Todo producto entregado en el almacén general de TANARACK deberá venir acompañado de su orden de compra y dos copias de dichos juegos, la descripción de la orden de compra deberá coincidir en su totalidad con la descripción de la factura, de lo contrario no se podrá dar entrada al sistema de dicho documento.
+                                                <br />
+                                                B)  Toda Factura debe incluir el número de la orden de compra sin excepción para poder ser procesada 
+            GARANTIAS Y PENALIZACIONES.
+                                                <br />
+                                                C)  Todo material entregado y mencionado en esta orden de compra o pedido está sujeto a revisión de calidad por Parte de usuario final.
+                                                <br />
+                                                D)  Si por alguna razón, el material entregado a TANARACK S.A. DE C.V. por el proveedor no cumple con los estándares de calidad Ofrecidos y/o especificados por TANARACK S.A. DE C.V., el proveedor será responsable de cambiar físicamente esta pieza sin costo Alguno para TANARACK S.A. DE C.V.
+                                                <br />
+                                                E)  Si por alguna razón, el material entregado a TANARACK S.A. DE C.V. por el proveedor no cumple con los estándares de calidad Ofrecidos y/o especificados por TANARACK S.A. DE C.V. en la orden de compra o pedido y este provoca una falla y/o paro de Línea de producción, TANARACK S.A. DE C.V. realizará un estudio para determinar los gastos incurridos en el paro de línea así Como los gastos incurridos en iniciar de nueva cuenta la operación de dicho equipo o línea de producción y Estos serán transferidos directamente al proveedor.
+                                                <br />
+
+                                                <h6>BUZON DE TRANSPARENCIA</h6>
+                                                A fin de consolidar el clima de transparencia que se vive en las empresas de Corporativo de Manufacturas 4G, se han establecido dos sencillas formas de reportar cualquier situación que considere no cumpla con los niveles de transparencia, confianza y/o seguridad que nuestras empresas requieren:
+                                                <br />
+                                                -   Teléfono México +52 (477) 772 6259/ 83 X 1151
+                                                <br />
+                                                -   Correo electrónico: info@4gingenieria.com
+                                                <br />
+
+                                                <h6>TANARACK S.A. DE C.V.
+            TERMINOS Y CONDICIONES DE ORDEN DE COMPRA</h6>
+                                                Los siguientes términos y condiciones forman parte de la orden de compra. En caso de conflicto entre los siguientes términos y condiciones y cualquiera de estas instrucciones, estos términos y condiciones prevalecerán.
+                                                <br />
+                                                1.  Definiciones.
+                                                <br />
+                                                (a)"Comprador" significa TANARACK S.A. DE C.V.
+                                                <br />
+                                                (b)"Planta del Comprador" significa la planta del Comprador, cuya dirección aparece en la Orden de Compra.
+                                                <br />
+                                                (c)"Interés" significa interés en la cantidad principal debida y devengada de demanda, a partir de la fecha de pago en la tasa Libor, conforme es ajustado de tiempo en tiempo, más un punto porcentual (1%) por año.
+                                                <br />
+                                                (d)"Parte" significa cualquier persona física, corporación, sociedad, autoridad gubernamental o cualquier otra entidad legal.
+                                                <br />
+                                                (e)"Productos" significa los bienes y/o servicios referidos en la Orden de Compra, e incluye tanto bienes como servicios, a menos que en el contexto claramente se señale lo contrario, y en cuanto a bienes, incluye todas las partes, porciones, elementos, añadiduras, reparaciones, reposiciones y sustituciones de los mismos.
+                                                <br />
+                                                (f)"Orden de Compra" se refiere al documento al cual se anexan estos Términos y Condiciones, y cualquier otro documento que expresamente se encuentre incorporado a la Orden de Compra por el Comprador, ya sea en forma impresa o electrónica.
+                                                <br />
+                                                (g)"Vendedor" o "Proveedor" significa la Parte ante quien la Orden de Compra es presentada.
+                                                <br />
+                                                2.  Oferta y Aceptación. La Orden de Compra es una oferta del Comprador al Vendedor, para que el Vendedor lleve a cabo el trabajo descrito en la misma. Se considerará que el Vendedor ha aceptado incondicionalmente los términos de la Orden de Compra una vez que el trabajo señalado en la misma se haya comenzado, no obstante que la Orden de Compra haya o no haya sido firmada. Cualquier Documento del Vendedor que contenga términos adicionales o inconsistentes con los términos de la Orden de Compra, o el rechazo de cualquier término de la Orden de Compra, se considerará como una contraoferta al Comprador y no será obligatoria para el Comprador, a menos que sea específicamente aceptada por el Comprador por escrito. Esta sección constituye una objeción continua a cualquiera de esos términos o rechazos que no hayan sido específicamente aceptados por el Comprador. Sin embargo, el comienzo del trabajo por parte del Vendedor, en ausencia de aceptación por escrito del Comprador a dicha contraoferta, se considerará como trabajo de acuerdo con los términos de la Orden de Compra y la aceptación de la misma, no obstante usos anteriores o costumbres comerciales.
+                                                <br />
+                                                3.  Manufactura de Productos y Fechas de Embarque. El Vendedor no deberá manufacturar cualquiera de los Productos o adquirir cualquier material necesario para su manufactura, y el Comprador no tendrá obligación alguna en relación con los mismos, excepto en la medida expresamente autorizada en la Orden de Compra o en instrucciones por escrito enviadas por el Comprador al Vendedor. Las entregas serán hechas por el Vendedor en las instalaciones del Comprador, salvo que se señale lo contrario en la Orden de Compra. Asimismo, las entregas serán hechas en las cantidades y en los tiempos especificados en la Orden de Compra o en instrucción por escrito enviadas por el Comprador al Vendedor, en el entendido que el Comprador podrá, en cualquier momento, modificar dichas cantidades y tiempos, o determinar la suspensión temporal de las entregas programadas, sin responsabilidad alguna. Ninguna cifra de capacidad contenida en una Orden de Compra será considerada como una garantía en cuanto al volumen de producción, ni será usada como base para cualquier otro propósito. Adicionalmente, cualquier cifra de volumen no contenida en una Orden de Compra deberá ser considerada un estimado que no será considerado como una garantía en cuanto al volumen de producción, ni será usada como base para cualquier otro propósito.
+                                                <br />
+                                                4.  Retraso en la Entrega. Si por cualquier razón, incluyendo casos de fuerza mayor, el Vendedor no cumple con las fechas de entrega del Comprador conforme a la Orden de Compra, en la cual el tiempo es esencial, el Comprador podrá, a su discreción, (a) aprobar nuevas fechas de entrega, (b) realizar el envío de cualquiera de los Productos por un medio de transporte más expedito al costo del Vendedor, o (c) terminar esta Orden de Compra, sin responsabilidad alguna para el Comprador.
+                                                <br />
+                                                5.  Propiedad y Riesgo de Pérdida. En todo momento, el Título y el Riesgo de Pérdida de los Productos objeto de la Orden de Compra continuarán con Vendedor, hasta que la entrega y aceptación de los Productos en la Planta del Comprador.
+                                                <br />
+                                                6.  El Pago y no Aceptación. El pago de los Productos no constituirá aceptación, y todos los Productos estarán sujetos por el Comprador a la inspección y rechazo en la Planta del Comprador. Ni el pago ni la aceptación constituirán el reconocimiento de la ausencia de incumplimiento en la garantía o limitará cualquiera de los derechos del Comprador especificados en este Documento. El Comprador, a su elección, podrá rechazar y, previo aviso al Vendedor, regresará los Productos con riesgo y cargo al Vendedor; o retendrá y reparará los Productos que no cumplan con los requerimientos de la Orden de Compra, aún y cuando los defectos no sean evidentes hasta el proceso de manufactura o ensamblaje. Si el Comprador elije reparar los Productos, consultará con el Vendedor el método de su reparación. El Vendedor reembolsará al Comprador todos los gastos resultantes del rechazo o reparación.
+                                                <br />
+                                                7.  Pago. El Vendedor, al aceptar la Orden de Compra, acuerda permitir al Comprador el pago de las facturas generadas por el Vendedor, por los Productos señalados en dicha Orden de Compra, y conforme a lo descrito en la misma. El período de pago será calculado a partir de la fecha en que las facturas aceptables sean recibidas en nuestro portal de proveedores. Todos los pagos deberán hacerse en Pesos Mexicanos, salvo que se señale de otra manera en la Orden de Compra.
+                                                <br />
+                                                8.  Competitividad. La obligación del Comprador para adquirir los Productos del Vendedor en los términos de la Orden de Compra y de estos términos y condiciones, se encuentra condicionada en que el Vendedor mantenga su posición como un proveedor satisfactorio y continúe siendo competitivo en cuanto a calidad, garantía, servicio, confiabilidad, entrega y precio con respecto a cualquier otro proveedor o potencial proveedor de los Productos al Comprador. Si, en cualquier momento, el Vendedor, a juicio del Comprador, dejaré de ser competitivo con respecto a otro proveedor o potencial proveedor de los Productos, el Comprador podrá cancelar la Orden de Compra, sin responsabilidad alguna para con el Vendedor.
+                                                <br />
+                                                9.  Garantía en el Precio. El Vendedor garantiza que los precios de los Productos vendidos al Comprador no son menos favorables que lo que el Vendedor actualmente ofrece a cualquier otro cliente para los mismos o similares productos o servicios, en cantidades similares. En caso de que el Vendedor reduzca sus precios para dichos productos o servicios a otros, durante la vigencia de la Orden de Compra, el Vendedor reducirá el precio de dichos productos y servicios en forma consistente. El Vendedor garantiza que los precios reflejados en la Orden de Compra se encuentran completos, y que no habrá cargos adicionales de cualquier tipo sin el consentimiento, por escrito, del Comprador.
+                                                <br />
+                                                10. Compensación. El Comprador se encuentra facultado, para que, en cualquier momento, reduzca cualquier cantidad debida por el Vendedor al Comprador o a cualquiera de las compañías afiliadas del Comprador, contra cantidades por pagar por el Comprador, en relación con cualquiera de las cuentas del Vendedor, independientemente de las órdenes de compra o contratos de los cuales dichos deudas o créditos hayan surgido.
+                                                <br />
+                                                11. Impuestos/Cargas. Con excepción de lo que se señale en la Orden de Compra, el Vendedor pagará todos los impuestos federales, estatales y locales y toda carga aplicable a los Productos. En caso de que el Comprador exporte cualquiera de los Productos o cualquiera de los bienes manufacturados con el beneficio de devoluciones, el Comprador se encontrará facultado para recibir la devolución de cualquier carga pagada por él, por el Vendedor, o por cualquier otra parte en el tiempo de la importación de los Productos.
+                                                <br />
+                                                12. Propiedad Intelectual.
+                                                <br />
+                                                (a) El Vendedor garantiza que los Productos y la venta y/o uso de los mismos, no constituye ni constituirá (ya sea antes o después de la incorporación en los productos durante la manufactura), una violación a cualquier patente o cualquier otro derecho de Propiedad Intelectual de acuerdo a las leyes de México y de cualquier otra jurisdicción.
+                                                <br />
+                                                (b) El Vendedor entregará al Comprador, sin restricción alguna en cuanto a su uso o revelación, toda información y datos que el Vendedor adquiera o desarrolle en el curso de las actividades del Vendedor conforme a la Orden de Compra. A solicitud del Comprador, el Vendedor también discutirá con el Comprador o con cualquier otra Parte designada por el Comprador, sin limitación alguna respecto a su uso o revelación, cualquier problema potencial en el diseño, calidad o manufactura de los Productos generados por el Vendedor conforme a la Orden de Compra.
+                                                <br />
+                                                (c) El Vendedor otorga al Comprador y a cualquier compañía afiliada del Comprador, una licencia no exclusiva conforme a términos y condiciones razonables, para hacer y ordenar que se haga, usar, ordenar que se use y vender conforme a cualquiera de las otras patentes, que actual o posteriormente, sean propiedad o sean controladas por el Vendedor, las cuales cubran cualquier aplicación de tecnología contenida en la información adquirida o desarrollada por el Vendedor en el curso ordinario de sus actividades conforme a la Orden de Compra. A petición del Comprador, el Vendedor entregará al Comprador toda la información y datos del Vendedor que el Comprador considere necesarios para entender la operación y para mantener los bienes y Productos entregados conforme a la Orden de Compra, y para entender y aplicar la información y datos de este párrafo 12(c), sin restricciones de uso distingas de los derechos de patente del Vendedor.
+                                                <br />
+                                                (d) El Vendedor garantiza que se encuentra consciente de los usos para los cuales los Productos serán utilizados, y otorga al Comprador y a cualquier Parte o entidad a la cual los Productos sean entregados, una Licencia gratuita, sin restricciones, irrevocable y perpetua, con el derecho a entregar sub-licencias a otros, para usar, reparar y reconstruir los Productos en cualquier forma, y garantiza que el Vendedor se encuentra completamente facultado para otorgar dicha licencia.
+                                                <br />
+                                                13. Garantías.
+                                                <br />
+                                                (a) En adición a cualquier otra garantía expresa o implícita otorgada por ley o por otra forma, el Vendedor garantiza que cada Producto (ya sean bienes o servicios) deberá: (i) ser nuevo y de conformidad con la Orden de Compra en todos sus términos; (ii) cumplir con todas las especificaciones, dibujos, pruebas y otras descripciones especificadas por el Comprador; (iii) ser de la mejor calidad y competitividad conforme a otros bienes o servicios en el mercado conforme a la Sección 8.; (iv) ser comercializable y apto para el propósito creado; y (v) estar libre de cualquier defecto en diseño, mano de obra y materiales y ser de la más alta calidad y mano de obra posible. Asimismo, el Vendedor expresamente garantiza que el título a todos los Productos se fijará en el Comprador, libre de cualquier y todos los gravámenes de cualquier naturaleza. Todas las garantías del Vendedor, expresas e implícitas, y los recursos del Comprador, en esta o en otra Sección, sobrevivirán indefinidamente cualquier entrega, inspección, pruebas, aceptación y pago, y serán aplicables no obstante cualquier inspección de los Productos, o de cualquier parte de los mismos, en, antes o después de la entrega al Comprador. El Vendedor reconoce que el Comprador le ha notificado el propósito para el cual los Productos se requieren, y que el Comprador está confiando en la habilidad y juicio del Vendedor y que los Productos son del tipo del cual el negocio del Vendedor distribuye.
+                                                <br />
+                                                (b) En caso de cualquier incumplimiento de garantía, en adición a todos los otros derechos aquí referidos o conforme a la ley aplicable, el Comprador podrá (i) cancelar toda y cualquier parte de la Orden de Compra, (ii) requerir al Vendedor para que repare o reemplace cualquiera o todos los Productos, a opción del Comprador y con cargo exclusivamente al Vendedor, ya sea en la Planta del Comprador o en cualquier otro lugar señalado por el Comprador, (iii) requerir al Vendedor que pague todos los cargos relacionados con la transportación y demás que se generen por la entrega, almacenamiento y devolución de los Productos y/o (iv) adquirir Productos de reemplazo de un Tercero y con cargo al Vendedor.
+                                                <br />
+                                                14. Incumplimiento. El Vendedor incurrirá en incumplimiento en caso de que (a) el Vendedor no cumpla con la Orden de Compra en todos sus aspectos, (b) el Vendedor haga una cesión para beneficio de acreedores, o procedimientos de insolvencia o quiebra sean instituidos por o en contra del Vendedor, o (c) en cualquier momento, a discreción exclusiva del Comprador, en que la condición financiera o cualquier otra condición del Vendedor o el progreso en la Orden de Compra ponga en riesgo su cumplimiento puntual. En caso de incumplimiento conforme a lo aquí dispuesto, en adición a todos los recursos otorgados al Comprador por ley o de cualquier otra forma, el Comprador podrá cancelar la Orden de Compra, ya sea parcial o íntegramente, sin responsabilidad alguna, excepto por la de pagar el precio acordado por los Productos entregados con anterioridad al aviso de la cancelación, comprar Productos de reemplazo ordenados, conforme a lo aquí dispuesto a un Tercero y recuperar del Vendedor todos y cada uno de los costos adicionales o otros daños que se relaciones, más intereses y honorarios de abogados, costos judiciales y otros daños.
+                                                <br />
+                                                15. Indemnización. El Vendedor se compromete a indemnizar, defender y sacar a salvo al Comprador, sus clientes y otras partes a la cuales los Productos le sean proveídos, y a cada uno de sus controladoras, subsidiarias, afiliadas, subcontratistas, proveedores, aseguradoras, accionistas, consejeros, directores, empleados y agentes del Comprador (conjuntamente las "Partes Indemnizadas"), de y contra cualquier y todas las reclamaciones, litigios, acciones, causas de acciones, demandas, costos, cargos, multas, daños (consecuenciales y demás), honorarios de abogados, y cualesquiera otros pasivos u obligaciones ("Pérdidas") que se generen por o en relación con, de cualquier manera, el desempeño u obligaciones del Vendedor conforme a esta Orden de Compra. Cada una de las Partes Indemnizadas, excepto por el Comprador, son expresamente terceros beneficiarios de las obligaciones del Vendedor de acuerdo con esta Sección 15. Las pérdidas incluyen, sin limitación:
+                                                <br />
+                                                (a) lesiones personales, enfermedad o muerte de cualquier persona (incluyendo, sin limitación, los agentes y empleados del Vendedor) o el daño a cualquier propiedad (incluyendo, sin limitación, la propiedad del Vendedor) o cualquier derrame, descarga o emisión de materiales o substancias peligrosas que se relacionen en parte o en su totalidad con (i) Cualquier defecto en manufactura, diseño, o cualquier negligencia en cuanto a su advertencia, manejo, operación inadecuada, instrucciones de instalación y operación inadecuados o cualquier otro acto u omisión del Vendedor en relación con cualquiera de los Productos, o (ii)    El desempeño del Vendedor en cualquier servicio, ya sea en la propiedad del Comprador, Vendedor o un Tercero;
+                                                <br />
+                                                (b)     Cualquier reclamación argumentando violaciones a cualquier legislación laboral o a cualquier otro reglamento que regule la relación entre el Vendedor y sus empleados;
+                                                <br />
+                                                (c) cualquier reclamación que se genere del incumplimiento del Vendedor en retener, del salario         de sus empleados, cualquier cantidad del Impuesto Sobre la Renta, Planes de Pensión, o          cualquier otra consignación requerida por ley;
+                                                <br />
+                                                (d) Cualquier incumplimiento de garantía otorgada por el Vendedor en relación con los           Productos y/o cualquier reclamación por parte de un Tercero en cuanto a los Productos       y su calidad;
+                                                <br />
+                                                (e) Cualquier incumplimiento en la Orden de Compra o de cualquier otro                  acuerdo entre el Comprador y el Vendedor;
+                                                <br />
+                                                (f) Cualquier campaña de retiro en la cual el Comprador o cualquier cliente participe, en relación      con la inclusión de los Productos en bienes vendidos por el Comprador;
+                                                <br />
+                                                (g) Y/o reclamaciones alegando violaciones a cualquier patente, derecho de autor, o cualquier otro derecho de propiedad intelectual o derecho de propiedad relacionado con Productos           entregados por el Vendedor, aún y cuando hayan sido elaborados acorde a las                 especificaciones del Comprador.
+                                                <br />
+                                                En la medida permitida por la ley aplicable, la obligación del Vendedor de defender e indemnizar será aplicable aún y cuando se trate de pérdidas causadas, en parte o en su totalidad, por la negligencia de una parte indemnizada, pero la indemnización del Vendedor no será aplicable en la medida en que las pérdidas claramente indiquen ser única y directamente resultado de la negligencia o conducta voluntariamente inapropiada de dicha parte indemnizada. La obligación del Vendedor de defender e indemnizar conforme a este Párrafo será asimismo aplicable independientemente de si la reclamación se genera por agravio, negligencia, contrato, garantía, responsabilidad estricta o cualquier otra. La obligación de indemnizar contenida en el presente párrafo no estará limitada de manera alguna por la limitación en la cantidad o en el tipo de daños, compensaciones o beneficios del Vendedor. En adición y sin limitación a lo anterior, el Vendedor acuerda que pagará Intereses al Comprador, conforme sean requeridos, por todas las cantidades de indemnización que sean debidas, y el Comprador podrá, a su elección, participar en la defensa de cualquier reclamación de Terceros, seleccionando a su propio asesor legal y con cargo al Vendedor.
+                                                <br />
+                                                16. Cambios o Cancelaciones por el Comprador. El Comprador se reserva, por cualquier razón, el derecho de cancelar cualquier porción pendiente de ser entregada, o de hacer cambios en las especificaciones, cantidades, tipos, etc., de los Productos. El Comprador tendrá el referido derecho a la cancelación, no obstante, la existencia de un retraso justificado de conformidad con la Sección 20 del presente documento. Una vez que el aviso de cancelación sea recibido por el Vendedor, éste, salvo disposición expresa en contrario por parte del Comprador, deberá (i) terminar puntualmente todo el trabajo conforme a la Orden de Compra; (ii) transferir el título y entregar al Comprador el trabajo terminado, o en proceso, y aquellas partes y materiales producidos o adquiridos por el Vendedor conforme a la Orden de Compra, y los cuales el Vendedor no podrá usar para producir otros bienes para sí mismo o para otros; (iii) verificar/liquidar todas las reclamaciones de subcontratistas en cuanto a los costos actuales que se volvieren irrecuperables por dicha terminación, considerando que la recuperación de materiales en posesión del Vendedor está asegurada; y (iv) tomar las acciones razonablemente necesarias para proteger la propiedad en posesión del Vendedor, en la cual el Comprador tenga un interés, hasta que el Vendedor haya recibido instrucciones del Comprador. Sujeto a las demás disposiciones contenidas en este documento, el Comprador deberá pagar al Vendedor en forma íntegra y final todas las obligaciones correspondientes a la Orden de Compra, el precio de compra para todos los Productos recibidos por el Comprador con anterioridad a la cancelación o cambio, y que fueron aceptados de acuerdo con la Orden de Compra. En ningún caso, la obligación del Comprador excederá del precio de la Orden de Compra para los Productos terminado. En caso de cualquier modificación, conforme a lo aquí establecido, el Comprador hará un ajuste razonable al precio de compra y a las fechas de entrega.
+                                                <br />
+                                                17. Servicio y Refacciones.
+                                                <br />
+                                                (a)A petición del Comprador, el Vendedor venderá al Comprador los Productos de la Orden de Compra, así como aquellas partes de producción o componentes necesarios para cumplir con los requerimientos del Comprador para con sus clientes en cuanto a dichos Productos, a los precios especificados en la Orden de Compra, más cualquier costo diferencial por el embalaje de los mismos.
+                                                <br />
+                                                18. Propiedad del Comprador. El Vendedor no comprará a cuenta del Comprador, ni cobrará a éste cualquier herramienta, molde, textura, patrón o cualquier otro equipo (conjuntamente las "Herramientas") usadas o utilizables para la producción de los Productos relativos a la Orden de Compra, salvo que las mismas hayan sido listadas en la factura del Vendedor y hayan sido aprobadas por escrito por el Comprador. El Vendedor reconoce que todas las Herramientas aprobadas, todas aquellas proveídas por el Comprador o sus Clientes, y todos los Productos regresados por el Comprador para reparación o pendientes de reemplazo (conjuntamente, la "Propiedad del Comprador") son y serán propiedad del Comprador, y las Herramientas deberán ser utilizadas únicamente para la producción de Productos para el Comprador, y que el Vendedor tendrá solamente posesión temporal de las mismas, y deberá entregar las mismas al Comprador inmediatamente después de que éste lo solicite o automáticamente en caso de quiebras o insolvencia por parte del Vendedor. El Vendedor, a su propio cargo, deberá mantener toda la Propiedad del Comprador en condiciones aptas para el trabajo y en todo momento completamente aseguradas para beneficio del Comprador, mientras estén en posesión del Vendedor, y la mantendrá separada de cualquier otro activo, y debidamente marcada como propiedad del Comprador. El Vendedor acepta entregar cualquier información que el Comprador le requiera en relación con cualquier interés de Terceros o cualquier otro derecho, interés o reclamación de Terceros con que se pudiera extenderla propiedad del Comprador. El Vendedor cargará con la responsabilidad por pérdida y daños a la Propiedad del Comprador, incluyendo responsabilidad por pérdida o daños que pudiera suceder a pesar de la diligencia y cuidado razonable del Vendedor, pero exceptuando los daños por el uso normal de la misma. El Vendedor otorga al Comprador la opción de comprar cualquier Herramienta que no sea Propiedad del Comprador y que haya sido utilizada exclusivamente para la producción de Productos para éste, al precio de costo sin amortización. Si el Vendedor subcontratare todo o parte de la manufactura de las Herramientas, éste deberá notificar al Comprador por adelantado y obtener para él todos los derechos contenidos en esta Sección, de cada uno de los subcontratantes.
+                                                <br />
+                                                19. Pólizas de Seguro. El Vendedor acuerda entregar al Comprador, cuando éste lo solicite, un certificado por parte de sus corredores o agente de seguros, que señale que el Vendedor cuenta con la adecuada cobertura de compensación a sus empleados, responsabilidad general, de automóviles, responsabilidad pública y de daños en propiedad, incluyendo la responsabilidad contractual aplicable a la Orden de Compra. El certificado deberá mostrar la cantidad asegurada, número de póliza, y la fecha de expiración de esta. Asimismo, deberá requerir al agente o corredor que notifique al Comprador con treinta (30) días de anticipación sobre cualquier extensión o cancelación de la póliza. Todas las pólizas deberán señalar al Comprador como Asegurado Adicional, y contener el señalamiento de que estas pólizas son principales, y no adicionales o complementarias a cualquier otra póliza válida y aplicable para el Comprador. El Comprador podrá requerir al Vendedor que proporcione evidencia de que el Seguro está vigente, pero en el caso en que no se cumpla con los requerimientos de seguro, el Vendedor no será liberado de su responsabilidad y obligaciones señaladas en la presente sección. La actividad o inactividad del Comprador no extinguirá los derechos del mismo aquí descritos. El Vendedor renuncia a todos gravámenes mecánicos y reclamaciones y acuerda que no presentará ninguna en contra del Comprador o del Producto, a cuenta de cualquier Producto almacenado por el Vendedor. El Vendedor tomará las medidas necesarias para que sus empleados, subcontratistas, vendedores y almacenistas otorguen renuncias similares a ésta, de manera que satisfaga al Comprador.
+                                                <br />
+                                                20. Fuerza Mayor. El Vendedor no será responsable por el retraso razonable o incumplimiento de sus obligaciones de entrega de Productos y el Comprador no será responsable de la imposibilidad de cumplir con cualquiera de sus obligaciones, debido a incendios, inundaciones, tormentas, emergencias nacionales o guerras, siempre y cuando la Parte afectada haya notificado a la otra de tal evento.
+                                                <br />
+                                                21. Subcontratos. En cada subcontrato que el Vendedor celebre relación a la Orden de Compra, el Vendedor obtendrá a favor del Comprador las licencias y derechos señalados en las Secciones 11, 18 y 30.
+                                                <br />
+                                                22. Recursos Acumulables, No Renuncia. Todos los recursos del Comprador conforme a lo aquí dispuesto serán acumulables y en adición a aquéllos otros otorgados por la ley aplicable o por cualquier otra forma. Ningún retraso por parte del Comprador en la aplicación de las disposiciones de la Orden de Compra constituirá una renuncia a éstas, y ninguna renuncia expresa constituye renuncia a otras disposiciones.
+                                                <br />
+                                                23. Responsabilidad del Comprador. La responsabilidad del Comprador y de sus directores, consejeros, empleados, accionistas, afiliados, sucesores, cesionarios y Clientes, para cualquier acción judicial o extrajudicial, pérdida, daño, costo, reclamación o gasto de cualquier índole o en relación con el Vendedor o cualquier otra Parte o Tercero, que se genere de la Orden de Compra o cualquier otra cuestión o hecho relacionado, incluyendo actos voluntarios o negligencia, estará limitada a la cantidad de los daños directos y no excederá al precio pagado por el Comprador al Vendedor conforme a la Orden de Compra. En ningún caso, el Comprador será responsable por ingresos anticipados, penas o daños incidentales, consecuenciales, punitivos, ejemplares u otros daños o remedios en relación con la Orden de Compra, ya sea por incumplimiento de contrato, pago tardío, daño en propiedad, lesiones personales, enfermedad o muerte, más allá de la suma establecida en la Sección 16, o en caso de no ser aplicable, el precio de los Productos aceptados por el Comprador. Adicionalmente, el Comprador no asume responsabilidad alguna por los Productos elaborados, procesados, enviados y entregados en exceso de la cantidad señalada en la Orden de Compra.
+                                                <br />
+                                                24. Limitación a la Cesión. La Orden de Compra es extendida al Vendedor, en dependencia del desempeño personal de los deberes señalados en la misma, y al aceptarla el Vendedor, se compromete a no ceder la misma o delegar el cumplimiento de sus deberes, excepto para la obtención de materia prima, sin el consentimiento por escrito del Comprador. En caso de que el Vendedor no cumpla con esta disposición, el Comprador, a su elección, podrá cancelar sus obligaciones.
+                                                <br />
+                                                25. Cumplimiento de las Leyes. El Vendedor se compromete a cumplir todas las leyes aplicables federales, estatales y municipales, así como los reglamentos y regulaciones en relación con la manufactura, venta, entrega y uso de los Productos incluyendo, sin limitación, leyes laborales en relación con Empleados del Vendedor, y con los requerimientos bajo el Tratado de Libre Comercio de Norteamérica y cualquier otro programa de cargos preferenciales. A petición del Comprador, el Vendedor deberá proporcionar a éste evidencia de su cumplimiento.
+                                                <br />
+                                                26. Jurisdicción/Ley Aplicable. En caso de que el Vendedor sea un ciudadano mexicano o una entidad constituida en México, se considerará un contrato en toda su extensión, y será regido de acuerdo con las leyes del Estado de Guanajuato, México, sin considerar la Convención de las Naciones Unidas para la Venta Internacional de Bienes de 1980, y sin considerar cualquier caso de conflicto de interés que pudiera que llevar a la aplicación de la ley sustantiva de otra jurisdicción. Renuncia a la Convención de las Naciones Unidas para la Venta Internacional de Bienes. Conforme con el artículo 6 de la Convención de las naciones unidas para la venta internacional de bienes, las partes acuerdan que dicha convención no será aplicable al presente acuerdo.
+                                                <br />
+                                                27. Acuerdo Integro. La Orden de Compra y el presente documento constituyen el acuerdo íntegro entre el Comprador y el Vendedor respecto a los Productos, y ninguna modificación a la Orden de Compra y a este documento surtirá efectos si no es por escrito y firmado por un representante legal del Comprador. La Orden de Compra y el presente documento integran la totalidad de los acuerdos y entendimientos de cualquier tipo o carácter entre el Comprador y el Vendedor, en relación con el objeto de la Orden de Compra o el presente documento, y substituye todas las negociaciones, discusiones o acuerdos previos de cualquier tipo, tanto orales como escritos, en relación con la Orden de Compra o este documento. No existen entendimientos, acuerdos o garantías verbales u orales de cualquier tipo, estando acordado que los derechos de las partes contra cualquier contraparte serán regidos exclusivamente por la Orden de Compra y el presente documento.
+                                                <br />
+                                                28. Divisibilidad. Si cualquier disposición contenida en la Orden de Compra, o en el presente documento, llegara a ser encontrada o declarada inaplicable, el resto de la Orden de Compra será interpretada y aplicada como si dicha disposición no hubiese nunca formado parte de la misma. Particularmente, si alguna taza de interés contenida en la misma es superior a la permitida por la ley, automáticamente se cambiará a la más alta aplicable.
+                                                <br />
+                                                29. Invenciones. Si la Orden de Compra involucra o resulta en: (i) Cualquier invención o Cualquier desarrollo experimental o actividades de investigación incluyendo ingeniería en relación con; (ii) Cualquier reducción a la práctica de cualquier materia, aplicación o descubrimiento patentable o objeto de un derecho de autor; o (iii) Cualquier mejora en el diseño de los Productos o cualquier alternativa o método mejorado para el cumplimiento de los objetivos de la Orden de Compra (conjuntamente, "Invenciones"), dichas Invenciones serán propiedad del Comprador y serán confidenciales y propiedad privada del Comprador, ya sea que las Invenciones o cualquier parte de las mismas puedan ser o no patentables o registradas, y el Vendedor cooperará (y hará que sus empleados cooperen) con la firma de documentos y cualquier acción necesaria o conveniente para patentar, registrar, o de cualquier otra forma perfeccionar o proteger dichas Invenciones, para beneficio del Comprador.
+                                                <br />
+                                                30. Información Confidencial.
+                                                <br />
+                                                (a) Cualquier información o conocimiento que el Comprador haya revelado al Vendedor en relación con la Orden de Compra y todos los servicios que deban ser prestados o todos los trabajos a ser llevados a cabo conforme a la misma, es y será considerada Información Confidencial y propiedad del Comprador. El Vendedor no deberá, sin la autorización por escrito del Comprador, usar, comunicar o revelar la Información Confidencial del Comprador. El Vendedor se compromete a salvaguardar la Información Confidencial propiedad del Comprador usando su mejor esfuerzo, consistentes con aquellos esfuerzos utilizados en la protección de su propia información confidencial o de naturaleza similar para prevenir su revelación a terceros. El Vendedor se compromete a hacer que sus empleados, contratistas, consejeros, directores, agentes y representantes se adhieran y cumplan con las restricciones anteriores en relación con el uso o revelación de dicha Información Confidencial. El Vendedor se compromete a no presentar reclamación alguna (distinta a alguna por violación de patente) respecto a información técnica que el Vendedor haya revelado o pudiera revelar al Comprador en relación a los Productos.
+                                                <br />
+                                                (b) Todos los documentos que contengan Información Confidencial relacionados con los Productos o que hayan sido adquiridas por el Vendedor bajo la Orden de Compra serán propiedad del Comprador. Todos los dibujos, "know-how" e Información Confidencial otorgada al Vendedor por el Comprador y todos los derechos contenidos en los mismos continuarán siendo propiedad del Comprador y serán mantenidos como Confidencial por el Vendedor.
+                                                <br />
+                                                (c) El Vendedor deberá, dentro del plazo de cinco (5) días hábiles posteriores a la solicitud del Comprador o a la cancelación o terminación de la Orden de Compra, regresar toda la Información Confidencial propiedad del Comprador (incluyendo copias, notas y/o extractos de los mismos), conforme a la Orden de Compra. Adicionalmente, la parte de la Información Confidencial que consista en análisis, compilaciones, estudios u otros documentos elaborados por el Vendedor o por sus directores, consejeros, empleados o asesores, deberá ser destruida y ninguna copia será retenida.
+                                                <br />
+                                                (d) El Vendedor se asegurará de que cualquier Tercero a quien el Vendedor subcontrate para el trabajo relacionado con la Orden de Compra, se obligue con todos los términos y condiciones relacionados con dicho trabajo, con el cual el Vendedor se encuentra obligado conforme a la Orden de Compra.
+                                                <br />
+                                                31. Derechos de Auditoría. El Comprador se reserva el derecho de en cualquier momento, enviar a sus auditores autorizados para examinar los documentos pertinentes y materiales en posesión o bajo el control del Vendedor, en relación con cualquiera de las obligaciones del Vendedor conforme a la Orden de Compra o a cualquier otro pago solicitado por el Vendedor en relación con la Orden de Compra. El Vendedor mantendrá todos los libros y registros pertinentes en relación con la Orden de Compra durante un período de dos años posteriores a la terminación de los servicios o entrega de los Productos señalados en la Orden de Compra.
+                                                <br />
+                                                32. Contratista Independiente. El Vendedor es un contratista independiente para efectos de la Orden de Compra, y nada en la misma se considerará como un otorgamiento al Vendedor de facultades para actuar como representante legal, asociado, o socio en el negocio o como asociado o poderdante del Comprador. Cualquier intención de crear la relación de poderdante y agente entre el Comprador y Vendedor será rechazada y nada en la Orden de Compra constituirá al Vendedor como un agente del Comprador.
+                                                <br />
+                                                33. Uso del Nombre del Comprador. El Vendedor no podrá, sin el consentimiento por escrito del Comprador, publicar de manera alguna el hecho de que el Vendedor ha desarrollado o contratado con el Comprador el desarrollo de bienes o servicios, o usar el nombre o marcas del Comprador, sus productos o cualquiera de sus compañías asociadas en las publicaciones o comerciales del Vendedor. Si el Vendedor coloca en los bienes la marca del Comprador y/o su marca de identificación, conforme lo especifique el Comprador, o si los bienes señalados en la Orden de Compra son propios al diseño del Comprador, no portarán la marca o cualquier otra designación del fabricante o Vendedor, y bienes similares no deberán ser vendidos a otra persona diferente al Comprador.
+                                                <br />
+                                                34. Idioma. Los presentes términos y condiciones se emiten en idioma español.
+            Aceptamos y acordamos los términos y condiciones de la Orden de Compra.
+                                                <br />
+                                                <br />
+
+                                                <div style="text-align:center;">
+                                                    <h6>
+                                                        <b>Si desea consultar nuestro aviso de privacidad por favor diríjase a nuestro sitio web: http://4gingenieria.com</b>
+                                                    </h6>
+                                                </div>
+                                            </div>
+                                        </p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </div>
+                        <div class="oe_structure" />
+                    </div>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

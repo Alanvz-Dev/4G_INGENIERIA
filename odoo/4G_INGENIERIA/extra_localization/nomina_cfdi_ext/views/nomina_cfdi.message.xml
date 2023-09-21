@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+        <record id="view_hr_wizard" model="ir.ui.view">
+
+            <field name="name">Alerta</field>
+
+            <field name="model">nomina_cfdi.message</field>
+
+            <field name="arch" type="xml">
+
+                <form>
+
+                    <group>
+
+                        <field name="message" nolabel="1" />
+                    </group>
+
+                    <footer>
+
+                        <button string="OK" special="cancel" class="oe_highlight" />
+
+                    </footer>
+
+                </form>
+
+            </field>
+
+        </record>
+
+
+  
+
+
+
+    </data>
+</odoo>

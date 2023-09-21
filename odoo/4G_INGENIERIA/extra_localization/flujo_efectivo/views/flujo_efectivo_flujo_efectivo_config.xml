@@ -1,0 +1,55 @@
+<odoo>
+  <data>
+
+    <record id="config_view_tree" model="ir.ui.view">
+      <field name="name">Lista de Configuraciones</field>
+      <field name="model">flujo_efectivo.flujo_efectivo_config</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="sequence" widget="handle"/>
+          <field name="categoria" />
+          <field name="monto_de_prsupuesto" />
+          <field name="sub_categoria" />
+          <field name="intervalo_de_dezplazamiento" />
+          <field name="descripcion" />
+        </tree>
+      </field>
+    </record>
+
+    <record id="config_view_form" model="ir.ui.view">
+      <field name="name">Configuraciones</field>
+      <field name="model">flujo_efectivo.flujo_efectivo_config</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+            <div name="button_box" position="before">
+              <div class=" oe_button_box " name="button_box">
+                <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive">
+                  <field name="active" widget="boolean_button" options="{&quot;terminology&quot;: &quot;archive&quot;}" />
+                </button>
+              </div>
+            </div>
+            <group>
+              <field name="tipo" />
+              <field name="monto_de_prsupuesto" />
+              <field name="intervalo_de_dezplazamiento" />
+              <field name="categoria" />
+              <field name="sub_categoria" />
+              <field name="descripcion" />
+            </group>
+            <label for='code'>Còdigo Python</label>
+            <field name="code" />
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="flujo_efectivo.config_action_window">
+      <field name="name">Configuraciones</field>
+      <field name="res_model">flujo_efectivo.flujo_efectivo_config</field>
+      <field name="view_mode">tree,form,pivot</field>
+    </record>
+
+    <menuitem name="Configuraciones" id="flujo_efectivo.menu_config" parent="flujo_efectivo.menu_root" action="flujo_efectivo.config_action_window" />
+  </data>
+</odoo>

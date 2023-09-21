@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <!-- explicit list view definition -->
+
+  <record model="ir.ui.view" id="financial_reports.pagos_prov_list">
+    <field name="name">Pagos Provisionales</field>
+    <field name="model">financial_report.pagos_provisionales</field>
+    <field name="arch" type="xml">
+      <tree>
+        <field name="account_group_sel" />
+        <field name="account_account_sel" />
+      </tree>
+    </field>
+  </record>
+
+
+  <!-- Explicit form definition -->
+  <record id="financial_reports.pago_prov_form" model="ir.ui.view">
+    <field name="name">Pago Provisional</field>
+    <field name="model">financial_report.pagos_provisionales</field>
+    <field name="arch" type="xml">
+      <form>
+        <style>
+                    .myDiv {
+                      border: 5px outset red;
+                      background-color: lightblue;    
+                      text-align: center;
+                      padding: 8px;
+                    }
+                    </style>
+        <div class="myDiv">
+          <h3>Cuenta Contable</h3>
+          <field name="account_group_sel" widget="many2many_tags" />
+        </div>
+        <br></br>
+        <div class="myDiv">
+          <h3>Cuenta Agrupadora</h3>
+          <field name="account_account_sel" widget="many2many_tags" />
+        </div>
+        <button string="test" name="btn_test" type="object" class="oe_highlight" />
+      </form>
+    </field>
+  </record>
+
+  <!-- actions opening views on models -->
+
+  <record model="ir.actions.act_window" id="financial_reports.action_pagos_prov">
+    <field name="name">Pago Provisional</field>
+    <field name="res_model">financial_report.pagos_provisionales</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+
+
+  
+  <report id="pagoisrc_report" 
+  model="financial_report.pagos_provisionales" 
+  string="Imprimir Reportes PT 4G" 
+  report_type="xlsx" name="financial_reports.pagoisrc" 
+  file="PT 4G" 
+  attachment_use="True" />
+
+</odoo>

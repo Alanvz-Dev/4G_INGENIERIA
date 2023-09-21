@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <report
+    id="report_excess_inventory_xlsx"
+    model="excess_inventory_xlsx.excess_inventory_xlsx"
+    string="Print to XLSX"
+    report_type="xlsx"
+    name="excess_inventory_xlsx.report_excess_inventory_xlsx"
+    file="excess_inventory_xlsx.report_excess_inventory_xlsx"
+    attachment_use="False"
+/>
+
+</odoo>

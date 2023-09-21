@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+        <record id="Partner_form" model="ir.ui.view">
+            <field name="name">res.company.form.inherit</field>
+            <field name="model">res.company</field>
+            <field name="inherit_id" ref="base.view_company_form"/>
+            <field name="arch" type="xml">
+	            <xpath expr="//page[@name='info_cdfi']" position="inside">
+	                        <group cols="4"  string="Addenda Ford">
+	                            <group>
+	                                  <field name="ford_gsdb"/>
+	                            </group>
+	                        </group>
+	            </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

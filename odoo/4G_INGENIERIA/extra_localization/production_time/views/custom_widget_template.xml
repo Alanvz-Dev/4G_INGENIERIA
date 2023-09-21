@@ -1,0 +1,52 @@
+<templates>
+    <t t-name="TemplateWidgetName">
+        <div>
+            <div>
+                <h3>
+                            Sale Custom
+                        </h3>
+            </div>
+            <div>
+                <div class="filter_view_tb"></div>
+            </div>
+            <br></br>
+            <div>
+                <div class="table_view"></div>
+            </div>
+        </div>
+    </t>
+    <t t-name="WidgetEx">
+        <div>
+            <div class="table_main_view">
+                <table cellspacing="0" width="100%">
+                    <thead>
+                        <tr>
+                            <th>producto</th>
+                            <th>centro_de_produccion</th>
+                            <th>horas_capacidad_instalada</th>
+                            <th>horas_por_dia</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="report_lines" t-as="data">
+                            <tr style="border: 1px solid black;">
+                                <td style="border: 0px solid black;">
+                                    <t t-esc="data['producto']" />
+                                </td>
+                                <td>
+                                    <t t-esc="data['centro_de_produccion']" />
+                                </td>
+                                <td>
+                                    <t t-esc="data['horas_capacidad_instalada']" />
+                                </td>
+                                <td>
+                                    <t t-esc="data['horas_por_dia']" />
+                                </td>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </t>
+</templates>

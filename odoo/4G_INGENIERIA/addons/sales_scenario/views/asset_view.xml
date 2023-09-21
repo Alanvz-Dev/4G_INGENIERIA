@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="assets_backend" name="housekeepingmaps_assets" inherit_id="web.assets_backend">
+            <xpath expr="." position="inside">
+                <script type="text/javascript" src="/sales_scenario/static/src/js/sales_scenario.js"></script>
+            </xpath>
+        </template>
+    </data>
+</odoo>

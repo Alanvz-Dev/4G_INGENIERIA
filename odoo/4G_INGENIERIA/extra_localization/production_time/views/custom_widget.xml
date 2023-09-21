@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+
+        <!-- Hasta este punto no deberia de haber ningun error de instalación,
+        y se debe ver el menu item creado -->
+
+        <record id="action_custom_widget" model="ir.actions.client">
+            <field name="name">My Widget</field>
+            <field name="tag">my_custom_widget</field>
+            <field name="target">new</field>
+        </record>
+        <!-- <menuitem id="menu_sale_demo" action="action_custom_widget" name="Widget Custom" parent="production_time.times" /> -->
+
+    </data>
+
+</odoo>

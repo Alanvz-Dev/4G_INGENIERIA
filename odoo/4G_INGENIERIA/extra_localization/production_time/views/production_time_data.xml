@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <record id="production_time.data_list" model="ir.ui.view">
+        <field name="name">production_time.data.view.tree</field>
+        <field name="model">production_time.data</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="fecha_programada" />
+                <field name="producto" />
+                <field name="centro_de_produccion" />
+                <field name="horas_por_dia" />
+                <field name="horas_capacidad_instalada" />
+                <field name="piezas_por_dia" />                
+                <field name="state_hp" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="production_time.data_pivot" model="ir.ui.view">
+        <field name="name">production_time.data_pivot</field>
+        <field name="model">production_time.data</field>
+        <field name="arch" type="xml">
+            <pivot>
+                <field name="fecha_programada" />
+                <field name="producto" />
+                <field name="centro_de_produccion" />
+                <field name="state_hp" />
+                <field name="horas_por_dia" type="measure"/>
+                <field name="horas_capacidad_instalada" type="measure"/>
+                <field name="piezas_por_dia" type="measure"/>                
+            </pivot>
+        </field>
+    </record>
+
+
+    <record id="production_time.data_act" model="ir.actions.act_window">
+        <field name="name">Datos Centros de Producción</field>
+        <field name="res_model">production_time.data</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form,pivot</field>
+    </record>
+    <!-- <field name="help" type="html">
+            
+    </field> -->
+
+
+    <menuitem string="Datos Centros de Producción" id="production_time.data_menu" parent="production_time.times" action="production_time.data_act" sequence="10" />
+</odoo>

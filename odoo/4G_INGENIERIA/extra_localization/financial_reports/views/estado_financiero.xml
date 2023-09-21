@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- explicit list view definition -->
+
+    <record model="ir.ui.view" id="financial_reports.estado_financiero_list">
+        <field name="name">Estado Financiero</field>
+        <field name="model">financial_report.estados_financieros</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="account_group_sel" />
+                <field name="account_account_sel" />
+            </tree>
+        </field>
+    </record>
+
+
+    <!-- Explicit form definition -->
+    <record id="financial_reports.estado_financiero_form" model="ir.ui.view">
+        <field name="name">Estado Financiero</field>
+        <field name="model">financial_report.estados_financieros</field>
+        <field name="arch" type="xml">
+            <form>
+                <style>
+                    .myDiv {
+                      border: 5px outset red;
+                      background-color: lightblue;    
+                      text-align: center;
+                      padding: 3px;
+                    }
+
+                    .myDiv2 {
+                        border: 5px outset red;
+                        background-color: lightblue;    
+                        text-align: center;
+                        padding: 3px;
+                      }
+                    </style>
+                <group class="myDiv">
+                    <field name="year" />
+                    <field name="month" />
+                </group>
+                <group class="myDiv">
+                    <group>
+                        <h3>ACTIVO CIRCULANTE</h3>
+                        <field name="account_group_sel" widget="many2many_tags" />
+                        <field name="account_account_sel" widget="many2many_tags" />
+                        <field name="total_activo_circulante" widget='monetary' />
+                    </group>
+
+                    <group>
+                        <h3>ACTIVO NO CIRCULANTE</h3>
+                        <field name="account_group_sel_1" widget="many2many_tags" />
+                        <field name="account_account_sel_1" widget="many2many_tags" />
+                        <field name="total_activo_no_circulante" widget='monetary' />
+                    </group>
+
+                    <group>
+                        <h3>PASIVO A CORTO PLAZO</h3>
+                        <field name="account_group_sel_2" widget="many2many_tags" />
+                        <field name="account_account_sel_2" widget="many2many_tags" />
+                        <field name="total_pasivo_a_corto_plazo" widget='monetary' />
+                    </group>
+
+
+                    <group>
+                        <h3>CAPITAL CONTABLE</h3>
+                        <field name="account_group_sel_3" widget="many2many_tags" />
+                        <field name="account_account_sel_3" widget="many2many_tags" />
+                        <field name="resultado_de_ejercicio_anterior" widget='monetary' />
+                        <field name="total_capital_contable" widget='monetary' />
+                    </group>
+
+
+                    <group class="myDiv">
+                        <field name="total_pasivo_y_capital_contable" widget='monetary' />
+                    </group>
+                    <group class="myDiv">
+                        <field name="activo_y_activo_no_circulante" widget='monetary' />
+                    </group>
+                </group>
+
+
+                <button string="test" name="generar_reporte" type="object" class="oe_highlight" />
+            </form>
+        </field>
+    </record>
+
+    <!-- actions opening views on models -->
+
+    <record model="ir.actions.act_window" id="financial_reports.action_estado_financiero">
+        <field name="name">Estado Financiero</field>
+        <field name="res_model">financial_report.estados_financieros</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <report id="estado_financiero_report" 
+  model="financial_report.estados_financieros" 
+  string="Imprimir Reportes PT 4G" 
+  report_type="xlsx" name="financial_reports.estado_financiero" 
+  file="Estado Financiero" 
+  attachment_use="True" />
+
+</odoo>

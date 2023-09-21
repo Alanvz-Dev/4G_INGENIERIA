@@ -1,0 +1,77 @@
+<odoo>
+  <data>
+
+
+    <!-- Explicit form definition -->
+    <record id="financial_reports.form_1" model="ir.ui.view">
+      <field name="name">Reporte Pérdidas y Ganancias</field>
+      <field name="model">financial_reports.detail</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+          <h4>
+            Desde:
+            <field name="start_date" string="Desde: " />
+          </h4>
+          <h4>
+            Hasta:
+            <field name="end_date" string="Hasta: " />
+          </h4>
+          <h4>
+            Tipo de Reporte:
+            <field name="tipo" string="Tipo de Reporte: " />
+          </h4>
+          <group>
+            <button string="Generar Reporte" name="perdidas_y_ganancias_report" type="object" class="oe_highlight" />
+          </group>
+        </sheet>
+        </form>
+      </field>
+    </record>
+
+
+    <!-- actions opening views on models -->
+
+    <record model="ir.actions.act_window" id="financial_reports.action_window">
+      <field name="name">Reporte Pérdidas y Ganancias</field>
+      <field name="res_model">financial_reports.detail</field>
+      <field name="view_mode">form</field>
+      <field name="target">inline</field>
+    </record>
+
+
+
+
+
+    <!-- #Reporte 4G Ingenieria -->
+    <report id="perdidasyganancias_report" 
+    model="financial_reports.detail" 
+    groups="group_financial_reports_user"
+    string="Imprimir Reportes Lento Movimiento y Exceso de Inventario" 
+    report_type="xlsx" 
+    name="financial_reports.perdidasyganancias" 
+    file="Estado de Perdidas y Ganancias" 
+    attachment_use="True" />
+
+
+
+    <!-- Top menu item -->
+
+    <menuitem name="Reportes Financieros" web_icon="financial_reports,static/description/icon.png" id="financial_reports.menu_root"  />
+
+    <!-- menu categories -->
+
+    <menuitem name="Reportes" id="financial_reports.menu_1" parent="financial_reports.menu_root" groups="group_financial_reports_user"/>
+    
+
+    <!-- actions -->
+
+    <menuitem name="Pérdidas y Ganancias" id="financial_reports.menu_1_list" parent="financial_reports.menu_1" groups="group_financial_reports_user" action="financial_reports.action_window" />
+    <menuitem name="Pagos Provisionales S/SAT" id="financial_reports.menu_2_list" parent="financial_reports.menu_1" groups="group_financial_reports_user" action="financial_reports.action_pagos_prov" />
+
+
+    <menuitem name="Estado Financiero" id="financial_reports.menu_3_list" parent="financial_reports.menu_1" groups="group_financial_reports_user" action="financial_reports.action_estado_financiero" />
+    
+
+  </data>
+</odoo>

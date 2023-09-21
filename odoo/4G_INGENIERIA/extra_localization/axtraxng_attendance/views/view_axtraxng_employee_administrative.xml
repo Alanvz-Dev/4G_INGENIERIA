@@ -1,0 +1,20 @@
+<odoo>
+    <data>
+            <record model="ir.ui.view" id="axtraxng_attendance.list1">
+      <field name="name">axtraxng_attendance list1</field>
+      <field name="model">hr.axtraxng_administrative</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="employee_id_administrative" string="Empleados con días completos laborados, bonos de asistencia y puntualidad..."/>
+        </tree>
+      </field>
+    </record>
+        <record model="ir.actions.act_window" id="axtraxng_attendance.1">
+      <field name="name">Administrative</field>
+      <field name="res_model">hr.axtraxng_administrative</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+        <menuitem name="Empleados administrativos" id="axtraxng_attendance.menu_2" parent="axtraxng_attendance.menu_root"/>
+        <menuitem name="Lista de Empleados" id="axtraxng_attendance" parent="axtraxng_attendance.menu_2" action="axtraxng_attendance.1"/>
+    </data>
+</odoo>

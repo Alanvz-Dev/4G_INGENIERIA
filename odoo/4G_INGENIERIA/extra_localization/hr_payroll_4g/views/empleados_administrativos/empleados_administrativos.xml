@@ -1,0 +1,23 @@
+<odoo>
+    <data>
+
+
+        <record model="ir.ui.view" id="hr_payroll_4g.empleados_administrativos_list1">
+            <field name="name">hr_payroll_4g list1</field>
+            <field name="model">hr_payroll_4g.empleados_administrativos</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="empleado" string="Empleados con días completos laborados, bonos de asistencia y puntualidad..."/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record model="ir.actions.act_window" id="hr_payroll_4g.empleados_administrativos_1">
+            <field name="name">Administrative</field>
+            <field name="res_model">hr_payroll_4g.empleados_administrativos</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        
+    </data>
+</odoo>

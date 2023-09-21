@@ -1,0 +1,22 @@
+<odoo>
+  <data>
+    
+    <menuitem name="Nómina(Nueva Versión)" id="hr_payroll_pr.menu_detalle_horas_de_trabajo" parent="hr_payroll.menu_hr_payroll_root"/>
+
+    <menuitem name="Mayordomía" id="hr_payroll_pr.menu_detalle_horas_de_trabajo_list" parent="hr_payroll_pr.menu_detalle_horas_de_trabajo" action="hr_payroll_pr.detalle_horas_de_trabajo_action_window"/>
+    <menuitem name="Horas-Proyectos" id="hr_payroll_pr.menu_mayordomia_line" parent="hr_payroll_pr.menu_detalle_horas_de_trabajo" action="hr_payroll_pr.mayordomia_line"/>
+
+    <menuitem name="Lista de Empleados Administrativos" id="menu_empleados_administrativos_list" parent="hr_payroll_pr.menu_detalle_horas_de_trabajo" action="hr_payroll_pr.empleados_administrativos_1"/>
+
+    <menuitem name="Configuración de Consideracion de Bonos" id="hr_payroll_pr.menu_incidencias_bonos_configuracion" parent="hr_payroll_pr.menu_detalle_horas_de_trabajo" action="hr_payroll_pr.incidencias_bonos_configuracion_action"/>
+
+    <menuitem name="Turnos" id="hr_payroll_pr.menu_turnos" parent="hr_payroll_pr.menu_detalle_horas_de_trabajo" action="hr_payroll_pr.turno_action"/>
+
+    <menuitem name="Resumen Nómina" id="hr_payroll_pr.menu_resumen_nomina" parent="hr_payroll_pr.menu_detalle_horas_de_trabajo" action="hr_payroll_pr.resumen_nomina_action"/>
+
+    <menuitem name="IUT's" id="hr_payroll_pr.menu_iuts" parent="hr_payroll.menu_hr_payroll_root" action="hr_payroll_pr.bank_action"/>
+ 
+    <menuitem name="Horas Proyectos" id="hr_payroll_pr.menu_horas_proyecto" parent="hr_payroll.menu_hr_payroll_root" action="hr_payroll_pr.horas_proyecto_action"/> 
+  
+  </data>
+</odoo>

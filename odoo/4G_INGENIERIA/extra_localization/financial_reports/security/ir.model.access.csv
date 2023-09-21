@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_financial_reports_financial_reports,financial_reports,model_financial_reports_detail,group_financial_reports_user,1,1,1,1

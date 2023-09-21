@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+        <record id="sua_mov_view_tree" model="ir.ui.view">
+            <field name="name">Lista Movimientos SUA</field>
+            <field name="model">sua.mov</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name" />
+                    <field name="create_uid" />
+                    <field name="create_date" />
+                    
+                </tree>
+            </field>
+        </record>
+
+        <record id="sua.mov_view_form" model="ir.ui.view">
+            <field name="name">sua.mov.view.form</field>
+            <field name="model">sua.mov</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <field name="estado_idse" widget="statusbar" clickable="1" />
+                        <field name="estado_sua" widget="statusbar" clickable="1" />
+                    </header>
+                    <sheet>
+                        <group>
+                            <field name="registro_patronal_imss" />
+                            <field name="numero_de_seguridad_social" />
+                            <field name="tipo_de_movimiento" />
+                            <field name="fecha_de_movimiento" />
+                            <field name="folio_de_incapacidad" />
+                            <field name="folio_de_incapacidad_formato_sua" />
+                            <field name="dias_de_la_incidencia" />
+                            <field name="dias_de_la_incidencia_formato_sua" />
+                            <field name="salario_diario_integrado" />
+                            <field name="salario_diario_integrado_sua" />
+                            <field name="complete_row_afil" />
+                                                <field name="create_uid" />
+                    <field name="create_date" />
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button name="get_sua_file" string="Descargar archivo SUA" type="object" class="oe_highlight" />
+                        <!-- <button name="get_idse_file" string="Descargar archivo IMSS" type="object" class="oe_highlight" /> -->
+                        <button string="Cancel" special="cancel" class="oe_link" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="sua_mov_action" model="ir.actions.act_window">
+            <field name="name">Formulario de Movimientos SUA</field>
+            <field name="res_model">sua.mov</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+            <field name="help" type="html">
+                <!-- TEXT HERE -->
+                <p>
+                    Hola
+                    <!-- DETAILS -->
+                </p>
+            </field>
+        </record>
+
+        <record id="sua.get_file_mov" model="ir.actions.server">
+            <field name="name">Descargar MOVS.TXT</field>
+            <field name="model_id" ref="model_sua_mov" />
+            <field name="binding_model_id" ref="model_sua_mov" />
+            <field name="state">code</field>
+            <field name="code">
+                if records:
+                    action = records.get_sua_file()
+            </field>
+        </record>
+
+        <menuitem id="sua_mov_list" name="MOVS.txt" action="sua_mov_action" parent="sua_aseg_root_menu" sequence="5" />
+    </data>
+</odoo>

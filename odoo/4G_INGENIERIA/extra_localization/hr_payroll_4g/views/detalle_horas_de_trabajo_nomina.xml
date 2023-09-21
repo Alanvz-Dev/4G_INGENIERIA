@@ -1,0 +1,87 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+
+    <record model="ir.ui.view" id="hr_payroll_4g.detalle_horas_de_trabajo_nomina_list">
+      <field name="name">Horas de trabajo nómina</field>
+      <field name="model">hr_payroll_4g.detalle_horas_de_trabajo_nomina</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="fecha"/>
+        </tree>
+      </field>
+    </record>
+
+
+    <!-- actions opening views on models -->
+
+    <record model="ir.actions.act_window" id="hr_payroll_4g.detalle_horas_de_trabajo_nomina_action_window">
+      <field name="name">Horas de Trabajo</field>
+      <field name="res_model">hr_payroll_4g.detalle_horas_de_trabajo_nomina</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+
+
+    <record id="hr_payroll_4g_detalle_horas_de_trabajo_nomina_form_view" model="ir.ui.view">
+      <field name="name">Horas de Trabajo </field>
+      <field name="model">hr_payroll_4g.detalle_horas_de_trabajo_nomina</field>
+      <field name="arch" type="xml">
+        <form string="22222" create="true" edit="true">
+          <header>
+          </header>
+          <group>
+            <div class="oe_button_box" name="button_box">
+                <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive">
+                    <field name="active" widget="boolean_button" options="{&quot;terminology&quot;: &quot;archive&quot;}"/>
+                </button>
+            </div>
+        </group>
+          <group>
+            <field name="fecha" string="De" force_save='1' readonly="0" />
+          </group>
+          <notebook>
+            <page string="Incidencias">
+              <field name="horas_de_trabajo_id" readonly = "0" mode="tree"  >
+                <tree options='{"bg_color": "red"}' mode="tree" editable="1"  decoration-success="valid==True" decoration-warning="horas_a_pagar&lt;=8" decoration-danger="valid==False">
+                  <field name="incidencia_id_holidays" readonly="1"  options="{'no_quick_create': True, 'no_create_edit' : True}" context="{'special_display_name': True}"/>
+                  <field name="departamento" readonly="1"/>
+                  <field name="operador" readonly="1" />
+                  <field name="valid" invisible="1" readonly="1" />
+                  <field name="horas_mayordomia" />
+                  <field name="horas_checador" widget="float_time" />
+                  <field name="horas_a_pagar" />
+                  <field name="bono_de_asistencia" />
+                  <field name="bono_de_puntualidad" />
+                  <field name="nota" />
+                  <field name="entrada_salida" widget="html" readonly="1"/>
+                  <field name="read_only" invisible="1"/>                 
+                </tree>
+              </field>
+            </page>
+          </notebook>
+
+        </form>
+      </field>
+    </record>
+
+    <!-- server action to the one above -->
+    <!--     
+    <record model="ir.actions.server" id="hr_payroll_4g.action_server">
+      <field name="name">hr_payroll_4g server</field>
+      <field name="model_id" ref="model_hr_payroll_4g_hr_payroll_4g"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": self._name,
+        }
+      </field>
+    </record> -->
+
+
+
+
+  </data>
+</odoo>

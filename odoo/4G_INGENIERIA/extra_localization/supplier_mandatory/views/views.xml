@@ -1,0 +1,60 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+    <!--
+    <record model="ir.ui.view" id="supplier_mandatory.list">
+      <field name="name">supplier_mandatory list</field>
+      <field name="model">supplier_mandatory.supplier_mandatory</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+        </tree>
+      </field>
+    </record>
+    -->
+
+    <!-- actions opening views on models -->
+    <!--
+    <record model="ir.actions.act_window" id="supplier_mandatory.action_window">
+      <field name="name">supplier_mandatory window</field>
+      <field name="res_model">supplier_mandatory.supplier_mandatory</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+    -->
+
+    <!-- server action to the one above -->
+    <!--
+    <record model="ir.actions.server" id="supplier_mandatory.action_server">
+      <field name="name">supplier_mandatory server</field>
+      <field name="model_id" ref="model_supplier_mandatory_supplier_mandatory"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": self._name,
+        }
+      </field>
+    </record>
+    -->
+
+    <!-- Top menu item -->
+    <!--
+    <menuitem name="supplier_mandatory" id="supplier_mandatory.menu_root"/>
+    -->
+    <!-- menu categories -->
+    <!--
+    <menuitem name="Menu 1" id="supplier_mandatory.menu_1" parent="supplier_mandatory.menu_root"/>
+    <menuitem name="Menu 2" id="supplier_mandatory.menu_2" parent="supplier_mandatory.menu_root"/>
+    -->
+    <!-- actions -->
+    <!--
+    <menuitem name="List" id="supplier_mandatory.menu_1_list" parent="supplier_mandatory.menu_1"
+              action="supplier_mandatory.action_window"/>
+    <menuitem name="Server to list" id="supplier_mandatory" parent="supplier_mandatory.menu_2"
+              action="supplier_mandatory.action_server"/>
+    -->
+  </data>
+</odoo>

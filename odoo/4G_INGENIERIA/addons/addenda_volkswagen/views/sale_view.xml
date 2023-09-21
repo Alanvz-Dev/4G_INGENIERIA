@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_sale_order_ford" model="ir.ui.view">
+        <field name="name">sale.order.form.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="cdfi_invoice.view_sale_order_form_inherit" />
+        <field name="arch" type="xml">
+            <field name="uso_cfdi" position="after">
+                <field name="vw_addenda"/>
+            </field>
+            <xpath expr="//page[@name='info_cdfi']/group" position="inside">
+                  <group string="VW" cols="4" attrs="{'invisible':[('vw_addenda','=', False)]}" >
+                       <field name="vw_posicion"/>
+                       <field name="vw_odc"/>
+                       <field name="vw_contacto"/>
+                       <field name="vw_notas"/>
+                       <field name="vw_pdf"/>
+                    </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

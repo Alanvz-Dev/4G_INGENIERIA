@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_invoice_inherit_form" model="ir.ui.view">
+            <field name="name">account.invoice.inherit.form</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="cdfi_invoice.view_invoice_inherit_form" />
+            <field name="arch" type="xml">
+               <xpath expr="//page[@name='info_cdfi']/group" position="inside">
+                  <group string="Addenda Ford">
+                         <field name="ford_addenda"/>
+                         <field name="ford_agregado" attrs="{'invisible': [('ford_addenda','=', False)] }"/>
+                  </group>
+               </xpath>
+               <button name="action_invoice_draft" position="after">
+                   <!--<button name="add_addenda_ford" string="Agregar addenda Ford" type="object" class="oe_inline oe_highlight" attrs="{'invisible': [('ford_agregado','=', True),('ford_addenda','=', True),('factura_cfdi','=',True), ('state','not in',('open', 'paid')),('estado_factura','=', factura_correcta)] }"/>-->
+
+                   <button name="add_addenda_ford" string="Agregar addenda Ford" type="object" class="oe_inline oe_highlight"  attrs="{'invisible':['|',('estado_factura','!=', 'factura_correcta'),('ford_agregado','=', True)]}"/>
+               </button>
+            </field>
+    </record>
+<!--
+    <record id="view_invoice_inherit_tree" model="ir.ui.view">
+        <field name="name">account.invoice.inherit.tree</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account.invoice_tree" />
+        <field name="arch" type="xml">
+            <field name="state" position="before">
+               <field name="ford_agregado" string="Ford"/>
+            </field>
+        </field>
+    </record> -->
+</odoo>

@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_cuadre_balanza_cuadre_balanza,cuadre_balanza.cuadre_balanza,model_cuadre_balanza_cuadre_balanza,group_cuadre_polizas,1,1,1,1
+access_cuadre_balanza_cuadre_balanza_line,cuadre_balanza.line,model_cuadre_balanza_line,group_cuadre_polizas,1,1,1,1

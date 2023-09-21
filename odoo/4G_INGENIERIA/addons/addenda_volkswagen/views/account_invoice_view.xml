@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_invoice_inherit_form" model="ir.ui.view">
+            <field name="name">account.invoice.inherit.form</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form" />
+            <field name="arch" type="xml">
+               <xpath expr="//page[@name='info_cdfi']/group" position="inside">
+                  <group string="Addenda VW" cols="4">
+                         <field name="vw_addenda"/>
+                         <field name="vw_agregado" attrs="{'invisible':[('vw_addenda','=', False)]}"/>
+                         <field name="vw_posicion" attrs="{'invisible':[('vw_addenda','=', False)]}"/>
+                         <field name="vw_odc" attrs="{'invisible':[('vw_addenda','=', False)]}"/>
+                         <field name="vw_contacto" attrs="{'invisible':[('vw_addenda','=', False)]}"/>
+                         <field name="vw_notas" attrs="{'invisible':[('vw_addenda','=', False)]}"/>
+                         <field name="vw_pdf" attrs="{'invisible':[('vw_addenda','=', False)]}"/>
+                  </group>
+               </xpath>
+               <button name="action_invoice_draft" position="after">
+                   <button name="add_addenda_volkswagen" string="Agregar addenda VW" type="object" class="oe_inline oe_highlight" attrs="{'invisible':['|',('estado_factura','!=', 'factura_correcta'),('vw_addenda','!=',True),('vw_agregado','=',False)]}"/>
+               </button>
+            </field>
+    </record>
+
+    <record id="view_invoice_inherit_tree" model="ir.ui.view">
+        <field name="name">account.invoice.inherit.tree</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account.invoice_tree" />
+        <field name="arch" type="xml">
+            <field name="state" position="before">
+               <field name="vw_agregado" string="Volkswagen"/>
+            </field>
+        </field>
+    </record>
+</odoo>

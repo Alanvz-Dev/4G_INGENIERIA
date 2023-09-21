@@ -1,0 +1,61 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+    
+    <record model="ir.ui.view" id="costos_acero.list">
+      <field name="name">Historial de Actualizaciones</field>
+      <field name="model">costos_acero.costos_acero</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="categrory_str"/>
+          <field name="new_value"/>
+
+        </tree>
+      </field>
+    </record>
+   
+    <record id="costos_acero.cambio_costos_acero_form" model="ir.ui.view">
+      <field name="name">Cambio de Costos de Acero</field>
+      <field name="model">costos_acero.costos_acero</field>
+      <field name="arch" type="xml">
+          <form>
+          <sheet>
+              <group colspan="4">
+                  <group>
+                      <field style="text-align:left;font-size:14px" name="categrory" widget="many2many_tags" required="1"/>            
+                      <field style="text-align:left;font-size:14px" name="new_value" />   
+                      <field style="text-align:left;font-size:14px" name="write_date"  readonly="1"/>
+                      <field style="text-align:left;font-size:14px" name="write_uid"  readonly="1"/>                      
+                  </group>
+              </group>
+          </sheet>
+          </form>
+      </field>
+  </record>
+
+    <!-- actions opening views on models -->
+    
+    <record model="ir.actions.act_window" id="costos_acero.action_window">
+      <field name="name">Cambio de Costos de Acero</field>
+      <field name="res_model">costos_acero.costos_acero</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+   
+
+
+   
+
+    <!-- Top menu item -->
+    
+    <menuitem name="Costos Acero" id="costos_acero.menu_root" web_icon="costos_acero,static/images/costos_acero.jpg" action="costos_acero.action_window"/>
+   
+    <!-- menu categories -->
+    
+    <!-- <menuitem name="Cambiar Costos de Acero Por Categoría" id="costos_acero.menu_1" parent="costos_acero.menu_root" groups="model_costos_acero_costos_acero"/>
+    -->
+    <!-- actions -->
+<!--     
+    <menuitem name="List" id="costos_acero.menu_1_list" parent="costos_acero.menu_1"
+               groups="model_costos_acero_costos_acero"/> -->
+  </data>
+</odoo>

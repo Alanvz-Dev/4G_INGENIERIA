@@ -1,0 +1,113 @@
+<odoo>
+  <data>
+
+
+
+    <!-- Explicit tree view definition -->
+    <record id="hr_payroll_4g.create_historial_de_dias_laborados_form" model="ir.ui.view">
+      <field name="name">Leave Request</field>
+      <field name="model">hr_payroll_4g.historial_de_tiempo</field>
+      <field name="arch" type="xml">
+        <form string="Leave Request">
+          <header>
+            <!-- <button string="Confirm" name="action_confirm" states="draft" type="object" class="oe_highlight"/>
+            <button string="Approve" name="action_approve" states="confirm" type="object" groups="hr_holidays.group_hr_holidays_user" class="oe_highlight"/>
+            <button string="Validate" name="action_validate" states="validate1" type="object" groups="hr_holidays.group_hr_holidays_manager" class="oe_highlight"/>
+            <button string="Refuse" name="action_refuse" states="confirm,validate,validate1" type="object" groups="hr_holidays.group_hr_holidays_user"/>
+            <button string="Reset to Draft" name="action_draft" type="object" attrs="{'invisible': ['|', ('can_reset', '=', False), ('state', 'not in', ['confirm', 'refuse'])]}"/> -->
+            <!-- <field name="state" widget="statusbar" statusbar_visible="draft,confirm,validate"/> -->
+            <field name="state" widget= "statusbar" clickable="True"/>
+            <field name="tipo_pago" widget= "statusbar" clickable="True"/>
+          </header>
+          <sheet>
+            <div class="oe_title">
+              <h1>
+                <field name="operador"/>
+              </h1>
+            </div>
+            <group>
+              <group> 
+              <field name="horas_de_trabajo_nomina_line" />
+                <field name="horas_a_favor" />
+                 <!-- <field name="horas_a_favor" attrs="{'readonly':[('state','!=','draft'),('state','!=','confirm')]}"/> -->
+                <field name="horas_en_contra" />
+                <field name="fecha_pago" string="Fecha de Pago" />
+              </group>
+              
+            </group>
+          </sheet>
+
+        </form>
+      </field>
+    </record>
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- 
+    <record id="hr_payroll_4g.action_crear_historial_de_dias_laborados" model="ir.actions.act_window">
+      <field name="name">Contacts</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">hr_payroll_4g.historial_de_tiempo</field>
+      <field name="view_type">form</field>
+      <field name="hola" ref="hr_payroll_4g.create_historial_de_dias_laborados_form"></field>
+                         
+    </record> -->
+
+
+
+
+
+
+    <!-- explicit list view definition -->
+
+    <record model="ir.ui.view" id="hr_payroll_4g.historial_de_dias_laborados_list">
+      <field name="name">Historial de Horas</field>
+      <field name="model">hr_payroll_4g.historial_de_tiempo</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="operador"/>
+          <field name="horas_a_favor" widget='float_time'/>
+          <field name="horas_en_contra" widget='float_time'/>
+        </tree>
+      </field>
+    </record>
+
+
+    <!-- actions opening views on models -->
+
+    <record model="ir.actions.act_window" id="hr_payroll_4g.historial_de_dias_laborados_action_window">
+      <field name="name">hr_payroll_4g window</field>
+      <field name="res_model">hr_payroll_4g.historial_de_tiempo</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <!-- server action to the one above -->
+
+    <!-- <record model="ir.actions.server" id="hr_payroll_4g.action_server">
+      <field name="name">hr_payroll_4g server</field>
+      <field name="model_id" ref="model_hr_payroll_4g_hr_payroll_4g"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": self._name,
+        }
+      </field>
+    </record> -->
+
+
+
+
+  </data>
+</odoo>

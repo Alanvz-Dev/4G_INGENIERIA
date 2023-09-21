@@ -1,0 +1,111 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+        <record id="asistente_material_required_form" model="ir.ui.view">
+            <field name="name">asistente.material.required.form</field>
+            <field name="model">asistente.material.required</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Creacion de Presupuestos">
+                    <sheet>
+                        <separator string="Verificacion de Abastecimiento" />
+                        <group>
+                            <group>
+                                <field name="date_purchase" required="1" />
+                                <field name="quotation_request_create" invisible="1" />
+                                <field name="lines_wo_supplier" invisible="1" />
+                            </group>
+                            <group>
+                                <field name="supplier_id"
+                                    attrs="{'required':[('quotation_exception_supplier','=',True)]}" />
+                                <newline />
+                                <field name="quotation_exception_supplier" />
+                            </group>
+                        </group>
+                        <separator string="Materiales" />
+                        <field name="material_ids" create="false" editable="bottom">
+                            <tree editable="bottom" string="Material a presupuestar">
+                                <field name="product_id" required="1" />
+                                <field name="uom_id" required="1" />
+                                <field name="qty_need" required="1" />
+                                <field name="qty_reservated" required="1" />
+                                <field name="qty_to_purchase" required="1" />
+                                <field name="product_wo_supplier" readonly="1" />
+                                <field name="product_wo_supplier_id" />
+
+                            </tree>
+                            <form string="Material a presupuestar" create="false">
+                                <group>
+                                    <group>
+                                        <field name="product_id" required="1" />
+                                        <field name="qty_need" required="1" />
+                                        <field name="qty_to_purchase" required="1" />
+                                    </group>
+                                    <group>
+                                        <field name="uom_id" required="1" />
+                                        <field name="qty_reservated" required="1" />
+                                        <field name="product_wo_supplier_id" required="1" />
+                                    </group>
+                                </group>
+                            </form>
+                        </field>
+                    </sheet>
+
+                    <footer attrs="{'invisible': [('lines_wo_supplier','=',True)]}">
+                        <center>
+                            <button name="make_orders" string="Crear Presupuestos" type="object"
+                                class="oe_highlight" icon="fa-check-square-o"
+                                attrs="{'invisible': [('quotation_request_create','=',True)]}"
+                                confirm="Todos los productos que no cuenten con Proveedor no seran tomados en cuenta a menos que actives la el campo --> Crear Presupuesto para Excepciones" />
+
+                            <button name="make_orders" string="Crear Presupuestos" type="object"
+                                class="oe_highlight" icon="fa-check-square-o"
+                                attrs="{'invisible': [('quotation_request_create','=',False)]}"
+                                confirm="Esta Produccion ya cuenta con una solicitud de Abastecimiento, estas seguro que quieres generar una nueva ?" />
+
+                            <button string="Cerrar" class="oe_highlight" special="cancel"
+                                icon="fa-close" />
+                        </center>
+                    </footer>
+                    <footer attrs="{'invisible': [('lines_wo_supplier','=',False)]}">
+                        <center>
+                            <button name="make_orders" string="Crear Presupuestos" type="object"
+                                class="oe_highlight" icon="fa-check-square-o"
+                                attrs="{'invisible': [('quotation_request_create','=',True)]}" />
+
+                            <button name="make_orders" string="Crear Presupuestos" type="object"
+                                class="oe_highlight" icon="fa-check-square-o"
+                                attrs="{'invisible': [('quotation_request_create','=',False)]}"
+                                confirm="Esta Produccion ya cuenta con una solicitud de Abastecimiento, estas seguro que quieres generar una nueva ?" />
+
+                            <button string="Cerrar" class="oe_highlight" special="cancel"
+                                icon="fa-close" />
+                        </center>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="mrp_purchase_integration.multiple" model="ir.actions.server">
+            <field name="name">Crear Presupuesto</field>
+            <field name="model_id" ref="model_asistente_material_required" />
+            <field name="binding_model_id" ref="model_mrp_production" />
+            <field name="state">code</field>
+            <field name="code">
+                action = {
+                'type': 'ir.actions.act_window',
+                'name': 'Creación de Presupuestos',
+                'res_model': 'asistente.material.required',
+                'view_mode': 'form',
+                # 'view_id' : view.id,
+                'target': 'new',
+                'context': env.context
+                }
+            </field>
+        </record>
+
+        <act_window name="Creacion de Presupuestos" res_model="asistente.material.required"
+            src_model="asistente.material.required" view_mode="form" target="new"
+            key2="client_action_multi" id="asistente_material_required_form_act" />
+    </data>
+</odoo>

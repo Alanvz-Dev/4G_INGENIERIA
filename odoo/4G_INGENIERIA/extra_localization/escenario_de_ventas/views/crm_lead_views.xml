@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="crm_lead_form_view_hoja_de_proyecto" model="ir.ui.view">
+        <field name="name">crm.lead.hoja.de.proyecto.view.escenario_de_ventas</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_case_form_view_oppor" />
+        <field name="arch" type="xml">
+            <button name="toggle_active" position="before">
+                <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive">
+                    <field name="active" widget="boolean_button" options="{&quot;terminology&quot;: &quot;archive&quot;}" />
+                </button>
+                <button class="oe_stat_button" name='get_hoja_de_proyecto' type="object" icon="fa-file-text-o" context="{'default_partner_id': partner_id, 'search_default_draft': 1, 'search_default_sent': 1}">
+                    <div class="o_stat_info">
+                        <field name="hoja_de_proyecto_count" class="o_stat_value" />
+                        <span class="o_stat_text">Hoja de Proyecto</span>
+                    </div>
+                </button>
+            </button>
+        </field>
+    </record>
+</odoo>

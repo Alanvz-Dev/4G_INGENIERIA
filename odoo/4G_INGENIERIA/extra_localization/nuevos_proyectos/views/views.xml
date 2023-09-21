@@ -1,0 +1,87 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+
+    <record model="ir.ui.view" id="nuevos_proyectos.pedidos_list_view">
+      <field name="name">view.nuevos_proyectos.pedidos.view.tree</field>
+      <field name="model">nuevos_proyectos.pedidos</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="product_id" />
+          <field name="pieces" />
+          <field name="n_p_start_date" />
+         </tree>
+      </field>
+    </record>
+
+    <!-- Busqueda -->
+    <record model="ir.ui.view" id="nuevos_proyectos.pedidos_form_view">
+      <field name="name">view.nuevos_proyectos.pedidos.view.form</field>
+      <field name="model">nuevos_proyectos.pedidos</field>
+      <field name="arch" type="xml">
+
+        <form string="Información de los pedidos">
+          <sheet>
+
+            <separator string="Informacion de los pedidos"></separator>
+
+            <group>
+              <group>
+                <field name="product_id" />
+                <field name="pieces" />
+                <field name="n_p_start_date" />
+                <field name="tipo" />
+		 <field name="maestros" />
+                    </group>
+            </group>
+
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <!-- Pivote -->
+
+    <record id="pedidos_view_pivot" model="ir.ui.view">
+      <field name="name">ñlkjhgyftrd</field>
+      <field name="model">nuevos_proyectos.pedidos</field>
+      <field name="arch" type="xml">
+        <pivot>
+          <field name="product_id"/>
+          <field name="pieces"/>
+          <field name="n_p_start_date"/>
+          <field name="tipo" />
+          <field name="maestros" />
+        </pivot>
+      </field>
+    </record>
+
+<!-- Action server -->
+    <record id="nuevos_proyectos.action_crear_mo" model="ir.actions.server">
+      <field name="name">Crear MO</field>
+      <field name="model_id" ref="model_nuevos_proyectos_pedidos"/>      
+      <field name="binding_model_id" ref="model_nuevos_proyectos_pedidos"/>
+      <field name="state">code</field>
+      <field name="code">
+if records:
+        action = records.action_MO()
+      </field>
+    </record>
+
+    <!-- Action Window -->
+
+    <record model="ir.actions.act_window" id="nuevos_proyectos.pedidos_action_window">
+      <field name="name">Lista de pedidos</field>
+      <field name="res_model">nuevos_proyectos.pedidos</field>
+      <field name="view_mode">tree,form,pivot</field>
+    </record>
+
+    <!-- Top menu item -->
+    <menuitem name="Nuevos proyectos" id="nuevos_proyectos.menu_root" />
+
+    <!-- menu categories -->
+
+    <menuitem name="Registro" id="nuevos_proyectos.pedidos_menu" parent="nuevos_proyectos.menu_root" action="nuevos_proyectos.pedidos_action_window" />
+
+  </data>
+</odoo>

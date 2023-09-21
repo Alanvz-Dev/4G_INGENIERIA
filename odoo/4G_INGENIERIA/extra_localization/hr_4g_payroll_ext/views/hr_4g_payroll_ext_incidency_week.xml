@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+
+
+        <record id="hr_4g_payroll_ext.incidency_report_view_tree" model="ir.ui.view">
+            <field name="name">hr_4g_payroll_ext.incidency_c.view.tree</field>
+            <field name="model">hr_4g_payroll_ext.incidency_c</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="employee_id" />
+                    <field name="horas" />
+                    <field name="dias" />
+                    <field name="monto_a_pagar" attrs="{'invisible': [('tipo_incidencia','in',['TXT'])]}"/>
+                    <field name="no_cuenta" />
+                    <field name="tipo_incidencia" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="button_click_action" model="ir.actions.server">
+            <field name="name">Aplicar a Nómina</field>
+            <field name="binding_model_id" ref="model_hr_4g_payroll_ext_incidency_c" />
+            <field name="model_id" ref="model_hr_4g_payroll_ext_incidency_c"/>
+            <field name="state">code</field>
+            <field name="code">action = model.aplicar_nomina()</field>
+           <field name="res_model">hr_4g_payroll_ext.incidency_c</field>
+        </record>
+
+    </data>
+</odoo>

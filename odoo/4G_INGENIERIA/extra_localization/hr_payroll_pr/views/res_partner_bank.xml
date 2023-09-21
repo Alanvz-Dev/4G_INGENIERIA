@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+
+        <record id="hr_payroll_pr.partner_bank_tree" model="ir.ui.view">
+            <field name="name">IUT's</field>
+            <field name="model">res.partner.bank</field>
+            <field name="arch" type="xml">
+                <tree string="IUT's">
+                    <field name="acc_number" />
+                    <field name="partner_id" />
+                    <field name="company_id" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="hr_payroll_pr.bank_action" model="ir.actions.act_window">
+            <field name="name">Lista de IUT's</field>
+            <field name="res_model">res.partner.bank</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+    </data>
+
+</odoo>

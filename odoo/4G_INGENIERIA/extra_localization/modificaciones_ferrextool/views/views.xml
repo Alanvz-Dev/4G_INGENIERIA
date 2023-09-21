@@ -1,0 +1,60 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+    <!--
+    <record model="ir.ui.view" id="modificaciones_ferrextool.list">
+      <field name="name">modificaciones_ferrextool list</field>
+      <field name="model">modificaciones_ferrextool.modificaciones_ferrextool</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+        </tree>
+      </field>
+    </record>
+    -->
+
+    <!-- actions opening views on models -->
+    <!--
+    <record model="ir.actions.act_window" id="modificaciones_ferrextool.action_window">
+      <field name="name">modificaciones_ferrextool window</field>
+      <field name="res_model">modificaciones_ferrextool.modificaciones_ferrextool</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+    -->
+
+    <!-- server action to the one above -->
+    <!--
+    <record model="ir.actions.server" id="modificaciones_ferrextool.action_server">
+      <field name="name">modificaciones_ferrextool server</field>
+      <field name="model_id" ref="model_modificaciones_ferrextool_modificaciones_ferrextool"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": self._name,
+        }
+      </field>
+    </record>
+    -->
+
+    <!-- Top menu item -->
+    <!--
+    <menuitem name="modificaciones_ferrextool" id="modificaciones_ferrextool.menu_root"/>
+    -->
+    <!-- menu categories -->
+    <!--
+    <menuitem name="Menu 1" id="modificaciones_ferrextool.menu_1" parent="modificaciones_ferrextool.menu_root"/>
+    <menuitem name="Menu 2" id="modificaciones_ferrextool.menu_2" parent="modificaciones_ferrextool.menu_root"/>
+    -->
+    <!-- actions -->
+    <!--
+    <menuitem name="List" id="modificaciones_ferrextool.menu_1_list" parent="modificaciones_ferrextool.menu_1"
+              action="modificaciones_ferrextool.action_window"/>
+    <menuitem name="Server to list" id="modificaciones_ferrextool" parent="modificaciones_ferrextool.menu_2"
+              action="modificaciones_ferrextool.action_server"/>
+    -->
+  </data>
+</odoo>

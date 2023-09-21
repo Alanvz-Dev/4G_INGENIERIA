@@ -1,0 +1,181 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+        <record id="view_employee_form_inherit_sua" model="ir.ui.view">
+            <field name="name">hr.employee.view.form.inherit</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form" />
+            <field name="arch" type="xml">
+                <field name="name" position="after">
+                    <group class="fs-6 font-weight-bold">
+                        <div>
+                            <h4>
+                                <field name="names" placeholder="Nombre(s) Separados Por Espacios" class="fs-6 font-weight-bold" style="text-transform:uppercase" />
+                            </h4>
+                            <h4>
+                                <field name="first_name" placeholder="Primer Apellido" class="fs-6 font-weight-bold" style="text-transform:uppercase" />
+                            </h4>
+                            <h4>
+                                <field name="second_name" placeholder="Segundo Apellido" class="fs-6 font-weight-bold" style="text-transform:uppercase" />
+                            </h4>
+                        </div>
+                    </group>
+                </field>
+                <xpath expr="//page[1]" position="after">
+                    <!-- groups="hr.group_hr_user" -->
+                    <page name="sua_movs" string="Movimientos SUA/IDSE">
+                        <!-- <group>
+                            <field name="aseg_id" />
+                        </group> -->
+                        <!-- <field name="employee_mov_ids" /> -->
+                        <group>
+                            <group string="Alta">
+                                <field name="aseg_id" widget="many2many_kanban" nolabel="1">
+                                    <kanban quick_create="false" create="true" delete="true">
+                                        <field name="name" />
+                                        <templates>
+                                            <t t-name="kanban-box">
+                                                <div class="oe_kanban_global_click" style="position: relative">
+                                                    <a t-if="! read_only_mode" type="delete" style="
+                                      position: absolute;
+                                      right: 0;
+                                      padding: 4px;
+                                      diplay: inline-block;
+                                    ">XXX</a>
+                                                    <div class="oe_module_vignette">
+                                                        <!-- <img t-att-src="kanban_image('res.users', 'image_small', record.id.value)" class="oe_avatar oe_kanban_avatar_smallbox" /> -->
+                                                        <div class="oe_module_desc">
+                                                            <field name="name" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </t>
+                                        </templates>
+                                    </kanban>
+                                </field>
+                            </group>
+
+                            <group string='Baja, Modificación de Salario o Reingreso'>
+                                <field name="mov_id" widget="many2many_kanban" nolabel="1">
+                                    <kanban quick_create="false" create="true" delete="true">
+                                        <field name="name" />
+                                        <templates>
+                                            <t t-name="kanban-box">
+                                                <div class="oe_kanban_global_click" style="position: relative">
+                                                    <a t-if="! read_only_mode" type="delete" style="
+                                      position: absolute;
+                                      right: 0;
+                                      padding: 4px;
+                                      diplay: inline-block;
+                                    ">X</a>
+                                                    <div class="oe_module_vignette">
+                                                        <!-- <img t-att-src="kanban_image('res.users', 'image_small', record.id.value)" class="oe_avatar oe_kanban_avatar_smallbox" /> -->
+                                                        <div class="oe_module_desc">
+                                                            <field name="name" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </t>
+                                        </templates>
+                                    </kanban>
+                                </field>
+                            </group>
+
+                            <group string='Movimientos Asociados a Créditos'>
+                                <field name="cred_mov_id" widget="many2many_kanban" nolabel="1">
+                                    <kanban quick_create="false" create="true" delete="true">
+                                        <field name="registro_patronal_imss" />
+                                        <templates>
+                                            <t t-name="kanban-box">
+                                                <div class="oe_kanban_global_click" style="position: relative">
+                                                    <a t-if="! read_only_mode" type="delete" style="
+                                      position: absolute;
+                                      right: 0;
+                                      padding: 4px;
+                                      diplay: inline-block;
+                                    ">X</a>
+                                                    <div class="oe_module_vignette">
+                                                        <!-- <img t-att-src="kanban_image('res.users', 'image_small', record.id.value)" class="oe_avatar oe_kanban_avatar_smallbox" /> -->
+                                                        <div class="oe_module_desc">
+                                                            <field name="registro_patronal_imss" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </t>
+                                        </templates>
+                                    </kanban>
+                                </field>
+                            </group>
+
+                            <group string='Movimientos de Incapacidad'>
+                                <field name="incapacidad_id" widget="many2many_kanban" nolabel="1">
+                                    <kanban quick_create="false" create="true" delete="true">
+                                        <field name="registro_patronal_imss" />
+                                        <templates>
+                                            <t t-name="kanban-box">
+                                                <div class="oe_kanban_global_click" style="position: relative">
+                                                    <a t-if="! read_only_mode" type="delete" style="
+                                      position: absolute;
+                                      right: 0;
+                                      padding: 4px;
+                                      diplay: inline-block;
+                                    ">X</a>
+                                                    <div class="oe_module_vignette">
+                                                        <!-- <img t-att-src="kanban_image('res.users', 'image_small', record.id.value)" class="oe_avatar oe_kanban_avatar_smallbox" /> -->
+                                                        <div class="oe_module_desc">
+                                                            <field name="registro_patronal_imss" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </t>
+                                        </templates>
+                                    </kanban>
+                                </field>
+                            </group>
+
+
+                            <group string='Datos Afiliatorios'>
+                                <field name="afil_id" widget="many2many_kanban" nolabel="1">
+                                    <kanban quick_create="false" create="true" delete="true">
+                                        <field name="name" />
+                                        <templates>
+                                            <t t-name="kanban-box">
+                                                <div class="oe_kanban_global_click" style="position: relative">
+                                                    <a t-if="! read_only_mode" type="delete" style="
+                                      position: absolute;
+                                      right: 0;
+                                      padding: 4px;
+                                      diplay: inline-block;
+                                    ">X</a>
+                                                    <div class="oe_module_vignette">
+                                                        <!-- <img t-att-src="kanban_image('res.users', 'image_small', record.id.value)" class="oe_avatar oe_kanban_avatar_smallbox" /> -->
+                                                        <div class="oe_module_desc">
+                                                            <field name="name" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </t>
+                                        </templates>
+                                    </kanban>
+                                </field>
+                            </group>
+                        </group>
+                    </page>
+                </xpath>
+                <field name="category_ids" position="after">
+                <group>
+                <field name="unidad_de_medicina_familiar" />
+                </group>
+                
+                    <group>
+                        <field name="state_sua_idse" widget="state_selection" />
+                    </group>
+                    <group>
+                        <button string="SUA/IDSE" name="create_complete_row" type="object" class="oe_highlight" />
+                        <button string="Datos Afiliatorios" name="create_complete_row_afil" type="object" class="oe_highlight" />
+                    </group>
+                </field>
+            </field>
+        </record>
+    </data>
+</odoo>

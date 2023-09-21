@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+        <record id="cfdi_traslado_inherit_cfdi_traslado_ext" model="ir.ui.view">
+            <field name="name">Cfdi Traslado</field>
+            <field name="model">cfdi.traslado</field>
+            <field name="inherit_id" ref="cfdi_traslado.view_fatura_global_form"/>
+            <field name="arch" type="xml">
+                <field name="source_document" position="after">
+                    <field name="cfdi_traslado_account_invoice" />
+                </field>    
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,118 @@
+<odoo>
+  <data>
+
+    <!-- View form machine -->
+    <record id="view_form_machine" model="ir.ui.view">
+      <field name="name">Arrendamiento de maquinaria</field>
+      <field name="model">arrendamiento.maquinaria</field>
+      <field name="arch" type="xml">
+        <form string="Arrendamiento Maquinaria">
+          <header>
+
+            <button name="crear_factura_maquinaria" attrs="{'invisible': [('invoice_paid_count', '>', 0)]}" string="Crear Facturas" type="object" default_focus="1" icon="gtk-apply" confirm="Esta seguro?" help="message" />
+
+          </header>
+          <sheet>
+            <div class="oe_button_box" name="button_box">
+              <button name="get_invoices" type="object" attrs="{'invisible': [('invoice_count', '&lt;=',0)]}" class="oe_stat_button" icon="fa-file-text">
+                <div class="o_field_widget o_stat_info">
+                  <span class="o_stat_value">
+                    <field name="invoice_paid_count" widget="statinfo" nolabel="1" />
+                    /
+                    <field name="invoice_count" widget="statinfo" nolabel="1" />
+                  </span>
+                  <span class="o_stat_text">Facturas</span>
+                </div>
+              </button>
+              <button name='get_invoices_paid' type="object" class="oe_stat_button" icon="fa-file-text" attrs="{'invisible': [('invoice_count', '&lt;=',0)]}">
+                <div class="oe_button_box o_stat_info">
+                  <span class="o_stat_value">
+                    <field name="invoice_balance" widget="statinfo" nolabel="1" />
+                  </span>
+                  <span class="o_stat_text">Saldo</span>
+                </div>
+              </button>
+              <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive">
+                <field name="active" widget="boolean_button" options='{"terminology": "archive"}' />
+              </button>
+            </div>
+   
+              <h1>
+                <field name="maquinaria_secuencia" />
+              </h1>
+
+
+
+            <group>
+              <group>
+                <field name="institucion" attrs="{'readonly': [('invoice_paid_count', '>', 0)]}" />
+                <!-- <field name="active_id" /> -->
+                <field name="account_id" attrs="{'readonly': [('invoice_paid_count', '>', 0)]}" />
+                <field name="contrato" attrs="{'readonly': [('invoice_paid_count', '>', 0)]}" />
+                <field name="fecha_inicio" attrs="{'readonly': [('invoice_paid_count', '>', 0)]}" />
+                <field name="fecha_vencimiento" attrs="{'readonly': [('invoice_paid_count', '>', 0)]}" />
+                <field name="cantidad_meses" attrs="{'readonly': [('invoice_paid_count', '>', 0)]}" />
+              </group>
+              <group>
+                <field name="product_id" attrs="{'readonly': [('invoice_paid_count', '>', 0)]}" />
+                <field name="impuestos" widget="many2many_tags" attrs="{'readonly': [('invoice_paid_count', '>', 0)]}" />
+                <field name="diario" attrs="{'readonly': [('invoice_paid_count', '>', 0)]}" />
+                <field name="account_id_product" attrs="{'readonly': [('invoice_paid_count', '>', 0)]}" />
+              </group>
+              <group>
+                <field name="referencia" attrs="{'readonly': [('invoice_paid_count', '>', 0)]}" />
+                <field name="dia_de_pago" attrs="{'readonly': [('invoice_paid_count', '>', 0)]}" />
+                <field name="sin_iva" attrs="{'readonly': [('invoice_paid_count', '>', 0)]}" />
+                <field name="con_iva" attrs="{'readonly': [('invoice_paid_count', '>', 0)]}" />
+              </group>
+
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+
+    <!-- View tree machine-->
+    <record id="model_maquinaria_view_tree" model="ir.ui.view">
+      <field name="name">Arrendamiento Maquinaria</field>
+      <field name="model">arrendamiento.maquinaria</field>
+      <field name="arch" type="xml">
+        <tree>
+          <!-- Add your fields here -->
+          <field name="maquinaria_secuencia" />
+          <field name="invoice_balance"/>
+          <!-- <field name="active_id" /> -->
+          <field name="dia_de_pago" />
+          <field name="fecha_inicio" />
+          <field name="fecha_vencimiento" />
+          <field name="cantidad_meses" />
+          <field name="contrato" />
+          <field name="sin_iva" />
+          <field name="con_iva" />
+          <field name="referencia" />
+        </tree>
+      </field>
+    </record>
+
+    <!-- Sequence machine -->
+    <record id="sequence_arrendamiento_maquinaria" model="ir.sequence">
+      <field name="name">Folio de maquinaria</field>
+      <field name="code">arrendamiento.maquinaria</field>
+      <field name="prefix">AM/%(range_year)s/</field>
+      <field eval="1" name="number_next" />
+      <field eval="1" name="number_increment" />
+      <field eval="True" name="use_date_range" />
+      <field eval="False" name="company_id" />
+      <field name="padding">3</field>
+    </record>
+
+    <!--  -->
+    <record id="arrendamiento.maquinaria_action_window" model="ir.actions.act_window">
+      <field name="name">Arrendamiento de maquinaria</field>
+      <field name="res_model">arrendamiento.maquinaria</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+  </data>
+</odoo>

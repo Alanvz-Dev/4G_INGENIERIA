@@ -1,0 +1,75 @@
+<odoo>
+  <data>
+
+    <record id="flujo_efectivo_view_tree" model="ir.ui.view">
+      <field name="name">Flujo de Efectivo</field>
+      <field name="model">flujo_efectivo.flujo_efectivo</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="tipo" />
+          <field name="categoria" />
+          <field name="sub_categoria" />
+          <field name="entidad" />
+          <field name="fecha_programada" />
+          <field name="monto" />
+          <field name="id_registro"/>
+        </tree>
+      </field>
+    </record>
+
+
+    <record id="flujo_efectivo_view_form" model="ir.ui.view">
+      <field name="name">Flujo de Efectivo</field>
+      <field name="model">flujo_efectivo.flujo_efectivo</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+            <group>
+              <field name="tipo" />
+              <field name="categoria" />
+              <field name="sub_categoria" />
+              <field name="entidad" />
+              <field name="fecha_programada" />
+              <field name="monto" />
+              <field name="id_registro"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+
+    <record id="flujo_de_efectivo_pivot" model="ir.ui.view">
+      <field name="name">Reporte Flujo de Efectivo</field>
+      <field name="model">flujo_efectivo.flujo_efectivo</field>
+      <field name="arch" type="xml">
+        <pivot string="Reporte Flujo de Efectivo">
+          <field name="tipo" type="row" />
+          <field name="categoria" type="row" />
+          <field name="sub_categoria" type="row" />
+          <field name="entidad" type="row" />
+          <field name="fecha_programada" type="row" />
+          <field name="monto" type="measure" />
+        </pivot>
+      </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="flujo_efectivo.action_window">
+      <field name="name">Reporte Flujo de Efectivo</field>
+      <field name="res_model">flujo_efectivo.flujo_efectivo</field>
+      <field name="view_mode">pivot,tree,form</field>
+    </record>
+
+    <record id="flujo_efectivo.obtener_vistas" model="ir.actions.server">
+      <field name="name">Obtener Reporte</field>
+      <field name="model_id" ref="model_flujo_efectivo_flujo_efectivo" />
+      <field name="state">code</field>
+      <field name="code">
+        action = model.obtener_vistas()
+      </field>
+    </record>
+
+    <menuitem name="Flujo de Efectivo" id="flujo_efectivo.menu_root" action="flujo_efectivo.obtener_vistas" web_icon="flujo_efectivo,icon.png" />
+    <menuitem name="Reporte de Flujo de Efectivo" id="flujo_efectivo.menu_configuraciones" parent="flujo_efectivo.menu_root" action="flujo_efectivo.action_window" />
+  </data>
+</odoo>

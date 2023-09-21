@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+
+
+	<record model="ir.ui.view" id="modifica_factura">
+		<field name="name">account.invoice.supplier.form</field>
+		<field name="model">account.invoice</field>
+		<field name="type">form</field>
+		<field name="inherit_id" ref="account.invoice_supplier_form"/>
+		<field name="arch" type="xml">
+			<field name='partner_id' position='before'>
+				<field name="id" />
+			</field>
+			
+		</field>
+	</record>
+
+	<record model="ir.ui.view" id="modifica_factura2">
+		<field name="name">account.invoice.form</field>
+		<field name="model">account.invoice</field>
+		<field name="type">form</field>
+		<field name="inherit_id" ref="account.invoice_form"/>
+		<field name="arch" type="xml">
+			<field name='partner_id' position='before'>
+				<field name="id" />
+			</field>
+			
+		</field>
+	</record>
+
+
+
+
+    </data>
+</odoo>

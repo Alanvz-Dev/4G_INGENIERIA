@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+        <record id="view_invoice_complemento_leyenda_form" model="ir.ui.view">
+            <field name="name">account.invoice.leyenda.form</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="complemento_leyenda.view_invoice_leyenda_form" />
+            <field name="arch" type="xml">
+                <field name="leyenda" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </field>
+                <xpath expr="//notebook//page[@name='info_cdfi']//group//group[@name='complementos']" position="inside">
+                    <field name="tax_legend_id"/>
+               </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+     <record id="import_attendance_from_wizard_view" model="ir.ui.view">
+        <field name="name">Import Attendance </field>
+        <field name="model">import.attendance</field>
+        <field name="arch" type="xml">
+            <form string="Import Attendance">
+                <group>
+                    <field name="import_file" filename="file_name"/>
+                    <field name="file_name" invisible="1"/>
+                </group>
+                <footer>
+                    <button name="import_attendance" string="Import Attendance" type="object" class="oe_highlight"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+  </data>
+</odoo>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="view_sale_order_form_inherit" model="ir.ui.view">
+		<field name="name">sale.order.form.inherit</field>
+		<field name="model">sale.order</field>
+		<field name="inherit_id" ref="sale.view_order_form" />
+		<field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page name="dato4g" string="4g">
+                        <group cols="4">
+                            <group string="Detalles de Pago">
+                            	<field name="no_compra"/>
+                            </group>
+                        </group>
+                </page>
+            </xpath>
+		</field>
+	</record>
+</odoo>

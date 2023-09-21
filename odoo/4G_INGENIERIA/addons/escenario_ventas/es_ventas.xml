@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+		<record model="ir.ui.view" id="aut_ventas_form_id">
+			<field name="name">sale.order.form</field>
+			<field name="model">sale.order</field>
+			<field name="type">form</field>
+			<field name="inherit_id" ref="sale.view_order_form"/>
+			<field name="arch" type="xml">
+				<field name='date_from_lead' position='after'>
+					<field name='no_compra_cliente' placeholder="# de orden de compra"/>
+				</field>
+			</field>
+		</record>
+    </data>
+</odoo>

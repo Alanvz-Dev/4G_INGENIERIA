@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- De esa vista de lista reprogramar al dar click y cambiar la fecha -->
+
+    <record id="mrp.mrp_capacidad_list_dia" model="ir.ui.view">
+        <field name="name">mrp.production.graph_list_dia</field>
+        <field name="model">capacidad_de_produccion.dia</field>
+        <field name="arch" type="xml">
+            <tree string="Manufacturing Orders" decoration-danger=" capacidad_disponible&lt;= 0">
+            <!-- <tree string="Manufacturing Orders"> -->
+                <field name="dia" />
+                <field name="centro_de_produccion"  />
+                <field name="tiempo_estimado" />
+                <field name="capacidad_instalada" force_save="1" />
+                <field name="capacidad_disponible"  force_save="1"/>
+                <field name="mos"  />
+               <!--  <field name="horas_capacidad_disponible"  /> -->
+            </tree>
+        </field>
+    </record>
+
+        <!-- <record id="mrp.mrp_capacidad_dia" model="ir.ui.view">
+            <field name="name">mrp.production.graph_dia</field>
+            <field name="model">capacidad_de_produccion.dia</field>
+            <field name="arch" type="xml">
+                <graph string="Manufacturing Orders">
+                <field name="dia" />
+                <field name="centro_de_produccion"  />
+                <field name="tiempo_estimado" />
+                <field name="capacidad_instalada" force_save="1"/>
+                <field name="capacidad_disponible"  force_save="1"/>
+                <field name="mos"  /> -->
+                <!-- <field name="horas_capacidad_instalada"  />
+                <field name="horas_capacidad_disponible"  /> -->
+                <!-- </graph>
+            </field>
+        </record> -->
+
+
+
+        <record id="mrp.mrp_capacidad_piv_dia" model="ir.ui.view">
+            <field name="name">mrp.production.graph_piv_dia</field>
+            <field name="model">capacidad_de_produccion.dia</field>
+            <field name="arch" type="xml">
+                <pivot string="Manufacturing Orders">
+                <field name="dia" />
+                <field name="centro_de_produccion"  />
+                <field name="tiempo_estimado" />
+                <field name="capacidad_instalada" force_save="1"/>
+                <field name="capacidad_disponible"  force_save="1" />
+                <field name="mos"  />
+                <!-- <field name="horas_capacidad_instalada"  />
+                <field name="horas_capacidad_disponible"  /> -->
+                </pivot>
+            </field>
+        </record>
+
+
+
+    <record id="mrp.mrp_capacidad_prod_view_form_dia" model="ir.ui.view">
+        <field name="name">Capacidad de Producción Por Día</field>
+        <field name="model">capacidad_de_produccion.dia</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                <group>
+                <field name="dia" />
+                <field name="centro_de_produccion"  />
+                <field name="tiempo_estimado" />
+                <field name="capacidad_instalada" force_save="1"/>
+                <field name="capacidad_disponible"  force_save="1"/>
+              </group>
+                <group>
+              <field name="mos"  create='False' mode="tree" >
+              <!-- If I put these fields as readonly = "1" lets edit them -->
+              <!-- style="pointer-events:none;" -->
+                <tree options='{"bg_color": "red"}' editable='bottom'  mode="tree">
+                  <field name="mo" readonly='1'/>
+                  <field name="producto" readonly='1'/>
+                  <field name="centro_de_produccion" readonly='1'/>
+                  <field name="piezas" readonly='1' />
+                  <field name="tiempo_estimado" readonly='1'/>
+                  <field name="vigente_desde" readonly='0'/>
+                  
+                </tree>
+              </field>
+                </group>
+                <!-- <field name="horas_capacidad_instalada"  />
+                <field name="horas_capacidad_disponible"  /> -->
+                    
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record model="ir.actions.server" id="mrp.mrp_capacidad_prod_action_server_dia">
+      <field name="name">Capacidad de Producción Por Día</field>
+      <field name="model_id" ref="4g_production.model_capacidad_de_produccion_dia"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = model.fill_graph_data()
+      </field>
+    </record>
+    
+
+
+    <record model="ir.actions.act_window" id="mrp.capacidad_de_produccion_dia_grafica_act">
+        <field name="name">Capacidad de Producción Por Día</field>
+        <field name="res_model">capacidad_de_produccion.dia</field>
+        <field name="view_mode">pivot,tree,form</field>
+    </record>
+</odoo>

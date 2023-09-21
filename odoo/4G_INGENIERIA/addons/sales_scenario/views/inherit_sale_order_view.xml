@@ -1,0 +1,76 @@
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="sale_order_no_compra_id">
+            <field name="name">sale.order</field>
+            <field name="model">sale.order</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <field name="payment_term_id" position="after">
+                    <field name="no_compra"/>
+                </field>
+                <field name="no_compra" position="after">
+                    <field name="probability" required="True"/>
+                </field>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="product_template_piezas_id">
+            <field name="name">product.template.form</field>
+            <field name="model">product.template</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="product.product_template_only_form_view"/>
+            <field name="arch" type="xml">
+                <field name='sale_ok' position='before'>
+                    	<field name="piezas_limite" placeholder='Limite de piezas por mes' attrs="{'readonly':[('sale_ok', '==',False)]}"/>
+                </field>
+            </field>
+        </record>
+
+
+      <record model="ir.ui.view" id="purchase_order_price_change_id">
+            <field name="name">purchase.order.form</field>
+            <field name="model">purchase.order</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form"/>     
+            <field name="arch" type="xml">
+                    <button name="button_cancel" position="before">
+                    <button name="button_send_po" type="object" string="Enviar OC por Correo Electronico" attrs="{'invisible':[('pendiente_envio', '=', False)]}" class="oe_highlight" states="purchase"/>
+                </button>
+                <field name="date_order" position="after">
+                    <field name="apoyo" attrs="{'readonly':[('state', 'not in', 'draft')]}"/>
+                </field>
+                <field name="apoyo" position="after">
+                    <field name="autorizacion_compras" attrs="{'readonly':[('state', '=', 'purchase')]}"/>
+                    <field name="pendiente_envio"/>
+                </field>
+                <field name="currency_id" position="after">
+                    <field name="cuenta_analitica" options="{'no_create':True}"/>
+                </field>
+                <field name="cuenta_analitica" position="after" colspan="2">
+                    <button colspan="2" name="update_cuanta_analitica" type="object" icon="gtk-execute" string="Actualizar Cuentas" attrs="{'invisible':[('state', 'not in', 'draft')]}"/>
+                </field>
+                <xpath expr="//page[1]" position="after">
+                    <page string="Costos de Aceros" attrs="{'invisible':[('apoyo', '!=', True)]}">
+                        <form string="Formulario de Registro">
+                            <group>
+                                <button name="update_price_order_list" type="object" icon="gtk-execute" string="Actualizar Productos" attrs="{'invisible':[('state', 'not in', 'draft')]}"/>
+                            </group>   
+                            <group colspan="2">
+                                <tr foreach="name_category" as="l">
+                                    <field name="categoria_costo" options="{'no_create_edit': True,'no_create': True}" attrs="{'readonly':[('state', 'not in', 'draft')]}"/>
+                                    <field name="cost_category" attrs="{'readonly':[('state', 'not in', 'draft')]}"/>
+                                </tr>
+                            </group>
+                        </form>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+
+        
+
+    </data>
+</odoo>

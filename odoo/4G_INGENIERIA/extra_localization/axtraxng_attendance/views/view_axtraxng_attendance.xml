@@ -1,0 +1,88 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+
+    <record model="ir.ui.view" id="axtraxng_attendance.list">
+      <field name="name">axtraxng_attendance list</field>
+      <field name="model">hr.axtraxng_attendance</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="hr_payslip_id" string="Nómina"/>
+          <field name="start_date" string="De"/>
+          <field name="end_date" string="A"/>
+          <field name="state" string="Estatus"/>
+        </tree>
+      </field>
+    </record>
+
+
+    <!-- actions opening views on models -->
+
+    <record model="ir.actions.act_window" id="axtraxng_attendance.action_window">
+      <field name="name">Asistencias</field>
+      <field name="res_model">hr.axtraxng_attendance</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <record id="axtraxng_attendance_form_view" model="ir.ui.view">
+      <field name="name">Asistencia </field>
+      <field name="model">hr.axtraxng_attendance</field>
+      <field name="arch" type="xml">
+        <form string="22222" create="true" edit="true">
+          <header>
+            <button name="create_axtraxng_attendance1" string="Importar Asistencia" type="object"/>
+            <button name="action_validar" string="Validar a nómina" type="object" states="draft" class="btn-primary"/>
+            <button name="action_cancelar" string="Cancelar" type="object" states="done" confirm="¿Seguro que quiere cancelar el registro?"/>
+            <button name="action_draft" string="Borrador" type="object" states="cancel"/>
+            <field name="state" widget="statusbar" statusbar_visible="draft,done"/>
+          </header>
+
+          <group>
+            <field name="hr_payslip_id" string="Nómina" domain="[('state', '=', 'draft')]" options="{'no_create_edit':True,'no_quick_create':True,'no_create': True,'no_open': False}"/>
+            <field name="start_date" string="De" force_save='1' readonly="1"  />
+            <field name="end_date" string="A" force_save='1' readonly="1"/>
+          </group>
+          <notebook>
+            <page string="Asistencia">
+              <!-- <field name="asistencia_line_id" attrs="{'readonly' : [('state', '!=','draft')]}"> -->
+              <field name="asistencia_line_id" readonly = "0" mode="tree" >
+              <!-- If I put these fields as readonly = "1" lets edit them -->
+              <!-- style="pointer-events:none;" -->
+                <tree options='{"bg_color": "red"}' editable="1" mode="tree">
+                  <field name="id" />
+                  <field name="employee_id" string="Empleado" readonly = "1" domain="[('idaxtraxng', '>', 0)]" options="{'no_create_edit':True,'no_quick_create':True,'no_create': True,'no_open': True}" mode="tree"/>
+                  <field name="attendance_bonus" string="Bono Asistencia" readonly = "0" mode="tree"/>
+                  <field name="delay_time_bonus" string="Bono Puntualidad" readonly = "0"/>
+                  <field name="total_days_effective_time" string="Tiempo Efectivo" readonly = "1" mode="tree"/>
+                  <field name="horas_trabajadas" string="Horas Trabajadas" readonly = "0" mode="tree"/>
+                  <button name="open_record" string="Modificar" type="object" class="oe_highlight" mode="tree"/>
+
+                </tree>
+              </field>
+            </page>
+          </notebook>
+
+        </form>
+      </field>
+    </record>
+
+
+
+
+    <!-- Top menu item -->
+
+    <menuitem name="Asistencia" id="axtraxng_attendance.menu_root" web_icon="axtraxng_attendance,static/axtrax.png" />
+
+    <!-- menu categories -->
+
+    <menuitem name="Asistencia" id="axtraxng_attendance.menu_1" parent="axtraxng_attendance.menu_root"/>
+
+
+    <!-- actions -->
+
+    <menuitem name="Asistencia Nómina" id="axtraxng_attendance.menu_1_list" parent="axtraxng_attendance.menu_1" action="axtraxng_attendance.action_window"/>
+
+
+  </data>
+</odoo>

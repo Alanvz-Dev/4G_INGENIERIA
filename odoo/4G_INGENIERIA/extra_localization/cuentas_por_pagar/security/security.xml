@@ -1,0 +1,10 @@
+<odoo>
+    <data>
+        <!-- DEGREES-->
+        <!-- Acusmata-->
+        <record id="cuentas_por_pagar_proveedores" model="res.groups">
+            <field name="name">Mod Cuentas Por Pagar</field>
+            <field name="comment">Habilitar el acceso al portal de proveedores</field>
+        </record>
+    </data>
+</odoo>

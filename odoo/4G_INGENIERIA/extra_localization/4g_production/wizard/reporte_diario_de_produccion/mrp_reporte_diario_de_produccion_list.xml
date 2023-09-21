@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <record id="mrp.reporte_diario_prod_list" model="ir.ui.view">
+        <field name="name">Reporte Diario de Producción</field>
+        <field name="model">mrp.workorder</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="product_id" />
+                <field name="production_id" />
+                <field name="bom_line_ids" />
+                <field name="qty_production" />
+                <field name="qty_rack" />
+            </tree>
+        </field>
+    </record>
+</odoo>

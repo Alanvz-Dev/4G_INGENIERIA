@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <record id="dining_service.line'_view_form" model="ir.ui.view">
+        <field name="name">Fecha y hora de Servicios</field>
+        <field name="model">dining_service.line</field>
+        <field name="arch" type="xml">
+            <form string="Fecha y hora de Servicios">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="company"/>
+                        <field name="last_update"/>
+                        <field name="date_time_service_line"/>        
+                        <field name="write_uid" string="Última modificación"/>
+                        <field name="employee_contract_id"/>
+                    </group>                    
+                    <field name="date_time_service_line" />
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

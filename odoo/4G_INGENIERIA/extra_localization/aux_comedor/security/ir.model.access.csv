@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_aux_comedor_aux_comedor,aux_comedor.aux_comedor,model_aux_comedor_aux_comedor,,1,0,0,0

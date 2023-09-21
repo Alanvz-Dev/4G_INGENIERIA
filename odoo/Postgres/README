@@ -1,0 +1,29 @@
+Esta eontenedor es solo para desarrollo
+
+postgres:10.21
+
+doker ps -a
+docker exec -it -u 0 postgres_dev  bash
+apt-get update
+apt-get install nano
+nano /var/lib/postgresql/data/pg_hba.conf 
+
+
+Establecer
+
+
+# "local" is for Unix domain socket connections only
+local   all             all                                     trust
+# IPv4 local connections:
+host    all             all             all                     password
+
+
+reiniciar contenedor
+
+
+create user odoo11;
+
+ALTER USER odoo11 PASSWORD 'postgres';
+
+
+sql -h 192.168.1.10 -p 5432 -d postgres -U odoo11

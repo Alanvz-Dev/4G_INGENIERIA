@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_invoice_inherit_form" model="ir.ui.view">
+            <field name="name">account.invoice.inherit.form</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form" />
+            <field name="arch" type="xml">
+               <xpath expr="//page[@name='info_cdfi']/group" position="inside">
+                  <group string="Addenda Chrysler">
+                         <field name="chrysler_addenda"/>
+                         <field name="chrysler_agregado" attrs="{'invisible': [('chrysler_addenda','=', False)] }"/>
+                         <field name="codigo_envio" attrs="{'invisible': [('chrysler_addenda','=', False)] }"/>
+                         <field name="orden_compra" attrs="{'invisible': [('chrysler_addenda','=', False)] }"/>
+                         <field name="requicision_liberacion" attrs="{'invisible': [('chrysler_addenda','=', False)] }"/>
+                         <field name="fca_tipodocumento" attrs="{'invisible': [('chrysler_addenda','=', False)] }"/>
+                  </group>
+               </xpath>
+               <xpath expr="/form/sheet/notebook/page/field[@name='invoice_line_ids']/tree/field[@name='price_unit']" position="after">
+            	<field name="no_parte" attrs="{'column_invisible': [('parent.chrysler_addenda', '!=', True)], }"/>
+            	<field name="line_item" attrs="{'column_invisible': [('parent.chrysler_addenda', '!=', True)], }"/>
+            </xpath> 
+               
+               <button name="action_invoice_draft" position="after">
+                   <button name="add_addenda_chrysler" string="Agregar addenda Chrysler" type="object" class="oe_inline oe_highlight" attrs="{'invisible':['|',('estado_factura','!=', 'factura_correcta'),('chrysler_agregado','=', True)]}"/>
+               </button>
+            </field>
+    </record>
+
+    <record id="view_invoice_inherit_tree" model="ir.ui.view">
+        <field name="name">account.invoice.inherit.tree</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account.invoice_tree" />
+        <field name="arch" type="xml">
+            <field name="state" position="before">
+               <field name="chrysler_agregado" string="Chrysler"/>
+            </field>
+        </field>
+    </record>
+</odoo>

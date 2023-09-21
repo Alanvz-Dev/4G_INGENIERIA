@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_reportes_pdf_reportes_pdf,slow_movement_xlsx.slow_movement_xlsx,model_reportes_pdf_reportes_pdf,,1,0,0,0

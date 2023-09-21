@@ -1,0 +1,77 @@
+<odoo>
+  <data>
+
+    <record id="search_view_holidays_tree" model="ir.ui.view">
+      <field name="name">hr.holidays.report_tree</field>
+      <field name="model">hr.holidays</field>
+      <field name="priority">20</field>
+      <field name="arch" type="xml">
+        <tree decoration-danger="state == 'refuse'" decoration-info="state == 'draft'" string="Leaves Summary">
+          <field name="employee_id"/>
+          <field name="category_id" invisible="1"/>
+          <field name="department_id" invisible="1"/>
+          <field name="type"/>
+          <field name="name"/>
+          <field name="number_of_days" string="Number of Days" sum="Remaining Days"/>
+          <field name="date_from"/>
+          <field name="date_to"/>
+          <field name="holiday_status_id"/>
+          <field name="manager_id" invisible="1"/>
+          <field name="user_id" invisible="1"/>
+          <field name="state"/>
+        </tree>
+      </field>
+    </record>
+
+    <record id="view_holidays_search" model="ir.ui.view">
+      <field name="name">res.partner.search</field>
+      <field name="model">hr.holidays</field>
+      <field name="arch" type="xml">
+        <search string="Search contacts">
+          <field name="employee_id"/>
+          <!-- <filter string="Has VAT number" domain="[('id', '>', 1)]" name="has_vat"></filter>                                         -->
+          <!-- <filter string="Has tags" domain="[('category_id', '!=', False)]" name="has_tags"></filter>                                         -->
+          <group expand="0" string="Group By">
+            <!-- <filter string="Company" name="operador" context="{'group_by': 'operador'}"></filter>                                             -->
+            <!-- <filter string="Country" name="country_id" context="{'group_by': 'country_id'}"></filter>                                            
+        <filter string="Sales person" name="salesperson_id" context="{'group_by': 'user_id'}"></filter>                                         -->
+          </group>
+        </search>
+      </field>
+    </record>
+
+
+
+    <record id="active_edit_holiday_new" model="ir.ui.view">
+      <field name="name">hr.holidays.active.edit_holiday_new</field>
+      <field name="model">hr.holidays</field>
+      <field name="inherit_id" ref="hr_holidays.edit_holiday_new"/>
+      <field name="arch" type="xml">
+        <field name="can_reset" position="before">
+            <xpath expr="/form/header" position="after">
+              <div class="oe_button_box" name="button_box">
+                <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive">
+                  <field name="active" widget="boolean_button" options="{&quot;terminology&quot;: &quot;archive&quot;}"/>
+                </button>
+              </div>
+            </xpath>
+        </field>
+      </field>
+    </record>
+
+
+
+
+
+    <record id="hr_payroll_4g.action_view_search_holidays" model="ir.actions.act_window">
+      <field name="name">Administración de Incidencias</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">hr.holidays</field>
+      <field name="view_mode">tree,form</field>
+      <field name="search_view_id" ref="view_holidays_search"></field>
+      <!-- <field name="context">{'search_default_parent_id': 1}</field>                             -->
+    </record>
+
+
+  </data>
+</odoo>              

@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_valoracion_fifo_valoracion_fifo,valoracion_fifo.valoracion_fifo,model_valoracion_fifo_valoracion_fifo,group_valoracion_de_inventario,1,1,1,1

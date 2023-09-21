@@ -1,0 +1,21 @@
+version: '2'
+services:
+  odoo11_4g_ingenieria:
+    container_name: odoo11_4g_ingenieria
+    image: jrmpacheco/odoo_4g_ingenieria:1.4
+    # image: odoo11_4g_ingenieria_img:latest
+    user: odoo
+    ports:
+      - "8069:8069"
+      - "8090:8000"
+      - "8071:8071" # live chat
+      - "8001:8000" # live chat
+    tty: true
+    command: --
+    volumes:
+      - ./etc:/etc/odoo
+      - ./4G_INGENIERIA/addons:/opt/odoo/odoo/addons
+      - ./4G_INGENIERIA/extra_localization:/opt/odoo/odoo/extra_localization
+      - /mnt/odoodata/Filestore:/Filestore
+      - /mnt/odoodata/Facturas:/Facturas
+    restart: always

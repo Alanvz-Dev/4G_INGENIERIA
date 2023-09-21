@@ -1,0 +1,7 @@
+<odoo>
+    <data>
+        <record id="group_valoracion_de_inventario" model="res.groups">
+            <field name="name">Valoración de Inventario</field>
+        </record>
+    </data>
+</odoo>

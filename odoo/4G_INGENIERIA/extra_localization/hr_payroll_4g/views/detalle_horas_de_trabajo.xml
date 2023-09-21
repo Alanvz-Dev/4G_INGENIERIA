@@ -1,0 +1,73 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+
+    <record model="ir.ui.view" id="hr_payroll_4g.detalle_horas_de_trabajo_list">
+      <field name="name">hr_payroll_ list2</field>
+      <field name="model">hr_payroll_4g.detalle_horas_de_trabajo</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="fecha"/>
+        </tree>
+      </field>
+    </record>
+
+
+    <!-- actions opening views on models -->
+
+    <record model="ir.actions.act_window" id="hr_payroll_4g.detalle_horas_de_trabajo_action_window">
+      <field name="name">Horas de Trabajo</field>
+      <field name="res_model">hr_payroll_4g.detalle_horas_de_trabajo</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <record id="hr_payroll_4g_form_view" model="ir.ui.view">
+      <field name="name">Horas de Trabajo </field>
+      <field name="model">hr_payroll_4g.detalle_horas_de_trabajo</field>
+      <field name="arch" type="xml">
+        <form string="22222" create="true" edit="true">
+          <group>
+            <div class="oe_button_box" name="button_box">
+                <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive">
+                    <field name="active" widget="boolean_button" options="{&quot;terminology&quot;: &quot;archive&quot;}"/>
+                </button>
+            </div>
+        </group>
+          <group>
+            <!-- <field name="hr_payslip_id" string="Nómina" domain="[('state', '=', 'draft')]" options="{'no_create_edit':True,'no_quick_create':True,'no_create': True,'no_open': False}"/> -->
+            <field name="fecha" string="De" force_save='1' readonly="0" />
+          </group>
+          <notebook>
+            <page string="Incidencias">
+              <!-- <field name="Incidencias_line_id" attrs="{'readonly' : [('state', '!=','draft')]}"> -->
+              <field name="horas_de_trabajo_id" readonly = "0" mode="tree">
+
+                <tree options='{"bg_color": "red"}' mode="tree" editable="1" >
+                <field name="incidencia_id_holidays"  attrs="{'readonly' : [('read_only', '=',True)]}" options="{'no_quick_create': True, 'no_create_edit' : True}" context="{'special_display_name': True}"  />
+                <!-- <field name="holidays_state" /> -->
+                  <field name="departamento" readonly="1"/>
+                  <field name="operador" context="{'special_display_name': True}" readonly="1"  />                  
+                  <field name="fuera_de_planta"/> 
+                  <field name="proyecto1" string="Proyecto"  
+                  required="1"
+                   />
+                  <field name="day1_name" widget='float_time' string="Horas Dedicadas"   attrs="{'readonly' : [('read_only', '=',True)]}"/>
+                  <field name="proyecto2" string="Proyecto"   attrs="{'readonly' : [('read_only', '=',True)]}"/>
+                  <field name="day2_name" widget='float_time' string="Horas Dedicadas"  attrs="{'readonly' : [('read_only', '=',True)]}" />
+                  <field name="proyecto3" string="Proyecto"  attrs="{'readonly' : [('read_only', '=',True)]}" />
+                  <field name="day3_name" widget='float_time'  attrs="{'readonly' : [('read_only', '=',True)]}" />
+                  <field name="proyecto4" string="Proyecto"   attrs="{'readonly' : [('read_only', '=',True)]}"/>
+                  <field name="day4_name" widget='float_time' string="Horas Dedicadas"   attrs="{'readonly' : [('read_only', '=',True)]}"/>
+                  <field name="incidencia" string="Incidencias"   attrs="{'readonly' : [('read_only', '=',True)]}"/> 
+                  <field name="total_de_horas" string="Total de Horas"   attrs="{'readonly' : [('read_only', '=',True)]}"/>                              
+                  <field name="read_only" invisible = "1" />                
+                </tree>
+              </field>
+            </page>
+          </notebook>
+        </form>
+      </field>
+    </record>
+  </data>
+</odoo>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+	<template id="template_report_ventas_clientes">
+            <t t-call="report.html_container">
+                <t t-call="report.external_layout">
+                <t t-foreach="docs" t-as="o">
+                    <div class="page">        
+                        <h1>Informe de Ventas por Clientes en fecha</h1>
+                           <div t-foreach="docs" t-as="o" class="row mt4 mb4">
+			         <table class="table table-condensed">
+					<tr class="border-black">
+
+                                        <td class="text-center"><strong>Cliente</strong></td>
+					<td class="text-center"><strong>Fecha</strong></td>
+					<td class="text-center"><strong>Cantidad</strong></td>
+					<td class="text-center"><strong>Total</strong></td>
+
+                                                                                					
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div t-foreach="o.show_report_ventas_clientes()" t-as="item" class="row mt4 mb4">
+                                                 <div class="text-center"><t t-esc="item[0]"/></div><br/>
+
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div t-foreach="o.show_report_ventas_clientes()" t-as="item" class="row mt4 mb4">
+                                                <div class="text-center" ><t t-esc="item[1]"/></div><br/>
+                                            </div>
+                                        </td>
+					<td>
+                                            <div t-foreach="o.show_report_ventas_clientes()" t-as="item" class="row mt4 mb4">
+                                                <div class="text-center" ><t t-esc="item[2]"/></div><br/>
+                                            </div>
+                                        </td>
+					<td>
+                                            <div t-foreach="o.show_report_ventas_clientes_total()" t-as="item" class="row mt4 mb4">
+                                                <div class="text-center" ><t t-esc="item[0]"/></div><br/>
+                                            </div>
+                                        </td>
+
+                                      
+                                       
+                                    </tr>
+
+                                </table>
+                            </div>  
+                    </div>
+                </t>
+                </t>
+
+            </t>
+        </template>                                            
+
+
+          <report 
+            id="reporte_ventas_id4"
+            string="Informe de ventas por cliente"
+            model="report.ventas" 
+            report_type="qweb-pdf"
+            file="report_ventas.template_report_ventas_clientes" 
+            name="report_ventas.template_report_ventas_clientes"
+        />
+
+    </data>
+</odoo>
+
+

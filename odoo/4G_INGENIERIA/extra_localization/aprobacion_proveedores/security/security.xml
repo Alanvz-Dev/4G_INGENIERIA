@@ -1,0 +1,7 @@
+<odoo>
+    <data>
+        <record id="group_aprobacion_proveedores" model="res.groups">
+            <field name="name">Aprobación de Proveedores</field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Inherit quotation report (from module sale) -->
+        <template id="complemento_comercio_exterior" inherit_id="cdfi_invoice.report_invoice_document">
+        
+        <xpath expr="//span[@t-field='o.uso_cfdi']" position="after">
+        <!--<xpath expr="//div[@class='page']//div[@class='row mt32 mb32']//div[@num=2]" position="after">-->
+        <div>
+        	Registro tributario: <span t-field="o.partner_id.registro_tributario" />
+        </div>	
+        </xpath>
+
+        <xpath expr="//div[@name='cadenas']" position="before">
+					<!--INICIA TABLA DE COMERCIO EXTERIOR-->
+				<t t-if="o.cce_habilitar_cee or o.cce_habilitar_exterior">
+					<div>
+					        <strong>Complemento de comercio exterior </strong>
+					    </div>
+					<div class="row" style="border:solid 2px black;font-size:12px;">
+						<table class="borderless" cellspacing="0"  style="width:100%;border:none;border-collapse:separate;border-spacing: 2px;">
+							<tr>
+								<td>
+									<strong>Tipo de operación</strong>
+								</td>
+								<td >
+									<span t-field="o.cce_tipooperacion" />
+								</td>
+								<td>
+									<strong>Clave de pedimento</strong>
+								</td>
+								<td >
+									<span t-field="o.cce_clavedepedimento" />
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<strong>Certificado origen</strong>
+								</td>
+								<td >
+									<span t-field="o.cce_certificadoorigen" />
+								</td>
+								<td>
+									<strong>Número de exportador confiable </strong>
+								</td>
+								<td >
+									<span t-field="o.cce_numeroexportadorconfiable" />
+								</td>
+							</tr>
+							<tr>
+							   <td>
+									<strong>Incoterm</strong>
+								</td>
+								<td >
+									<span t-field="o.cce_incoterm" />
+								</td>
+								<td>
+									<strong>Subdivisión</strong>
+								</td>
+								<td >
+									<span t-field="o.cce_subdivision" />
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<strong> Folio del certificado de origen </strong>
+								</td>
+								<td >
+									<span t-field="o.cce_numcertificadoorigen" />
+								</td>
+								<td>
+									<strong>Tipo de cambio USD</strong>
+								</td>
+								<td >
+									<span t-esc="round(float(o.tipocambio),2)" />
+								</td>
+							</tr>
+							<tr>
+								<td></td><td></td>
+								<td>
+									<strong>Total USD</strong>
+								</td>
+								<td >
+									<span t-field="o.amount_total" />
+								</td>
+							</tr>
+						</table>
+					</div>
+					<!--TERMINA TABLA DE COMERCIO EXTERIOR-->
+					<div>
+							<strong>Mercancias</strong>
+					</div>
+					<!--INICIA TABLA DE MERCANCIAS-->
+					<div class="row" style="border:solid 2px black;font-size:12px;">
+						<table class="borderless" cellspacing="0"  style="width:100%;border:none;border-collapse:separate;border-spacing: 2px;">
+							<tr>
+								<th>Producto</th>
+								<th>Fraccion Arancelaria</th>
+								<th>Unidad aduana</th>
+								<th>Cantidad aduana</th>
+								<th>Valor unitario USD</th>
+								<th>Valor dolares</th>
+							</tr>
+                            <t t-if="o.cce_habilitar_cee">
+                                 <t t-foreach="o.invoice_line_ids" t-as="merc">
+                                    <tr>
+                                        <td>
+                                           <span t-field="merc.product_id.code"></span>
+                                        </td>
+                                        <td>
+                                           <span t-field="merc.product_id.fraccionarancelaria.c_fraccionarancelaria"></span>
+                                        </td>
+                                        <td>
+                                           <span t-field="merc.product_id.unidadAduana.descripcion"></span>
+                                        </td>
+                                        <td>
+                                           <span t-esc="'{0:,.2f}'.format(merc.quantity)"></span>
+                                        </td>
+                                        <td>
+                                           <span t-esc="'{0:,.2f}'.format(merc.price_unit)"></span>
+                                        </td>
+                                        <td>
+                                           <span t-esc="'{0:,.2f}'.format(merc.price_subtotal)"></span>
+                                        </td>
+                                    </tr>
+                                 </t>
+                            </t>
+                            <t t-if="o.cce_habilitar_exterior">
+                                 <t t-foreach="o.cce_mercancias" t-as="merc">
+                                    <tr>
+                                        <td>
+                                           <span t-field="merc.product_id.code"></span>
+                                        </td>
+                                        <td>
+                                           <span t-field="merc.fraccionarancelaria.c_fraccionarancelaria"></span>
+                                        </td>
+                                        <td>
+                                           <span t-field="merc.unidadAduana.descripcion"></span>
+                                        </td>
+                                        <td>
+                                           <span t-esc="'{0:,.2f}'.format(merc.cantidadaduana)"></span>
+                                        </td>
+                                        <td>
+                                           <span t-esc="'{0:,.2f}'.format(merc.valorunitarioaduana)"></span>
+                                        </td>
+                                        <td>
+                                           <span t-esc="'{0:,.2f}'.format(merc.valordolares)"></span>
+                                        </td>
+                                    </tr>
+                                 </t>
+                            </t>
+						</table>
+					</div>
+					<!--TERMINA TABLA DE MERCANCIAS-->
+				</t>
+        </xpath>
+        </template>
+    </data>
+</odoo>
+

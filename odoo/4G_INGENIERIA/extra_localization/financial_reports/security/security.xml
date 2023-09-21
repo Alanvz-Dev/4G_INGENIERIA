@@ -1,0 +1,7 @@
+<odoo>
+    <data>
+        <record id="group_financial_reports_user" model="res.groups">
+            <field name="name">Estados Financieros / Usuario</field>
+        </record>
+    </data>
+</odoo>

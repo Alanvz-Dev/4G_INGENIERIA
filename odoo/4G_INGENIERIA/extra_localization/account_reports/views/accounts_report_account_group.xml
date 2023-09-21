@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+        <record id="account_reports_account_group_tree" model="ir.ui.view">
+            <field name="name">account_reports.account_group.view.tree</field>
+            <field name="model">account_reports.account_group</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="cuenta" />
+                    <field name="saldo_inicial" />
+                    <field name="debito" />
+                    <field name="credito" />
+                    <field name="saldo_final" />
+                    <field name="aritmetica_de_la_operacion" />
+                    <field name="resultado_considerado" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="account_reports_account_group_view_form" model="ir.ui.view">
+            <field name="name">account_reports.account_group.view.form</field>
+            <field name="model">account_reports.account_group</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="cuenta" context="{'default_concepto_id2': concepto_id}"/>
+                            <field name="saldo_inicial" />
+                            <field name="debito" />
+                            <field name="saldo_final" />
+                            <field name="resultado_considerado" />
+                            <field name="aritmetica_de_la_operacion" />
+                            <field name="total" />
+                            <field name="concepto_id"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

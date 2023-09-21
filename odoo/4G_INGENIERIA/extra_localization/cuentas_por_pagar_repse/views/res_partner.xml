@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data >
+        <record id="repse_inherit_res_partner_status" model="ir.ui.view">
+            <field name="name">res.partner.repse.form.inherit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <field name="type" position="before">
+                    <field name="editar_estado_repse" invisible="1"/>
+                    <field name="aplica_repse" attrs="{'readonly':[('editar_estado_repse','=',False)],'invisible':[('is_company','=',False)]}" />
+                    <field name="estado_repse" attrs="{'readonly':[('editar_estado_repse','=',False)],'invisible':[('is_company','=',False)]}" />
+                </field>
+                <xpath expr="//div[@class='oe_button_box']" position="inside">
+                   
+                        <button name="get_current_partner_history" attrs="{'invisible':[('is_company','=',False)]}" string="Historial REPSE" type="object" class="oe_stat_button" icon="fa-paperclip">
+                            <!-- <field name="field_name" string="" widget="statinfo"/> -->
+                        </button>
+                   
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

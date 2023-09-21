@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <record id="production_time_config_view_tree" model="ir.ui.view">
+        <field name="name">production_time.wcent_config.view.tree</field>
+        <field name="model">production_time.wcent_config</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom">
+                <field name="centro_de_produccion" />
+                <field name="antelacion" />
+            </tree>
+        </field>
+    </record>
+
+
+
+    <record id="production_time.wcent_config" model="ir.actions.act_window">
+        <field name="name">Configuración de Centros de Producción</field>
+        <field name="res_model">production_time.wcent_config</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree</field>
+    </record>
+    <!-- <field name="help" type="html">
+            
+    </field> -->
+
+
+    <menuitem string="Configuración Centros de Producción" id="production_time.wcent_config_menu" parent="production_time.times" action="production_time.wcent_config" sequence="10" />
+</odoo>

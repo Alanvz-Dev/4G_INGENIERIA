@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+        <record id="hr_payroll_pr.horas_proyecto_view_tree" model="ir.ui.view">
+            <field name="name">Horas Por Proyecto</field>
+            <field name="model">hr_payroll_pr.horas_proyecto</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="empleado"/>                    
+                    <field name="analytic_account_id" />
+                    <field name="horas" />
+                    <field name="monto" sum="Monto"/>
+                    <field name="centro_de_trabajo"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="hr_payroll_pr.horas_proyecto_action" model="ir.actions.act_window">
+            <field name="name">Horas Proyecto</field>
+            <field name="res_model">hr_payroll_pr.horas_proyecto</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,pivot</field>
+        </record>
+
+
+<record id="hr_payroll_pr.horas_proyecto_search" model="ir.ui.view">
+    <field name="name">Horas Proyecto Search</field>
+    <field name="model">hr_payroll_pr.horas_proyecto</field>
+    <field name="arch" type="xml">
+        <search string="Horas Proyecto">
+            <field name="analytic_account_id"/>
+            <field name="empleado"/> 
+            <field name="monto"/>
+            <field name="centro_de_trabajo"/>
+        </search>
+    </field>
+</record>
+    </data>
+</odoo>

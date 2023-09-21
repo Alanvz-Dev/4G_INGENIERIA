@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+        <record id="mrp.picking_list_wizard_view_form" model="ir.ui.view">
+            <field name="name">mrp.picking_list_wizard.view.form</field>
+            <field name="model">mrp.picking_list_wizard</field>
+            <field name="arch" type="xml">
+                <form string="Picking List">                    
+                    <sheet>
+                        <separator string="Selecciona el rango de fechas de las MO a considerar para el Picking List"/>
+                        <group>
+                            <field name="date_from" />
+                            <field name="date_to" />
+                        </group>
+                        
+                    </sheet>
+                    <footer>
+                        <button name="get_mos" string="Generar Picking List" type="object" class="oe_highlight" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="mrp.picking_list_wizard_action" model="ir.actions.act_window">
+            <field name="name">Nuevo Picking List</field>
+            <field name="res_model">mrp.picking_list_wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+
+        <record id="mrp.picking_list_wiz" model="ir.actions.server">
+            <field name="name">Mrp: Crear Picking List</field>
+            <field name="model_id" ref="mrp.model_mrp_production"/>
+            <field name="binding_model_id" ref="mrp.model_mrp_production"/>
+            <field name="state">code</field>
+            <field name="code">
+if records:
+    action = records.generate_picking_list()
+            </field>
+        </record>
+
+        
+        
+        <menuitem name="Picking List" id="4g_production.picking_list_menu" parent="mrp.menu_mrp_root"  />
+        <menuitem
+            id="4g_production.picking_list_new"
+            name="Nuevo Picking List"
+            action="mrp.picking_list_wizard_action"
+            parent="4g_production.picking_list_menu"
+            sequence="10"/>
+    </data>
+</odoo>

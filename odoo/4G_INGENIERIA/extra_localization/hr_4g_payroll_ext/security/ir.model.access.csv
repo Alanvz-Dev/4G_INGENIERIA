@@ -1,0 +1,10 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+capturista_incidencias, Model admin access,model_hr_4g_payroll_ext_incidency,hr_4g_payroll_ext.group_capturista,1,0,1,0
+capturista_incidencias_masivas, Model admin access,model_hr_4g_payroll_ext_incwiz,hr_4g_payroll_ext.group_capturista,1,0,1,0
+capturista_incidencias_entrada_salida, Model admin access,model_hr_4g_payroll_ext_in_out,hr_4g_payroll_ext.group_capturista,1,0,0,0
+capturista_incidencias_incapacidades, Model admin access,model_hr_4g_payroll_ext_incidency_inability,hr_4g_payroll_ext.group_capturista,1,0,0,0
+demo_user, Model user access,model_hr_4g_payroll_ext_incidency,hr_4g_payroll_ext.group_gerente,1,1,1,1
+guardia_incidencias, Model admin access,model_hr_4g_payroll_ext_incidency,hr_4g_payroll_ext.guardias,1,0,0,0
+guardias_entradas_salidas, Model admin access,model_hr_4g_payroll_ext_in_out_guard,hr_4g_payroll_ext.guardias,1,0,1,0
+guardias_incidencias_entrada_salida, Model admin access,model_hr_4g_payroll_ext_in_out,hr_4g_payroll_ext.guardias,1,0,1,0
+guardias_incidencias_incapacidades, Model admin access,model_hr_4g_payroll_ext_incidency_inability,hr_4g_payroll_ext.guardias,1,0,0,0

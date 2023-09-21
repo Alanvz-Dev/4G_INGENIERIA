@@ -1,0 +1,104 @@
+<odoo>
+  <data>
+    <record model="ir.ui.view" id="axtraxng_attendance.edit_attendance">
+      <field name="name">Modificar Asistencias</field>
+      <field name="model">hr.axtraxng_attendance_line</field>
+      <field name="arch" type="xml">
+        <form>
+          <center><h3>Modificar Asistencias de <field name="employee_id" readonly="1" options="{'no_create_edit':True,'no_quick_create':True,'no_create': True,'no_open': True}" style="color: Blue;"></field> </h3></center>
+
+                    <group class="oe_inline">
+                      <center><h5>Faltas : <field name="absence" class="oe_inline"/></h5></center>
+          <center><h5>Retardos : <field name="delay_time" class="oe_inline"/></h5></center>
+            <center> <h5>Bono de Asistencia  <field name="attendance_bonus"></field></h5></center>
+
+
+         <center> <h5>Bono de Puntualidad  <field name="delay_time_bonus"></field></h5></center>
+                        <center> <h5>Horas Trabajadas  <field name="horas_trabajadas"></field></h5></center>
+
+
+
+          </group>
+<hr></hr>
+
+          <group class="oe_inline" colspan="1"> 
+            <h3 style="color: Green;">
+              <field name="day1_name" readonly="1" class="oe_inline" style="text-align:left; color: black;"/>
+            </h3>
+
+            <field name="day1_in" class="oe_inline" string="Entrada" style="text-align:left; color: black;"/>
+            <field name="day1_out" class="oe_inline" string="Salida" style="text-align:left; color: black;"/>
+            <field name="day1_effective_time" class="oe_inline" string="Tiempo Efectivo" style="text-align:left; color: black;"/>
+
+          </group>
+          <group class="oe_inline">
+            <h3 style="color: Green;">
+              <field name="day2_name" readonly="1" class="oe_inline" style="text-align:left; color: black;"/>
+            </h3>
+
+            <field name="day2_in" class="oe_inline" string="Entrada" style="text-align:left; color: black;"/>
+            <field name="day2_out" class="oe_inline" string="Salida" style="text-align:left; color: black;"/>
+            <field name="day2_effective_time" class="oe_inline" string="Tiempo Efectivo" style="text-align:left; color: black;"/>
+
+          </group>
+
+          <group class="oe_inline">
+            <h3 style="color: Green;">
+              <field name="day3_name" readonly="1" class="oe_inline" style="text-align:left; color: black;"/>
+            </h3>
+
+            <field name="day3_in" class="oe_inline" string="Entrada" style="text-align:left; color: black;"/>
+            <field name="day3_out" class="oe_inline" string="Salida" style="text-align:left; color: black;"/>
+            <field name="day3_effective_time" class="oe_inline" string="Tiempo Efectivo" style="text-align:left; color: black;"/>
+
+          </group>
+          <group class="oe_inline">
+            <h3 style="color: Green;">
+              <field name="day4_name" readonly="1" class="oe_inline" style="text-align:left; color: black;"/>
+            </h3>
+
+            <field name="day4_in" class="oe_inline" string="Entrada" style="text-align:left; color: black;"/>
+            <field name="day4_out" class="oe_inline" string="Salida" style="text-align:left; color: black;"/>
+            <field name="day4_effective_time" class="oe_inline" string="Tiempo Efectivo" style="text-align:left; color: black;"/>
+
+          </group>
+
+          <group class="oe_inline">
+            <h3 style="color: Green;">
+              <field name="day5_name" readonly="1" class="oe_inline" style="text-align:left; color: black;"/>
+            </h3>
+
+            <field name="day5_in" class="oe_inline" string="Entrada" style="text-align:left; color: black;"/>
+            <field name="day5_out" class="oe_inline" string="Salida" style="text-align:left; color: black;"/>
+            <field name="day5_effective_time" class="oe_inline" string="Tiempo Efectivo" style="text-align:left; color: black;"/>
+
+          </group>
+          <group class="oe_inline">
+            <h3 style="color: Green;">
+              <field name="day6_name" readonly="1" class="oe_inline" style="text-align:left; color: black;"/>
+            </h3>
+
+            <field name="day6_in" class="oe_inline" string="Entrada" style="text-align:left; color: black;"/>
+            <field name="day6_out" class="oe_inline" string="Salida" style="text-align:left; color: black;"/>
+            <field name="day6_effective_time" class="oe_inline" string="Tiempo Efectivo" style="text-align:left; color: black;"/>
+
+          </group>
+
+          <group class="oe_inline">
+            <h3 style="color: Green;">
+              <field name="day7_name" readonly="1" class="oe_inline" style="text-align:left; color: black;"/>
+            </h3>
+
+            <field name="day7_in" class="oe_inline" string="Entrada" style="text-align:left; color: black;"/>
+            <field name="day7_out" class="oe_inline" string="Salida" style="text-align:left; color: black;"/>
+            <field name="day7_effective_time" class="oe_inline" string="Tiempo Efectivo" style="text-align:left; color: black;"/>
+
+          </group>
+
+
+          <!-- <widget name="custom_download_button" model="reports_ferrextool.exceso_de_inventario" string="Descargar Reporte de Ecxel"/> -->
+        </form>
+      </field>
+    </record>
+  </data>
+</odoo>

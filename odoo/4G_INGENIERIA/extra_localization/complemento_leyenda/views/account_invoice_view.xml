@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_invoice_leyenda_form" model="ir.ui.view">
+            <field name="name">account.invoice.leyenda.form</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="cdfi_invoice.view_invoice_inherit_form" />
+            <field name="arch" type="xml">
+               <xpath expr="//notebook//page[@name='info_cdfi']//group//group[@name='complementos']" position="inside">
+                    <field name="leyenda"/>
+               </xpath>
+            </field>
+        </record>
+</odoo>

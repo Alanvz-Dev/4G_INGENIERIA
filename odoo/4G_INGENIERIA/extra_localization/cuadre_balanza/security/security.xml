@@ -1,0 +1,7 @@
+<odoo>
+    <data>
+        <record id="group_cuadre_polizas" model="res.groups">
+            <field name="name">Analizar Pólizas</field>
+        </record>
+    </data>
+</odoo>

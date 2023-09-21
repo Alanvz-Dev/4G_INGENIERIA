@@ -1,0 +1,7 @@
+<odoo>
+    <data>
+        <record id="group_escenario_de_ventas_admin" model="res.groups">
+            <field name="name">Hoja de Proyecto / Administrador</field>
+        </record>
+    </data>
+</odoo>

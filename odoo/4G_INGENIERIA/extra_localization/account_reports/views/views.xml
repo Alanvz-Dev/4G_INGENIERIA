@@ -1,0 +1,135 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+
+    <record model="ir.ui.view" id="account_reports.list">
+      <field name="name">account_reports.list</field>
+      <field name="model">account_reports.report</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="mes"/>
+          <field name="ano"/>
+          <field name="total"/>
+          <field name="state"/>
+          <field name="concepto_lines"/>
+        </tree>
+      </field>
+    </record>
+
+
+    <record id="model_name_view_form" model="ir.ui.view">
+      <field name="name">account_reports.form</field>
+      <field name="model">account_reports.report</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+            <!-- <group>
+              <button string="Generar Balanza" name="generar_balanza_de_comprobacion" type="object" class="oe_highlight"/>
+            </group> -->
+            <div class="container-fluid d-flex justify-content-center" >
+            <h1>
+              <field name="name"></field>
+              </h1>
+            </div>
+            
+            <group class="d-flex justify-content-center">
+              <field name="mes"/>
+              <field name="ano"/>
+            </group>
+            <!-- <group>
+                <field name="total"/>
+                <field name="state"/>
+              </group> -->
+            <notebook>
+              <page string="Cálculo de Reporte">
+                <!-- <group>
+                  <separator string="Cálculo de Reporte"/>
+                </group> -->
+                
+                  <group string="CONCEPTO">
+                    <div class="border rounded-lg">
+                      <field name="concepto_lines">
+                        <tree>
+                          <field name="concepto" string="Concepto" />
+                          <!-- <field name="resultado" string="Resultado"/> -->
+                          <field name="resultado_aux" force_save="1" string="Resultado" sum="Resultado"/>
+                        </tree>
+                      </field>
+                    </div>
+                  </group>
+                  <group string="CONCEPTO R">
+                    <div class="border rounded-lg">
+                      <field name="concepto_r">
+                        <tree>
+                          <field name="concepto" string="Concepto R"/>
+                          <field name="resultado_aux" string="Resultado" force_save="1" sum="Resultado"/>
+                          <field name="concept_lines" string="Concepto" />
+                        </tree>
+                      </field>
+                    </div>
+                  </group>
+              
+              </page>
+              <page string="Balanza de Comprobación">
+                <field name="trial_balance_lines">
+                  <tree>
+                    <field name="account_id"/>
+                    <field name="account_group_id" />
+                    <field name="parent_id" />
+                    <field name="code" />
+                    <field name="name" />
+                    <field name="initial_balance" />
+                    <field name="debit" />
+                    <field name="credit" />
+                    <field name="final_balance" />
+                  </tree>
+                </field>
+              </page>
+            </notebook>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <!-- actions opening views on models -->
+
+    <record model="ir.actions.act_window" id="account_reports.action_window">
+      <field name="name">Reportes Contables</field>
+      <field name="res_model">account_reports.report</field>
+      <field name="view_mode">tree,form</field>
+      <!-- <field name="target">fullscreen</field> -->
+    </record>
+
+
+    <!-- server action to the one above -->
+
+    <record model="ir.actions.server" id="account_reports.action_server">
+      <field name="name">account_reports server</field>
+      <field name="model_id" ref="model_account_reports_report"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": self._name,
+        }
+      </field>
+    </record>
+
+
+    <!-- Top menu item -->
+
+    <menuitem name="Reportes Contables" id="account_reports.menu_root" action="account_reports.action_window"/>
+
+    <!-- menu categories -->
+
+    <!-- <menuitem name="Menu 1" id="account_reports.menu_1" parent="account_reports.menu_root"/>
+    <menuitem name="Menu 2" id="account_reports.menu_2" parent="account_reports.menu_root"/> -->
+
+    <!-- actions -->
+
+    <!-- <menuitem name="List" id="account_reports.menu_1_list" parent="account_reports.menu_1" action="account_reports.action_window"/>
+    <menuitem name="Server to list" id="account_reports" parent="account_reports.menu_2" action="account_reports.action_server"/> -->
+
+  </data>
+</odoo>

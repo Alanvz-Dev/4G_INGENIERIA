@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <report
+    id="report_back_order_xlsx"
+    model="reportes_xlsx.reportes_xlsx"
+    string="Print to XLSX"
+    report_type="xlsx"
+    name="reportes_xlsx.report_back_order_xlsx"
+    file="reportes_xlsx.report_back_order_xlsx"
+    attachment_use="False"
+/>
+
+</odoo>

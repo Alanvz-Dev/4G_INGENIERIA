@@ -1,0 +1,11 @@
+id,name
+model_flujo_efectivo_sub_tipo_1,ACEROS
+model_flujo_efectivo_sub_tipo_2,MATERIALES IMPORTADOS
+model_flujo_efectivo_sub_tipo_3,PERIFERICOS
+model_flujo_efectivo_sub_tipo_4,OTROS PRODUCTOS
+model_flujo_efectivo_sub_tipo_5,OTROS GASTOS
+model_flujo_efectivo_sub_tipo_6,FACTURAS DE PROVEEDOR
+model_flujo_efectivo_sub_tipo_7,INGRESOS CREDITO
+model_flujo_efectivo_sub_tipo_8,FACTURAS DE CLIENTE
+model_flujo_efectivo_sub_tipo_9,PRESUPUESTO DEL MES
+model_flujo_efectivo_sub_tipo_10,SALDO BANCOS

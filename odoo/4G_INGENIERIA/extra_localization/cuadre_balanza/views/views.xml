@@ -1,0 +1,77 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+    
+    <record model="ir.ui.view" id="cuadre_balanza.list">
+      <field name="name">cuadre_balanza list</field>
+      <field name="model">cuadre_balanza.cuadre_balanza</field>
+      <field name="arch" type="xml">
+        <tree decoration-success="cuadra==True" decoration-danger="cuadra==False">
+          <field name="ano"/>
+          <field name="mes"/>
+          <field name="monto_credito"/>
+          <field name="monto_debito"/>
+          <field name="cuadra" invisible="1"/>
+          <field name="diferencia" readonly='1'/>
+        </tree>
+      </field>
+    </record>
+   
+
+<!-- cuadre_balanza.cuadre_balanza form view -->
+<record id="cuadre_balanza_view_form" model="ir.ui.view">
+  <field name="name">cuadre_balanza.cuadre_balanza.view.form</field>
+  <field name="model">cuadre_balanza.cuadre_balanza</field>
+  <field name="arch" type="xml">
+    <form string="Revisión de Pólizas">
+      <sheet>
+        <group>
+          <!-- Add your fields here -->
+          <field name="ano"/>
+          <field name="mes"/>            
+          <field name="monto_credito" decoration-success="monto_credito==monto_debito" decoration-danger="monto_credito!=monto_debito"/>
+          <field name="monto_debito" decoration-success="monto_credito==monto_debito" decoration-danger="monto_credito!=monto_debito"/>
+          <field name="diferencia" readonly='1'/>
+            <button name="button_cuadre_balanza" type="object" class="oe_stat_button" string="Iniciar">
+            </button>
+        </group>
+                  <field name="lines"  create='False' mode="tree" >
+              <!-- If I put these fields as readonly = "1" lets edit them -->
+              <!-- style="pointer-events:none;" -->
+                <tree  editable='bottom'  mode="tree" default_order='cuadra asc' decoration-success="cuadra==True" decoration-danger="cuadra==False">
+                  <field name="monto_debito" readonly='1'/>
+                  <field name="poliza_debito" readonly='1'/>
+                  <field name="monto_credito" readonly='1'/>
+                  <field name="poliza_credito" readonly='1'/>
+                  <field name="diferencia" readonly='1'/>
+                  <field name="cuadra" invisible='0'/>
+                </tree>
+              </field>
+      </sheet>
+    </form>
+  </field>
+</record>
+
+    <!-- actions opening views on models -->
+    
+    <record model="ir.actions.act_window" id="cuadre_balanza.action_window">
+      <field name="name">Cuadre de Pólizas</field>
+      <field name="res_model">cuadre_balanza.cuadre_balanza</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Top menu item -->
+    
+    <menuitem name="Análisis de Pólizas" id="cuadre_balanza.menu_root" web_icon="cuadre_balanza,static/images/escala-de-justicia.jpg"/>
+   
+    <!-- menu categories -->
+    
+    <menuitem name="Pólizas" id="cuadre_balanza.menu_1" parent="cuadre_balanza.menu_root"/>
+   
+    <!-- actions -->
+    
+    <menuitem name="Balanza" id="cuadre_balanza.menu_1_list" parent="cuadre_balanza.menu_1"
+              action="cuadre_balanza.action_window"/>
+   
+  </data>
+</odoo>

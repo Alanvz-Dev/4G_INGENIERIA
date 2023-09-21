@@ -1,0 +1,76 @@
+<odoo>
+  <data>
+    <!-- Top menu item -->
+
+    <!-- <menuitem name="Nómina 4G" id="hr_payroll_4g.menu_root" web_icon="hr_payroll_4g,static/description/nomina2.jpg"/>
+
+ -->
+
+
+    <!-- menu categories -->
+    <!-- <menuitem name="Área" id="hr_payroll_4g.menu_area" parent="hr_payroll_4g.menu_root"/> -->
+    <!-- actions -->
+    <!-- <menuitem name="Area" id="hr_payroll_4g.menu_area_list" parent="hr_payroll_4g.menu_area" action="hr_payroll_4g.area_action_window"/> -->
+
+    <!-- menu categories -->
+    <!-- <menuitem name="Días de Trabajo" id="hr_payroll_4g.menu_detalle_dias_de_trabajo" parent="hr_payroll_4g.menu_root" sequence="0"/> -->
+    <!-- actions -->
+    <!-- <menuitem name="Días de Trabajo" id="hr_payroll_4g.menu_detalle_dias_de_trabajo_list" parent="hr_payroll_4g.menu_detalle_dias_de_trabajo" action="hr_payroll_4g.detalle_dias_de_trabajo_action_window" sequence="0"/> -->
+
+    <!-- menu categories -->
+    <menuitem name="Revisión" id="hr_payroll_4g.menu_detalle_horas_de_trabajo" parent="hr_payroll.menu_hr_payroll_root"/>
+    <!-- actions -->
+    <menuitem name="Mayordomía" id="hr_payroll_4g.menu_detalle_horas_de_trabajo_list" parent="hr_payroll_4g.menu_detalle_horas_de_trabajo" action="hr_payroll_4g.detalle_horas_de_trabajo_action_window"/>
+
+    <!-- menu categories -->
+    <!-- <menuitem name="Checador vs Mayordomía" id="hr_payroll_4g.menu_detalle_horas_de_trabajo_nomina" parent="hr_payroll_4g.menu_root"/> -->
+    <!-- actions -->
+    <menuitem name="Checador vs Mayordomía" id="hr_payroll_4g.menu_detalle_horas_de_trabajo_nomina_list" parent="hr_payroll_4g.menu_detalle_horas_de_trabajo" action="hr_payroll_4g.detalle_horas_de_trabajo_nomina_action_window"/>
+
+
+
+
+
+
+    <!-- menu categories -->
+    <menuitem name="Administración de Incidencias" id="hr_payroll_4g.menu_search_holidays"  parent="hr_payroll_4g.menu_detalle_horas_de_trabajo" action="hr_payroll_4g.action_view_search_holidays"/>
+    <!-- actions -->
+    <!-- <menuitem name="Incidencias" id="hr_payroll_4g.menu_search_holidays_list" parent="hr_payroll_4g.menu_search_holidays" action="hr_payroll_4g.action_view_search_holidays"/> -->
+
+
+
+    
+    <!-- <menuitem name="Crear Incidencia" id="hr_payroll_4g.menu_search_holidays_list2" parent="hr_payroll_4g.menu_search_holidays" action="hr_payroll_4g.action_crear_incidencia"/> -->
+
+    <!-- menu categories -->
+    <!-- <menuitem name="Administración de Tiempo" id="hr_payroll_4g.menu_balance_de_dias_laborados" parent="hr_payroll_4g.menu_root"/> -->
+    <!-- actions -->
+    <!-- <menuitem name="Historial" id="historial_de_dias_laborados_list2" parent="hr_payroll_4g.menu_balance_de_dias_laborados" action="hr_payroll_4g.historial_de_dias_laborados_action_window"/>
+    <menuitem name="Balance de Horas" id="balance_de_dias_laborados_list" parent="hr_payroll_4g.menu_balance_de_dias_laborados" action="hr_payroll_4g.balance_de_horas_de_trabajo_action_window"/> -->
+
+
+
+
+    <!-- menu categories -->
+    <!-- <menuitem name="Nómina" id="hr_payroll_4g.menu_detalle_nomina" parent="hr_payroll_4g.menu_root"/> -->
+    <!-- actions -->
+    <!-- <menuitem name="Detalle Nómina" id="detalle_nomina_list2" parent="hr_payroll_4g.menu_detalle_horas_de_trabajo" action="detalle_nomina_action_window"/> -->
+
+
+
+    <!-- menu categories -->
+    <!-- <menuitem name="Detalle Nómina" id="hr_payroll_4g.menu_detalle_nomina" parent="hr_payroll_4g.menu_root"/> -->
+    <!-- actions -->
+    <menuitem name="Detalle Nómina" id="detalle_nomina_list2" parent="hr_payroll_4g.menu_detalle_horas_de_trabajo" action="detalle_nomina_action_window"/>
+
+    <!-- <menuitem name="Empleados administrativos" id="hr_payroll_4g.menu_empleados_administrativos" parent="hr_payroll_4g.menu_root"/> -->
+    <menuitem name="Lista de Empleados Administrativos" id="menu_empleados_administrativos_list" parent="hr_payroll_4g.menu_detalle_horas_de_trabajo" action="hr_payroll_4g.empleados_administrativos_1"/>
+<!-- 
+    <menuitem name="Horas Extra" id="hr_payroll_4g.horas_extra_1" parent="hr_payroll_4g.menu_root"/>
+    <menuitem name="Horas Extra" id="menu_horas_extra" parent="hr_payroll_4g.horas_extra_1" action="hr_payroll_4g.action_tree_horas_nomina"/>
+ -->
+
+
+
+  </data>
+</odoo>              

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data>
+
+            <!-- Vista de arbol CXP proveedores -->
+        <!-- explicit list view definition -->
+    
+        <record model="ir.ui.view" id="survey.encuestas_de_mantenimeinto">
+            <field name="name">Encuestas de Mantenimiento</field>
+            <field name="model">survey.maintenance</field>
+            <field name="arch" type="xml">
+              <tree>
+                <field name="nombre" />
+                <field name="public_url_html_maintenance" widget="url" />
+                <field name="resultados" widget="url"/>
+                <field name="encuestas_iniciadas" />
+                <field name="encuestas_completadas" />
+              </tree>
+            </field>
+          </record>
+         
+      
+          <!-- actions opening views on models -->
+          
+          <record model="ir.actions.act_window" id="survey.encuestas_de_mantenimeinto_action_window">
+            <field name="name">Encuestas de Mantenimiento</field>
+            <field name="res_model">survey.maintenance</field>
+            <field name="view_mode">tree</field>
+            <field name="domain">[('search_ids','!=',False)]</field>
+          </record>
+
+
+          <menuitem name="Encuestas de Mantenimiento" id="survey.menu_encuestas_de_mantenimiento"  parent="maintenance.menu_m_request" action="survey.encuestas_de_mantenimeinto_action_window" sequence='2'/>
+          <!-- <menuitem name="Encuestas de Mantenimiento" id="survey.sub_menu_encuestas_de_mantenimiento" parent="survey.menu_encuestas_de_mantenimiento" action="survey.encuestas_de_mantenimeinto_action_window"/> -->
+      
+         
+</data>
+</odoo>

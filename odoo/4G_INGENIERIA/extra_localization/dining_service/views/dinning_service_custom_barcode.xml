@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+
+    <record id="dining_service_view_tree" model="ir.ui.view">
+        <field name="name">dining_service.custom_barcode.view.tree</field>
+        <field name="model">dining_service.custom_barcode</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+                <field name="numero"/>
+
+            </tree>
+        </field>
+    </record>
+
+    <record id="dining_service_view_form" model="ir.ui.view">
+        <field name="name">dining_service.custom_barcode.view.form</field>
+        <field name="model">dining_service.custom_barcode</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <sheet>
+                    <group>
+                        <field name="profile_picture" widget="image" class="oe_avatar" nolabel="1"/>
+                        <label for="name" class="oe_edit_only"/>
+                        <h1>
+                            <field name="name" placeholder="Nombre de Invitado o Practicante" required="True"/>
+                        </h1>
+                    </group>
+                    <group>
+                        <field name="numero" readonly="1"/>
+                        <field name="barcode" readonly="1"/>
+                        <field name="binary" attrs="{'invisible': [('binary', '=', False)]}" widget="image" filename="binary_fname" readonly="1" nolabel="1"/>
+                        <field name="binary_fname" invisible="1" readonly="1"/>
+                    </group>
+                    <group>
+                        <field name="descripcion"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+<record id="dining_service.custom_barcode_action" model="ir.actions.act_window">
+    <field name="name">Códigos Temporales</field>
+    <field name="res_model">dining_service.custom_barcode</field>
+    <field name="view_type">form</field>
+    <field name="view_mode">tree,form</field>
+</record>
+
+<menuitem name="Códigos Temporales" id="4g_production.calibres_list" parent="dining_service.menu_root"  action="dining_service.custom_barcode_action"/>
+
+</odoo>

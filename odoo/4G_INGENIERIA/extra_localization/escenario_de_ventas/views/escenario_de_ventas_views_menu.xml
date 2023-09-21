@@ -1,0 +1,17 @@
+<odoo>
+  <data>
+
+    <!-- Top menu item -->
+
+    <menuitem name="Hojas de Proyecto" id="escenario_de_ventas.menu_root" web_icon="escenario_de_ventas,icons/portapapeles.jpeg" groups="group_escenario_de_ventas_admin" />
+
+    <!-- menu categories -->
+
+    <menuitem name="Hoja de Proyecto" id="escenario_de_ventas.menu_1" parent="escenario_de_ventas.menu_root" action="escenario_de_ventas.hoja_de_proyecto_action" groups="group_escenario_de_ventas_admin" />
+
+    <menuitem name="Escenario de Ventas" id="sale.escenario_de_ventas_rep" parent="sale.sale_menu_root" action="escenario_de_ventas.escenario_ventas_list_a" groups="group_escenario_de_ventas_admin" />
+    <!-- actions -->
+
+
+  </data>
+</odoo>

@@ -1,0 +1,14 @@
+<odoo>
+    <data>
+        <record id="group_cuentas_por_pagar_usuario" model="res.groups">
+            <field name="name">Repse / Usuario Externo</field>
+        </record>
+
+        <record id="group_cuentas_por_pagar_admin" model="res.groups">
+            <field name="name">Repse / Administrador</field>
+        </record>        
+        <record id="group_cuentas_por_pagar_usuario_interno" model="res.groups">
+            <field name="name">Repse / Usuario Interno</field>
+        </record>
+    </data>
+</odoo>

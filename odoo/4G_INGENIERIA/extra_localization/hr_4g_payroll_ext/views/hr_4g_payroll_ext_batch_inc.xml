@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+        <record id="hr_4g_payroll_ext.incwiz_view_form" model="ir.ui.view">
+            <field name="name">hr_4g_payroll_ext.incwiz.view.form</field>
+            <field name="model">hr_4g_payroll_ext.incwiz</field>
+            <field name="arch" type="xml">
+                <form string="Incidencias Masivas">
+                    <sheet>
+                        <div>
+                            <h1>
+                                <field name="name" />
+                            </h1>
+                        </div>            
+                        <group>                            
+                            <field name="tipo_incidencia" />
+                            <field name="tipo" required="1" />
+                            <field name="date_from" />
+                            <field name="date_to" />
+                            <field name="considerar_dias" />                            
+                            <field name="horas" widget="float_time" required="1" />
+                            <field name="dias" />
+                        </group>
+                        <group>
+                            <field name="agregar_nota" />
+                            <field name="nota" attrs="{'invisible': [('agregar_nota','in', [False])]}"/>
+                        </group>
+                        <field name="employee_ids" required="1" options="{'no_create_edit':True,'no_quick_create':True,'no_create': True,'no_open': True}" />
+                        <field name="incapacidad_ids" attrs="{'invisible': [('tipo_incidencia','not in',['INC_EG','INC_RT','INC_MAT'])]}">
+                            <tree>
+                                <field name="ramo_seguro" />
+                                <field name="tipo_de_riesgo" />
+                                <field name="secuela" />
+                                <field name="control" />
+                                <field name="control2" />
+                                <field name="folio_incapacidad" />
+                                <field name="porcentaje" />
+                            </tree>
+                        </field>
+
+
+                    </sheet>
+                    <footer>
+                   <button string="Generar" confirm="¿Estas seguro?" name="crear_incidencias" type="object" class="oe_highlight"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="hr_4g_payroll_ext.incwiz_action" model="ir.actions.act_window">
+            <field name="name">Incidencias Masivas</field>
+            <field name="res_model">hr_4g_payroll_ext.incwiz</field>
+            <field name="target">new</field>
+            <field name="view_mode">form</field>
+        </record>
+
+    </data>
+</odoo>

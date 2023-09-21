@@ -1,0 +1,26 @@
+<odoo>
+    <data>
+      <!-- explicit list view definition -->
+      <record model="ir.ui.view" id="account_moves_lock.list">
+        <field name="name">Servicio de Comedor</field>
+        <field name="model">account_moves_lock.account_moves_lock</field>
+        <field name="arch" type="xml">
+          <tree editable="top">
+            <field name="year" />
+            <field name="month" />
+            <field name="start_date" />
+            <field name="end_date" />
+           
+          </tree>
+        </field>
+      </record>
+
+    <!-- Action to open wizard -->
+    <record id="action_open_wizard_lock_date_ranges" model="ir.actions.act_window">
+        <field name="name">Periodos Contables Abiertos(Todos los periodos no incluidos se encuentran Cerrados)</field>
+        <field name="res_model">account_moves_lock.account_moves_lock</field>
+        <field name="view_type">form</field>
+        
+    </record>
+    </data>
+</odoo>

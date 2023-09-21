@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <record id="aduanal_view_invoice_line_tree" model="ir.ui.view">
+            <field name="name">aduanal.account.invoice.line.tree</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form"/>
+            <field name="arch" type="xml">
+               <xpath expr="/form/sheet/notebook/page[1]/field[@name='invoice_line_ids']/tree/field[@name='name']" position="after">
+                   <field name="pedimento" />
+                 </xpath>
+            </field>
+        </record>
+
+</odoo>

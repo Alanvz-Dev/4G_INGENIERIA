@@ -1,0 +1,8 @@
+creacion de campo x_modifica_factura_proveedor	
+creacion de campo rfc_dir_envio en el modelo Partner
+creacion del campo min_date en el modelo stock.picking  x_min_date reemplazado por scheduled_date
+
+
+
+43136
+

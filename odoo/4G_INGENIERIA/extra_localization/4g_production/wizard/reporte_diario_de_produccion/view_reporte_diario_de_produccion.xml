@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <record id="4g_production.wizard_reporte_diario_view_form" model="ir.ui.view">
+        <field name="name">wizard.reporte_diario.view.form</field>
+        <field name="model">wizard.reporte_diario</field>    
+        <field name="arch" type="xml">
+            <form string="Reporte de Producción por Día">
+                <sheet>
+                    <group>
+                        <field name="fecha" />                        
+                    </group>
+                    <field name="centro_de_trabajo" />
+                    <button string="Ver Reporte" name="ver_reporte_diario" type="object" class="oe_highlight"/>
+                </sheet>
+                <footer>
+                   
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="4g_production.reporte_diario_prod_act" model="ir.actions.act_window">
+        <field name="name">Reporte Diario de Producción</field>
+        <field name="res_model">wizard.reporte_diario</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem
+        id="wizard_reporte_diario_produccion"
+        name="Reporte Diario de Producción"
+        action="4g_production.reporte_diario_prod_act"
+        groups="mrp.group_mrp_user,mrp.group_mrp_manager"
+        parent="mrp.menu_mrp_reporting"
+        sequence="5" />
+</odoo>

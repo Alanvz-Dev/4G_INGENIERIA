@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="scenarioTemplate">
+        <div style="overflow:auto;">
+            <table class="table table-hover" id="myTable">
+                <thead>
+                    <th>Proyecto</th>
+                    <th>Producto</th>
+                    <th>Precio unitario</th>
+                    <th>Cantidad Máxima</th>
+                    <t t-foreach="widget.summary_header" t-as="col">
+                        <th><t t-esc="col"></t></th>
+                    </t>
+                </thead>
+
+                <tbody>
+                    <t t-foreach="widget.summary" t-as="renglon">
+                        <tr>
+                            <t t-foreach="renglon" t-as="col">
+                                <td><t t-esc="col"></t></td>
+                            </t>
+                        </tr>
+                    </t>
+                </tbody>
+                <tfoot>
+                    <tr id='total_row' style="font-weight: bold;">
+                        <td colspan="4">Totales</td>
+                        <t t-foreach="widget.summary_total" t-as="col">
+                            <td>$<t t-esc="widget.summary_total[col]"></t></td>
+                        </t>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </t>
+
+    <t t-name="scenarioTemplateTot">
+        <div style="overflow:auto;">
+            <table class="table table-hover" id="myTable">
+                <thead>
+                    <th>Totales de Proyecto</th>
+                    <t t-foreach="widget.summary_header" t-as="col">
+                        <th><t t-esc="col"></t></th>
+                    </t>
+                </thead>
+
+                <tbody>
+                    <t t-set="con" t-value="0"/>
+                    <t t-foreach="widget.summary" t-as="renglon">
+                        <tr>
+                            <t t-if="con == 0">
+                                <td>Poyecto con alta probabilidad</td>
+                            </t>
+                            <t t-if="con == 1">
+                                <td>Poyecto con Orden de Compra</td>
+                            </t>
+                            <t t-foreach="renglon" t-as="col">
+                                <td><t t-esc="renglon[col]"></t></td>
+                            </t>
+                        </tr>
+                        <t t-set="con" t-value="1"/>
+                    </t>
+                </tbody>
+                <tfoot>
+                    <tr id='total_row' style="font-weight: bold;">
+                        <td colspan="1">Totales</td>
+                        <t t-foreach="widget.summary_total" t-as="col">
+                            <td>$<t t-esc="widget.summary_total[col]"></t></td>
+                        </t>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </t>
+
+</templates>

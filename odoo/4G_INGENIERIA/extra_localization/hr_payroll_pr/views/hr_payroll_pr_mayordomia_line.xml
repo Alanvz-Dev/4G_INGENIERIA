@@ -1,0 +1,132 @@
+<odoo>
+  <data>
+
+    <record id="hr_payroll_pr.mayordomia_line_view_form" model="ir.ui.view">
+      <field name="name">Revisión de Día</field>
+      <field name="model">hr_payroll_pr.mayordomia_line</field>
+      <field name="arch" type="xml">
+        <form>
+          <header>
+            <field name="revision" widget="statusbar" statusbar_visible="draft" clickable="True" />
+            <button name="set_revisado" string="Revisar" attrs="{'invisible': [('revision','in',['done'])]}" type="object" class="oe_highlight" />
+            <button name="set_no_revisado" string="Por Revisar" attrs="{'invisible': [('revision','in',['draft'])]}" type="object" special="cancel" default_focus="0" icon="gtk-apply" confirm="¿Desea marcar como no revisada esta incidencia?" help="message" />
+            <button name="compute_record" string="Calcular" type="object" />
+          </header>
+          <sheet>
+            <div class="oe_title">
+              <h1>
+                <field name="operador" readonly="1" />
+              </h1>
+              <h4>
+                <field name="departamento" readonly="1" />
+              </h4>
+            </div>
+            <group>
+              <group>
+                <!-- <field name="administrativo" /> -->
+                <field name="bonos_ids" widget="many2many_tags" options="{'color_field': 'color'}" />
+              </group>
+              <group>
+                <div>
+                  <field name="entradas_salidas" widget="many2many_tags" />
+                  <button name="ver_entradas_y_salidas" type="object" string="Ver Entradas y Salidas" class="oe_link" />
+                </div>
+                <div>
+                  <field name="incidencia_ids" widget="many2many_tags" options="{'color_field': 'color'}" />
+                  <button name="ver_incidencias" type="object" string="Ver incidencias" class="oe_link" />
+                </div>
+                <br></br>
+                <hr></hr>
+                <group class="oe_subtotal_footer oe_right" colspan="2">
+                  <field name="total_de_horas" string="Horas en Proyectos" class="oe_subtotal_footer_separator" widget="monetary" />
+                  <field name="horas_a_pagar" class="oe_subtotal_footer_separator" widget="monetary" />
+                </group>
+              </group>
+            </group>
+            <group string="Mayordomía">
+              <div>
+                <field name="horas_proyecto_ids" />
+              </div>
+            </group>
+          </sheet>
+          <div class="oe_chatter">
+            <field name="message_follower_ids" widget="mail_followers" />
+            <field name="message_ids" widget="mail_thread" />
+            <field name="activity_ids" widget="mail_activity" />
+          </div>
+        </form>
+      </field>
+    </record>
+
+    <record id="search_view_horas_de_trabajo_tree" model="ir.ui.view">
+      <field name="name">hr_payroll_pr.mayordomia_line.report_tree</field>
+      <field name="model">hr_payroll_pr.mayordomia_line</field>
+      <field name="priority">20</field>
+      <field name="arch" type="xml">
+        <tree decoration-success="revision=='done'" decoration-danger="revision=='draft'">
+          <field name="revision"/>
+          <field name="departamento" readonly="1" />
+          <field name="operador" readonly="1"/>
+          <field name="bonos_ids" widget="many2many_tags"/>
+          <field name="horas_proyecto_ids" widget="many2many_tags"/>
+          <field name="entradas_salidas" widget="many2many_tags"/>
+          <field name="incidencia_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
+          <field name="incidencias_count" />
+          <field name="total_de_horas" string="Horas en Proyectos"/>
+          <field name="horas_a_pagar"/>
+        </tree>
+      </field>
+    </record>
+
+
+    <record id="hr_payroll_pr.marcar_revisado" model="ir.actions.server">
+      <field name="name">Marcar como Revisado</field>
+      <field name="model_id" ref="model_hr_payroll_pr_mayordomia_line" />
+      <field name="binding_model_id" ref="model_hr_payroll_pr_mayordomia_line" />
+      <field name="state">code</field>
+      <field name="code">
+        if records:
+            action = records.set_revisado()
+      </field>
+    </record>
+
+    <record id="hr_payroll_pr.marcar_no_revisado" model="ir.actions.server">
+      <field name="name">Marcar como No Revisado</field>
+      <field name="model_id" ref="model_hr_payroll_pr_mayordomia_line" />
+      <field name="binding_model_id" ref="model_hr_payroll_pr_mayordomia_line" />
+      <field name="state">code</field>
+      <field name="code">
+        if records:
+            action = records.set_no_revisado()
+      </field>
+    </record>
+
+    <record id="hr_payroll_pr.asignar_proyecto" model="ir.actions.server">
+      <field name="name">Asignar Proyecto</field>
+      <field name="model_id" ref="model_hr_payroll_pr_mayordomia_line" />
+      <field name="binding_model_id" ref="model_hr_payroll_pr_mayordomia_line" />
+      <field name="state">code</field>
+      <field name="code">
+        if records:
+            action = records.set_proyecto()
+      </field>
+    </record>
+
+    <record id="hr_payroll_pr.asignar_horas_a_pagar" model="ir.actions.server">
+      <field name="name">Asignar Horas a Pagar</field>
+      <field name="model_id" ref="model_hr_payroll_pr_mayordomia_line" />
+      <field name="binding_model_id" ref="model_hr_payroll_pr_mayordomia_line" />
+      <field name="state">code</field>
+      <field name="code">
+        if records:
+            action = records.set_horas_a_pagar()
+      </field>
+    </record>
+
+    <record id="hr_payroll_pr.mayordomia_line" model="ir.actions.act_window">
+      <field name="name">Horas Proyectos</field>
+      <field name="res_model">hr_payroll_pr.mayordomia_line</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+  </data>
+</odoo>              

@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+        <record id="sua.employee_movs_view_form" model="ir.ui.view">
+            <field name="name">sua.employee_movs.view.form</field>
+            <field name="model">sua.employee_movs</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="mov_id" widget="many2many_kanban">
+                                <kanban quick_create="false" create="true" delete="true">
+                                    <field name="numero_de_seguridad_social" />
+                                    <templates>
+                                        <t t-name="kanban-box">
+                                            <div class="oe_kanban_global_click" style="position: relative">
+                                                <a t-if="! read_only_mode" type="delete" style="
+                                          position: absolute;
+                                          right: 0;
+                                          padding: 4px;
+                                          diplay: inline-block;
+                                        ">X</a>
+                                                <div class="oe_module_vignette">
+                                                    <!-- <img t-att-src="kanban_image('res.users', 'image_small', record.id.value)" class="oe_avatar oe_kanban_avatar_smallbox" /> -->
+                                                    <div class="oe_module_desc">
+                                                        <field name="numero_de_seguridad_social" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </t>
+                                    </templates>
+                                </kanban>
+                            </field>
+                            <!-- <field name="mov_id" /> -->
+                            <field name="aseg_id" />
+                            <field name="incapacidad_id" />
+                            <field name="idse_id" />
+                            <field name="afil_id" />                            
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+    </data>
+</odoo>

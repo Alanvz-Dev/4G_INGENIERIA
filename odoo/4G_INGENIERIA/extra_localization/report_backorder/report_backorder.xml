@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="report_backorder_formulario">
+            <field name="name">report_backorder.report_backorder.formulario</field>
+            <field name="model">report_backorder.report_backorder</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Formulario de back order">
+                    <sheet>
+                        <group colspan="2">
+			<group colspan="2">
+                                    <span class="oe_inline"><h2>Generar reporte Back Order</h2></span>
+                                </group>
+
+				<group>
+
+              			<button name="print_kardex" type="object" string="Imprimir Reporte PDF"/>
+              			<button name="print_kardex_xlsx" type="object" string="Imprimir Reporte Excel"/>
+
+ 				</group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="report_back_order_action">
+            <field name="name">Back Order</field>
+            <field name="res_model">report_backorder.report_backorder</field>
+            <field name="view_mode">form</field>
+        </record>
+
+ 	<menuitem id="report_back_order_menu_aplicacion" name="Back Order"/>        
+    <menuitem id="report_back_order_sub_menu_aplicacion" parent='report_back_order_menu_aplicacion' name="Back Order" sequence="0"/>
+    <menuitem id="id_menu_report_back_order_act" parent="report_back_order_sub_menu_aplicacion" name="Reportes" action="report_back_order_action" sequence="1"/>
+
+
+
+
+
+
+    </data>
+</odoo>

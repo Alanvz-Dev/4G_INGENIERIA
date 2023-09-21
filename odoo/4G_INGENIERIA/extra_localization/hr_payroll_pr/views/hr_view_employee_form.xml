@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+        <record id="hr_payroll_pr.view_turno_employee_form_inherit_4g_pr_payroll" model="ir.ui.view">
+            <field name="name">Turno Empleado</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form"/>
+            <field name="arch" type="xml">
+                <field name="resource_calendar_id" position="after">
+					<field name="is_administrativo" />
+                    <field name="turno" />
+				</field>
+            </field>
+        </record>
+    </data>
+</odoo>

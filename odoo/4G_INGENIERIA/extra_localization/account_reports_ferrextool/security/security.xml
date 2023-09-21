@@ -1,0 +1,7 @@
+<odoo>
+    <data>
+        <record id="group_account_rep_ferrex" model="res.groups">
+            <field name="name">Costo de Ventas/Edo.Perdidas y Ganancias/Estado de Situación Financiera </field>
+        </record>
+    </data>
+</odoo>

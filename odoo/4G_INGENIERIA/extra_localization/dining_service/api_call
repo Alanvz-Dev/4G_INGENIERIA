@@ -1,0 +1,14 @@
+{
+  "url": "http://localhost:8069/",
+  "database": "4G_INGENIERIA",
+  "uid": 1,
+  "password": "Gacl751001E85+",
+  "model": "dining_service.record",
+  "method": "record_service",
+  "domain_parameters": [
+    
+  ],
+  "mapping_parameters": {
+    "barcode": "144243061007"
+  }
+}

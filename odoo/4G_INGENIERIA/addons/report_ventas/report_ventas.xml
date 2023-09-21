@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="report_ventas_form">
+            <field name="name">report.ventas.form</field>
+            <field name="model">report.ventas</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Formulario de ventas por clientes">
+                    <sheet>
+                        <group colspan="2">
+                            <group>
+                                <field style="text-align:right;font-size:14px" name="fecha_inicio"/>
+                                <field style="text-align:right;font-size:14px" name="fecha_fin"/>
+                                <field style="text-align:right;font-size:14px" name="cliente"/>
+                                <field style="text-align:right;font-size:14px" name="ruta_view"/>
+
+
+				</group>
+				<group>
+
+              			<button name="print_ventas" type="object" string="Imprimir por fecha"/>
+				<button name="print_ventas_clientes" type="object" string="Imprimir por cliente"/>
+				<button name="print_ventas_rutas" type="object" string="Imprimir por ruta"/>
+
+ 				</group>
+				
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+
+
+        <record model="ir.actions.act_window" id="report_ventas_id">
+            <field name="name">Ventas por cliente</field>
+            <field name="res_model">report.ventas</field>
+            <field name="view_mode">form</field>
+        </record>
+
+ 	<menuitem id="id_vn_1" name="Ventas por cliente"/>        
+    <menuitem id="id_vn_2" parent='id_vn_1' name="Informe de ventas por clientes" sequence="0"/>
+    </data>
+</odoo>

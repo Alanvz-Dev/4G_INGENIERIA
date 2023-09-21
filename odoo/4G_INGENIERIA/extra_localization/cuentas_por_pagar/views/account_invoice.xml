@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+	<record model="ir.ui.view" id="account_invoice_form_id_pago">
+		<field name="name">account.invoice.form</field>
+		<field name="model">account.invoice</field>
+		<field name="type">form</field>
+		<field name="inherit_id" ref="account.invoice_form"/>
+		<field name="arch" type="xml">
+			<field name='date_due' position='after'>
+				<field name='fecha_pago'/>
+				<field name='prueba'/>
+				<field name='campo_referencia'/>
+				<field name='campo_referencia_computed' invisible="1"/>
+				<field name='factoraje'/>
+				<field name='refacturacion'/>
+				<field name='applybono'/>
+
+
+			</field>
+			<!-- field name='currency_id' position='after'>
+				<field name='facturaje'/>
+				<field name='refacturacion'/>
+			</field -->
+
+		</field>
+	</record>
+
+
+
+
+	<record model="ir.ui.view" id="account_invoice_form_id_pago_proveedor">
+		<field name="name">account.invoice.supplier.form</field>
+		<field name="model">account.invoice</field>
+		<field name="type">form</field>
+		<field name="inherit_id" ref="account.invoice_supplier_form"/>
+		<field name="arch" type="xml">
+			<field name='date_invoice' position='before'>
+				<field name='fecha_pagop'/>
+				<field name="fecha_embarque" />
+			</field>
+			<field name='currency_id' position='after'>
+				<field name='cdp'/>
+			</field>
+
+		</field>
+	</record>
+
+
+<record model="ir.ui.view" id="stock_move">
+		<field name="name">stock.move.form</field>
+		<field name="model">stock.move</field>
+		<field name="type">form</field>
+		<field name="inherit_id" ref="stock.view_move_form"/>
+		<field name="arch" type="xml">
+			<field name='date_expected' position='before'>
+				<field name='basura'/>
+			</field>
+			
+		</field>
+	</record>
+
+<!-- record model="ir.ui.view" id="account_account">
+		<field name="name">account.account.form</field>
+		<field name="model">account.account</field>
+		<field name="type">form</field>
+		<field name="inherit_id" ref="account.view_account_form"/>
+		<field name="arch" type="xml">
+			<field name='code' position='after'>
+				<field name='empleado'/>
+			</field>
+			
+		</field>
+	</record -->
+
+
+
+
+
+	<!-- record model="ir.ui.view" id="stock_picking_form_analytic">
+		<field name="name">stock.picking.form</field>
+		<field name="model">stock.picking</field>
+		<field name="type">form</field>
+		<field name="inherit_id" ref="stock.view_picking_form"/>
+		<field name="arch" type="xml">
+			
+			<field name="location_dest_id" position="after">
+                    <field name="cuenta_analitica" options="{'no_create':True}"/>
+                </field>
+                <field name="cuenta_analitica" position="after" colspan="2">
+                    <button colspan="2" name="update_cuanta_analitica" type="object" icon="gtk-execute" string="Actualizar Cuentas" attrs="{'invisible':[('state', 'not in', 'draft')]}"/>
+                </field>
+
+
+		</field>
+	</record -->
+
+
+
+    </data>
+</odoo>

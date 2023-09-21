@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="planned_date_start_mrp_production" model="ir.ui.view">
+        <field name="name">4g_production_mrp_production</field>
+        <field name="model">mrp.workorder</field>
+        <field name="inherit_id" ref="mrp.mrp_production_workcenter_form_view_inherit" />
+        <field name="arch" type="xml">
+
+
+            <xpath expr="/form/sheet/group[1]" position="after">
+                <field name="imagen_referencia" />
+                <field name="bom_line_ids" readonly="1">
+                    <tree>
+                        <field name="product_id" />
+                        <field name="product_qty" />
+                        <field name="product_uom_id" />
+                        <field name="routing_id" />
+                    </tree>
+                </field>
+            </xpath>
+
+            <field name="product_id" position="after">
+                <field name="production_date" />
+            </field>
+            <field name="production_date" position="after">
+                <field name="tiempo_estimado" />
+            </field>
+        </field>
+    </record>
+
+    <!-- <record model="ir.ui.view" id="view_purchase_requisition_tree_inherit">
+        <field name="name">purchase.requisition.tree.inherit</field>
+        <field name="model">purchase.requisition</field>
+        <field name="type">tree</field>
+        <field name="inherit_id" ref="mrp.mrp_production_workcenter_tree_view_inherit" />
+        <field name="arch" type="xml">
+            <xpath expr="/tree/field[@name='date_end']" position="after">
+                <field name="origine" />
+            </xpath>
+        </field>
+    </record> -->
+
+</odoo>

@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="report_back_order_custom_template">
+            <t t-call="web.html_container">
+                <t t-call="web.external_layout">
+                    <t t-foreach="docs" t-as="o">
+                        <div class="page">
+                            <h1>Informe de Pedidos de venta</h1>
+                            <h5>Fecha desde el inicio al dia de hoy </h5>
+                            <br/>
+                            <br/>
+                            <div t-foreach="docs" t-as="o" class="row mt4 mb4">
+                                <h5>GLOSARIO ESTATUS: *[draft]-Presupuesto *[sent]-Cotizaciones enviadas *[sale]-Pedido de venta *[done]-Hecho </h5>
+                                <table class="table table-condensed">
+                                    <tr class="border-black">
+                                        <td class="text-center">
+                                            <strong>Fecha</strong>
+                                        </td>
+                                        <td class="text-center">
+                                            <strong>No. Pedido</strong>
+                                        </td>
+                                        <td class="text-center">
+                                            <strong>Cliente</strong>
+                                        </td>
+                                        <td class="text-center">
+                                            <strong>Descripcion</strong>
+                                        </td>
+                                        <td class="text-center">
+                                            <strong>Precio</strong>
+                                        </td>
+                                        <td class="text-center">
+                                            <strong>Cantidad Pedida</strong>
+                                        </td>
+                                        <td class="text-center">
+                                            <strong>Back Order</strong>
+                                        </td>
+                                        <td class="text-center">
+                                            <strong>Total</strong>
+                                        </td>
+                                        <td class="text-center">
+                                            <strong>Status</strong>
+                                        </td>
+                                        <td class="text-center">
+                                            <strong>Suma-Total</strong>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div t-foreach="o.show_data_report_sale_order()" t-as="item" class="row mt4 mb4">
+                                                <div class="text-center">
+                                                    <t t-esc="item[0]"/>
+                                                </div>
+                                                <br/>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div t-foreach="o.show_data_report_sale_order()" t-as="item" class="row mt4 mb4">
+                                                <div class="text-center" >
+                                                    <t t-esc="item[1]"/>
+                                                </div>
+                                                <br/>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div t-foreach="o.show_data_report_sale_order()" t-as="item" class="row mt4 mb4">
+                                                <div class="text-center">
+                                                    <t t-esc="item[2]"/>
+                                                </div>
+                                                <br/>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div t-foreach="o.show_data_report_sale_order()" t-as="item" class="row mt4 mb4">
+                                                <div class="text-center">
+                                                    <t t-esc="item[3]"/>
+                                                </div>
+                                                <br/>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div t-foreach="o.show_data_report_sale_order()" t-as="item" class="row mt4 mb4">
+                                                <div class="text-center">
+                                                    <t t-esc="item[4]"/>
+                                                </div>
+                                                <br/>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div t-foreach="o.show_data_report_sale_order()" t-as="item" class="row mt4 mb4">
+                                                <div class="text-center">
+                                                    <t t-esc="item[5]"/>
+                                                </div>
+                                                <br/>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div t-foreach="o.show_data_report_sale_order()" t-as="item" class="row mt4 mb4">
+                                                <div class="text-center">
+                                                    <t t-esc="item[6]"/>
+                                                </div>
+                                                <br/>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div t-foreach="o.show_data_report_sale_order()" t-as="item" class="row mt4 mb4">
+                                                <div class="text-center">
+                                                    <t t-esc="item[7]"/>
+                                                </div>
+                                                <br/>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div t-foreach="o.show_data_report_sale_order()" t-as="item" class="row mt4 mb4">
+                                                <div class="text-center">
+                                                    <t t-esc="item[8]"/>
+                                                </div>
+                                                <br/>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div t-foreach="o.show_data_report_sale_order_sum()" t-as="item" class="row mt4 mb4">
+                                                <div class="text-center">
+                                                    <t t-esc="item[0]"/>
+                                                </div>
+                                                <br/>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+        <report 
+            id="report_back_order"
+            string="Back order products"
+            model="report_backorder.report_backorder" 
+            report_type="qweb-pdf"            
+            name="report_backorder.report_back_order_custom_template"
+            file="report_backorder.report_back_order_custom_template"
+        />
+    </data>
+</odoo>
+
+

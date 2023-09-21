@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="mrp_workcenter_view_center_capacity" model="ir.ui.view">
+        <field name="name">mrp.workcenter.capacity.view.4g_production</field>
+        <field name="model">mrp.workcenter</field>
+        <field name="inherit_id" ref="mrp.mrp_workcenter_view" />
+        <field name="arch" type="xml">
+
+            <field name="resource_calendar_id" position="after">
+                <field name="habilitar_capacidad_de_produccion" />
+            </field>
+            
+                
+            
+
+            <xpath expr="//page[1]" position="after" >
+                <page string="Capacidad de Producción" attrs="{'invisible': [('habilitar_capacidad_de_produccion', '!=', True)]}">
+                    <group>
+                        <field name="tipo_de_maquina" attrs="{'required': [('habilitar_capacidad_de_produccion', '!=', True)],'invisible': [('habilitar_capacidad_de_produccion', '!=', True)]}"/>
+                        <field name="objetivo_estandar" attrs="{'required': [('habilitar_capacidad_de_produccion', '!=', True)],'invisible': [('habilitar_capacidad_de_produccion', '!=', True)]}"/>
+                        
+                    </group>
+                    <!-- attrs="{'invisible':[('tipo_de_maquina', '=','cizalla')]}" -->
+                    <field name="work_center_capacity_pantografo_lines" attrs="{'invisible':[('tipo_de_maquina', '!=','pantografo')]}" >
+                        <tree editable="bottom">
+                            <!-- <field name="material" />                             -->
+                            <field name="calibre_li" />
+                            <field name="calibre_ls" />
+                            <!-- <field name="amperaje" /> -->
+                            <!-- <field name="velocidad_de_corte" /> -->
+                            <field name="medida_lineal_de_corte"/>
+                            <field name="tiempo_de_corte" />
+                            <field name="write_uid" string="Última Modificación" readonly="1"/>
+                        </tree>
+                    </field>
+
+                    <field name="work_center_capacity_laser_lines" attrs="{'invisible':[('tipo_de_maquina', '!=','laser')]}" >
+                        <tree editable="bottom">
+                            <!-- <field name="material" />                             -->
+                            <field name="calibre_li" />
+                            <field name="calibre_ls" />
+                            <!-- <field name="amperaje" /> -->
+                            <!-- <field name="velocidad_de_corte" /> -->
+                            <field name="medida_lineal_de_corte"/>
+                            <field name="tiempo_de_corte" />
+                            <field name="write_uid" string="Última Modificación" readonly="1"/>
+                        </tree>
+                    </field>
+
+                    <field name="work_center_capacity_cizalla_lines"  attrs="{'invisible':[('tipo_de_maquina', '!=','cizalla')]}">
+                        <tree editable="bottom">                                                      
+                            <field name="calibre_li" />
+                            <field name="calibre_ls" />                        
+                            <field name="medida_maxima_li" />
+                            <field name="medida_maxima_ls" />
+                            <field name="tiempo_de_corte" /> 
+                            <field name="write_uid" string="Última Modificación" readonly="1"/>
+                        </tree>
+                    </field>
+
+
+                    <field name="work_center_capacity_dobladora_lines"  attrs="{'invisible':[('tipo_de_maquina', '!=','dobladora')]}">
+                        <tree editable="bottom">
+                            <!-- <field name="tamanos_de_piezas" />                             -->
+                            <field name="calibre_li" />
+                            <field name="calibre_ls" />                                                      
+                            <field name="tiempo_de_corte" />
+                            <field name="medida_maxima_li" />
+                            <field name="medida_maxima_ls" /> 
+                            <field name="write_uid" string="Última Modificación" readonly="1"/>
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="sale_order_form_view_hoja_de_proyecto" model="ir.ui.view">
+        <field name="name">sale.order.hoja.de.proyecto.view.escenario_de_ventas</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <div name="button_box" position="before">
+                <div class=" oe_button_box " name="button_box">
+                    <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive">
+                        <field name="active" widget="boolean_button" options="{&quot;terminology&quot;: &quot;archive&quot;}" />
+                    </button>
+                    
+                </div>
+            </div>
+            <field name="date_from_lead" position="before">
+                <!-- <field name="hoja_de_proyecto_origen" attrs="{'invisible': [('hoja_de_proyecto_origen', '=',False)]}" /> -->
+                <field name="hoja_de_proyecto_origen" />
+                <field name="state_hp" required="1"/>
+                <field name="fecha_de_arranque" required="1"/>
+            </field>
+
+            <xpath expr="//page[2]" position="after">
+                <page string="Escenario De Ventas">
+                    <group>
+                        <field name="cantidad_por_facturar" />
+                    </group>
+                    <button string="Crear Programación" name="crear_programacion" type="object" class="oe_highlight"/>
+                    <button string="Eliminar Programación" name="eliminar_programacion" type="object" class="oe_highlight"/>
+                    <field name="escenario_de_ventas_ids" force_save="1">
+
+                        <tree editable="Top">
+                            <field name="product_id" required='1' />
+                            <field name="start_date" required='1'/>
+                            <field name="piezas_por_dia_linea" sum="Total de Piezas" required='1'/>
+                            <field name="costo_total" sum="Costo Total" readonly="True" force_save="1"/>
+                        </tree>
+                    </field>
+                </page>
+
+            </xpath>
+
+
+        </field>
+    </record>
+
+
+
+    <record id="escenario_de_ventas_view_pivot" model="ir.ui.view">
+        <field name="name">escenario_de_ventas.pivot</field>
+        <field name="model">escenario_de_ventas.escenario_de_ventas</field>
+        <field name="arch" type="xml">
+            <pivot>
+                <field name="product_id" />
+                <field name="hp" />
+                <field name="start_date" />
+                <field name="piezas_por_dia_linea" type="measure"/>
+                <field name="costo_total" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="escenariode_ventas_view_tree" model="ir.ui.view">
+        <field name="name">escenario_de_ventas_view_tree</field>
+        <field name="model">escenario_de_ventas.escenario_de_ventas</field>
+        <field name="arch" type="xml">
+            <tree>
+            <field name="sale_id" />
+            <field name="hp" />
+            <field name="product_id" />
+            <field name="start_date" />
+            <field name="piezas_por_dia_linea" />
+            <field name="costo_total" />
+            <field name="cliente" />
+            <field name="state_hp" />
+            </tree>
+        </field>
+    </record>
+    <!-- 
+    <record model="ir.actions.act_window" id="escenario_de_ventas.escenario_ventas_list_a">
+        <field name="name">Escenario de Ventas</field>
+        <field name="res_model">escenario_de_ventas.escenario_de_ventas</field>
+        <field name="view_mode">pivot</field>
+    </record> -->
+
+    <record model="ir.actions.server" id="escenario_de_ventas.escenario_ventas_list_a">
+        <field name="name">Escenario de Ventas</field>
+        <field name="model_id" ref="model_escenario_de_ventas_escenario_de_ventas"/>
+        <field name="state">code</field>
+        <field name="code">
+        action = model.return_pivot_views()
+        </field>
+    </record>
+</odoo>

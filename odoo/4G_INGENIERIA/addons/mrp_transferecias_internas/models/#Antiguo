@@ -1,0 +1,20 @@
+#Antiguo
+{
+  
+  'move_line_ids': [
+    [
+      [0, 0, {
+        "location_id'": 12,
+        'location_dest_id': 7,
+        'qty_done': 1.0,
+        'product_id': 59477,
+        "move_id'": False,
+        'product_uom_id': 20,
+        'result_package_id': False,
+        'owner_id': False,
+        'lot_id': False,
+        'lot_name': False
+      }]
+    ]
+  ]
+}

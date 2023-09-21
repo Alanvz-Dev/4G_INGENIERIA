@@ -1,0 +1,90 @@
+<odoo>
+  <data>
+
+
+
+
+    
+    <!-- explicit list view definition -->
+
+
+    <record model="ir.ui.view" id="payroll_receipts.list">
+      <field name="name">payroll_receipts list</field>
+      <field name="model">payroll_receipts.payroll_receipts</field>
+      <field name="arch" type="xml">
+        <tree create='false'>
+          
+          <!-- <field name="id_payroll" /> -->
+          <field name="employee_id" />
+          <field name="date_from" />
+          <field name="date_to" />
+          <!-- <field name="name" /> -->
+          <field name="name_payroll" />
+
+          
+          <field name="pdf" filename="document_fname_pdf" widget="binary"/>
+          <field name="document_fname_pdf" invisible="1"/>
+          <field name="xml" filename="document_fname_xml" widget="binary"/>
+          <field name="document_fname_xml" invisible="1"/>
+
+
+        </tree>
+      </field>
+    </record>
+
+
+    <!-- actions opening views on models -->
+
+    <record model="ir.actions.act_window" id="payroll_receipts.action_window">
+      <field name="name">Mis nóminas</field>
+      <field name="res_model">payroll_receipts.payroll_receipts</field>
+      <field name="view_mode">tree</field>
+      <field name="domain">[('search_ids','!=',False)]</field>
+    </record>
+
+
+
+    <record model="ir.actions.server" id="payroll_receipts.action_server">
+      <field name="name">payroll_receipts server</field>
+      <field name="model_id" ref="model_payroll_receipts_payroll_receipts"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = model.update_group_permissions()
+      </field>
+    </record>
+
+
+    <record id="message_wizard_form" model="ir.ui.view">
+      <field name="name">message.wizard.form</field>
+      <field name="model">message.wizard</field>
+      <field name="arch" type="xml">
+          <form >
+              <p class="text-center">
+                  <field name="message" readonly='1'/>
+              </p>
+          <footer>
+              <button name="action_ok" string="Ok" type="object" default_focus="1" class="oe_highlight"/> 
+          </footer>
+        </form>
+      </field>
+  </record>
+
+
+    <!-- Top menu item -->
+
+    <menuitem name="Mis Recibos de Nómina" id="payroll_receipts.menu_root" groups="group_payroll_receipts" />
+
+    <!-- menu categories -->
+
+    <menuitem name="Nóminasx" id="payroll_receipts.menu_1"  parent="payroll_receipts.menu_root" groups="group_payroll_receipts" />
+    <menuitem name="Permisos para ver Recibos de Nómina" id="payroll_receipts.menu_2" parent="payroll_receipts.menu_root"/>
+    
+
+    <!-- actions -->
+
+    <menuitem name="Mis nóminasx" id="payroll_receipts.menu_1_list"  parent="payroll_receipts.menu_1" action="payroll_receipts.action_window"  groups="group_payroll_receipts"/>
+    <menuitem name="Actualizar (Altas/Bajas)" id="payroll_receipts" parent="payroll_receipts.menu_2"
+    action="payroll_receipts.action_server"/>
+
+  </data>
+</odoo>

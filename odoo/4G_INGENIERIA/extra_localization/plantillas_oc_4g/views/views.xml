@@ -1,0 +1,60 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+    <!--
+    <record model="ir.ui.view" id="plantillas_facturas_4g.list">
+      <field name="name">plantillas_facturas_4g list</field>
+      <field name="model">plantillas_facturas_4g.plantillas_facturas_4g</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+        </tree>
+      </field>
+    </record>
+    -->
+
+    <!-- actions opening views on models -->
+    <!--
+    <record model="ir.actions.act_window" id="plantillas_facturas_4g.action_window">
+      <field name="name">plantillas_facturas_4g window</field>
+      <field name="res_model">plantillas_facturas_4g.plantillas_facturas_4g</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+    -->
+
+    <!-- server action to the one above -->
+    <!--
+    <record model="ir.actions.server" id="plantillas_facturas_4g.action_server">
+      <field name="name">plantillas_facturas_4g server</field>
+      <field name="model_id" ref="model_plantillas_facturas_4g_plantillas_facturas_4g"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": self._name,
+        }
+      </field>
+    </record>
+    -->
+
+    <!-- Top menu item -->
+    <!--
+    <menuitem name="plantillas_facturas_4g" id="plantillas_facturas_4g.menu_root"/>
+    -->
+    <!-- menu categories -->
+    <!--
+    <menuitem name="Menu 1" id="plantillas_facturas_4g.menu_1" parent="plantillas_facturas_4g.menu_root"/>
+    <menuitem name="Menu 2" id="plantillas_facturas_4g.menu_2" parent="plantillas_facturas_4g.menu_root"/>
+    -->
+    <!-- actions -->
+    <!--
+    <menuitem name="List" id="plantillas_facturas_4g.menu_1_list" parent="plantillas_facturas_4g.menu_1"
+              action="plantillas_facturas_4g.action_window"/>
+    <menuitem name="Server to list" id="plantillas_facturas_4g" parent="plantillas_facturas_4g.menu_2"
+              action="plantillas_facturas_4g.action_server"/>
+    -->
+  </data>
+</odoo>

@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+        <record id="hr_payroll_pr.turno_view_tree" model="ir.ui.view">
+            <field name="name">Turnos</field>
+            <field name="model">hr_payroll_pr.turno</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name" />
+                </tree>
+            </field>
+        </record>
+        <record id="hr_payroll_pr.turno_view_form" model="ir.ui.view">
+            <field name="name">Turnos</field>
+            <field name="model">hr_payroll_pr.turno</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="name" />   
+                            <field name="horas_por_dia" />
+                            <field name="suma_horas" />
+                        </group>
+                        <field name="turno_line_ids" >
+                            <tree editable="top">
+                                <field name="dia" />
+                                <field name="hour_from" widget="float_time"/>
+                                <field name="hour_to" widget="float_time"/>     
+                                <field name="between_days" />                                   
+                            </tree>
+                        </field>    
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="hr_payroll_pr.turno_action" model="ir.actions.act_window">
+            <field name="name">Turno</field>
+            <field name="res_model">hr_payroll_pr.turno</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+        </record>
+        
+    </data>
+</odoo>

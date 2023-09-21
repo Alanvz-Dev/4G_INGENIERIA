@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+        <menuitem
+            id="tax_legends_menu"
+            name="Leyendas Fiscales"
+            
+            parent="account.menu_finance_configuration"/>
+
+            <menuitem
+            id="tax_legends_menu_tax_legend"
+            name="Leyendas Fiscales"
+            action="tax_legend_action"
+            parent="tax_legends_menu"/>
+    
+    </data>
+</odoo>

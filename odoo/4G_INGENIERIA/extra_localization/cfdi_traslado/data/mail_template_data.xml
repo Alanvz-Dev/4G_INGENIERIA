@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+
+        <!--Email template -->
+        <record id="email_template_factura_traslado" model="mail.template">
+            <field name="name">Factura traslado CFDI - Enviar Email</field>
+            <field name="model_id" ref="cfdi_traslado.model_cfdi_traslado"/>
+            <field name="email_from">${(object.company_id.email and '%s &lt;%s&gt;' % (object.company_id.name, object.company_id.email) or '')|safe}</field>
+            <field name="partner_to">${object.partner_id.id}</field>
+            <field name="subject">Factura: ${object.number}</field>
+            
+            <field name="body_html" type="html">
+        <div>
+                
+            <p>Hola, ${object.partner_id.name}</p>
+
+                <p>Anexo encontrará su factura electrónica.</p>
+            
+            <p>Saludos.</p>
+
+            <p style="color:#eeeeee;">
+% if object.company_id and object.company_id.signature:
+    ${object.company_id.signature | safe}
+% endif
+</p>
+
+        </div>
+
+            </field>
+
+            <field name="report_template" ref="report_facturatraslado"/>
+            <field name="report_name">Factura de traslado ${object.number}</field>
+        </record>
+
+    </data>
+</odoo>

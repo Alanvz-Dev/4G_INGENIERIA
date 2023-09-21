@@ -1,0 +1,114 @@
+<odoo>
+    <data>
+        <!-- WIZARD -->
+
+        <record id="asistente_material_required_internal_form" model="ir.ui.view">
+            <field name="name">asistente.material.required.internal.form</field>
+            <field name="model">asistente.material.required.internal</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Creacion de Presupuestos">
+                    <sheet>
+                        <separator string="Mis Ubicaciones" />
+                        <group>
+                            <field name="location_id" required="1"/>
+                            <field name="location_dest_id" readonly="1"/>
+
+                        </group>
+                        <group>
+                            <group>
+                                <field name="confirm_transfer" invisible="1" />
+                            </group>
+                            <group>
+                                <field name="operation_id" readonly="1"/>
+                                <field name="production_qty" readonly="1"/>
+
+                            </group>
+                        </group>
+
+                        <separator string="Materiales" />
+                        <field name="material_id_fk" create="false" editable="bottom">
+                            <tree string="Material a Solicitar">
+                                <field name="product_id_name" readonly="1"/>
+                                <field name="uom_id_name" readonly="1"/>
+                                <field name="product_id" invisible="1"/>
+                                <field name="uom_id" invisible="1"/>
+                                <field name="qty_need" required="1"/>
+                                <field name="qty_reservated_in_dest" required="1"/>
+                                <field name="qty_reservated" required="1"/>
+                                <field name="qty_to_transfer" required="1"/>
+
+                            </tree>
+                            <form string="Material a Solicitar" create="false">
+                                <group>
+                                    <group>
+                                        <field name="product_id_name" readonly="1"/>
+                                        <field name="qty_need" readonly="1"/>
+                                        <field name="qty_to_transfer" required="1"/>
+                                    </group>
+                                    <group>
+                                        <field name="uom_id_name" readonly="1"/>
+                                        <field name="qty_reservated" readonly="1"/>
+                                    </group>
+                                </group>
+                            </form>
+                        </field>
+                    </sheet>
+                    <footer  >
+                        <center>
+                            <button name="make_transfer" string="Realizar Transferencia" type="object" class="oe_highlight" icon="fa-check-square-o" />
+
+                            <button string="Cerrar" class="oe_highlight" special="cancel" icon="fa-close" />
+                        </center>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+
+        <!--============================================ACCION========================================-->
+        <act_window name="Realizar Abastecimiento Interno" res_model="asistente.material.required.internal" src_model="asistente.material.required.internal" view_mode="form" target="new" key2="client_action_multi" id="asistente_material_required_internal_form_act"/>
+
+        <record model="ir.ui.view" id="mrp_production_form_view_material_internal_required">
+            <field name="name">mrp.production.required.material</field>
+            <field name="model">mrp.production</field>
+            <!-- Indica el id de la vista de un modulo ya existente, al que en este caso se le va a agregar un boton -->
+            <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+            <field name="arch" type="xml">
+<!-- state indica que se posicionará al boton en la barra de estado -->
+                <field name="state" position="before">
+                    <button name='%(asistente_material_required_internal_form_act)d' type='action' string='Solicitud de Transferencia' states='confirmed,ready' icon="fa-cogs"/>
+                </field>
+            </field>
+        </record>
+
+
+<!-- Agregando un campo al modelo existente de mrp.production -->
+        <record model="ir.ui.view" id="mrp_production_form_view_purchase_ext">
+            <field name="name">mrp.production.required.material</field>
+            <field name="model">mrp.production</field>
+            <field name="inherit_id" ref="mrp_purchase_integration.mrp_production_form_view_analytic_account"/>
+            <field name="arch" type="xml">
+
+                <field name="quotation_name_list" position="after">
+                    <field name="last_picking_id" />
+                </field>
+            </field>
+        </record>
+
+
+<!-- Probar que pasa si quito esto -->
+        <record model="ir.ui.view" id="stock_picking_type_form_view_material_internal_required">
+            <field name="name">stock.picking.type.required.material</field>
+            <field name="model">stock.picking.type</field>
+            <field name="inherit_id" ref="stock.view_picking_type_form"/>
+            <field name="arch" type="xml">
+
+                <field name="warehouse_id" position="after">
+                    <field name="route_for_mrp" />
+                </field>
+            </field>
+        </record>
+
+    </data>
+</odoo>

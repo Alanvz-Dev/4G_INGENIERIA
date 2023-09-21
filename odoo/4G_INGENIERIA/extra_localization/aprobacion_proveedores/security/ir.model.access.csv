@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_aprobacion_proveedores_aprobacion_proveedores,aprobacion_proveedores.aprobacion_proveedores,model_aprobacion_proveedores_aprobacion_proveedores,group_aprobacion_proveedores,1,0,0,0

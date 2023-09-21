@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+	<template id="template_report_excessinventory">
+            <t t-call="report.html_container">
+                <t t-call="report.external_layout">
+                <t t-foreach="docs" t-as="o">
+                    <div class="page">        
+                        <h1>Informe de Productos</h1>
+			<h5>Fecha desde <span t-field="o.fecha_inicio"/> al dia de hoy </h5><br/><br/>
+
+                           <div t-foreach="docs" t-as="o" class="row mt4 mb4">
+			         <table class="table table-condensed">
+					<tr class="border-black">
+
+                                        <td class="text-center"><strong>Producto</strong></td>
+					<td class="text-center"><strong>Precio</strong></td>
+                                        <td class="text-center"><strong>Stock</strong></td>
+                                        <td class="text-center"><strong>Cantidad</strong></td>
+                                        					
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div t-foreach="o.show_data_report_stock()" t-as="item" class="row mt4 mb4">
+                                                 <div class="text-center"><t t-esc="item[0]"/></div><br/>
+
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div t-foreach="o.show_data_report_stock()" t-as="item" class="row mt4 mb4">
+                                                <div class="text-center" ><t t-esc="item[1]"/></div><br/>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div t-foreach="o.show_data_report_stock()" t-as="item" class="row mt4 mb4">
+                                                <div class="text-center"><t t-esc="item[2]"/></div><br/>
+                                            </div>
+                                        </td>
+                               		<td>
+                                            <div t-foreach="o.show_data_report_stock()" t-as="item" class="row mt4 mb4">
+                                                <div class="text-center"><t t-esc="item[3]"/></div><br/>
+                                            </div>
+                                        </td>
+
+                                      
+                                       
+                                    </tr>
+
+                                </table>
+                            </div>  
+                    </div>
+                </t>
+                </t>
+
+            </t>
+        </template>                                            
+
+
+          <report 
+            id="reporte_excess_id2"
+            string="Informe de exceso"
+            model="report.excessinventory" 
+            report_type="qweb-pdf"
+            file="report_excessinventory.template_report_excessinventory" 
+            name="report_excessinventory.template_report_excessinventory"
+        />
+
+    </data>
+</openerp>
+
+

@@ -1,0 +1,48 @@
+<odoo>
+  <data>
+
+    <record id="actualizar_stock.quant_tree" model="ir.ui.view">
+      <field name="name">stock.quant.tree</field>
+      <field name="model">stock.quant</field>
+      <field name="arch" type="xml">
+        <tree editable="bottom" >
+          <field name="product_id" readonly="False"/>
+          <field name="location_id" readonly="False"/>
+          <field name="lot_id" groups="stock.group_production_lot" readonly="False"/>
+          <field name="package_id" groups="stock.group_tracking_lot" readonly="False"/>
+          <field name="reserved_quantity" string="Reserved" readonly="False" />
+          <field name="quantity" string="On Hand" readonly="False"/>
+          <field name="product_uom_id" groups="product.group_uom" readonly="False"/>
+          <field name="company_id" groups="base.group_multi_company" readonly="False"/>
+        </tree>
+      </field>
+    </record>
+
+
+    
+
+    <record id="actualizar_stock.quant_action" model="ir.actions.act_window">
+      <field name="name">Modificar Stock</field>
+      <field name="res_model">stock.quant</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,form</field>
+      <field name="view_ids" eval="[(5, 0, 0),
+      (0, 0, {'view_mode': 'tree', 'view_id': ref('actualizar_stock.quant_tree')})]" />
+    </record>
+
+    <!-- Top menu item -->
+
+    <menuitem id="stock.actualizar_stock_menu" name="⚠⚠⚠Actualiza Stock⚠⚠⚠" parent="stock.menu_stock_warehouse_mgmt" action="actualizar_stock.quant_action" sequence="100"/>
+
+    <!-- <menuitem name="actualizar_stock" id="actualizar_stock.menu_root" /> -->
+
+    <!-- menu categories -->
+
+    <!-- <menuitem name="Menu 1" id="actualizar_stock.menu_1" parent="actualizar_stock.menu_root" /> -->
+
+    <!-- actions -->
+
+    <!-- <menuitem name="List" id="actualizar_stock.menu_1_list" parent="actualizar_stock.menu_1" action="actualizar_stock.quant_action" /> -->
+
+  </data>
+</odoo>

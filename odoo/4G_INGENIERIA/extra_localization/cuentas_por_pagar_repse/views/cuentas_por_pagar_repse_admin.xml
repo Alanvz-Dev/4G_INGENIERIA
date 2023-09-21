@@ -1,0 +1,7 @@
+<odoo>
+  <data>
+    <!-- Top menu item -->
+    <!-- menu categories -->
+    <menuitem name="REPSE" id="cuentas_por_pagar_repse.repse_admin" parent="account.menu_finance" action="cuentas_por_pagar.repse_history_action_window" groups="group_cuentas_por_pagar_admin"/>
+  </data>
+</odoo>

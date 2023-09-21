@@ -1,0 +1,58 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+
+    <record model="ir.ui.view" id="slow_movement_xlsx.list">
+      <field name="name">slow_movement_xlsx list</field>
+      <field name="model">slow_movement_xlsx.slow_movement_xlsx</field>
+      <field name="type">form</field>
+      <field name="arch" type="xml">
+        <form>
+          <!-- <sheet> -->
+          <group colspan="1">
+            <group colspan="2">
+              <span class="oe_inline">
+                <h2 style="color: Green;"><center>Generar reporte de exceso de Lento Movimiento</center></h2>
+              </span>
+            </group>
+            
+            <group>
+              <field name="start_date" string="Fecha inicial de reporte" style="background-color:green; color: white;" />
+              <field name="end_date" string="Fecha final de reporte" readonly="0" style="background-color:green; color: white;"/>
+              
+            </group>
+          </group>
+          <group colspan="1">
+            <button name="print_kardex_xlsx" type="object" string="Descargar Reporte Excel" style="background-color:green; color: white;"/>            
+          </group>
+          <!-- </sheet> -->
+        </form>
+      </field>
+    </record>
+
+
+    <!-- actions opening views on models -->
+
+    <record model="ir.actions.act_window" id="slow_movement_xlsx.action_window">
+      <field name="name">slow_movement_xlsx Hola</field>
+      <field name="res_model">slow_movement_xlsx.slow_movement_xlsx</field>
+      <field name="view_mode">form</field>
+      <field name="target">inline</field>
+    </record>
+
+
+
+
+
+    <!-- Top menu item -->
+
+    <menuitem name="Lento Movimiento" id="slow_movement_xlsx.menu_root"/>
+
+    <!-- menu categories -->
+
+    <menuitem name="Menu 1" id="slow_movement_xlsx.menu_1" parent="slow_movement_xlsx.menu_root"/>
+    <!-- actions -->
+
+    <menuitem name="List" id="slow_movement_xlsx.menu_1_list" parent="slow_movement_xlsx.menu_1" action="slow_movement_xlsx.action_window"/>
+  </data>
+</odoo>

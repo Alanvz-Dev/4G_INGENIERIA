@@ -1,0 +1,112 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+        <record id="mrp.picking_list_summary_view_tree" model="ir.ui.view">
+            <field name="name">mrp.picking_list_summary.view.tree</field>
+            <field name="model">mrp.picking_list_summary</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name" />
+                    <field name="create_date" />
+                    <field name="configuration_id" />
+                    <field name="entrega" />
+                    <field name="recibe" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="mrp.picking_list_summary_view_form" model="ir.ui.view">
+            <field name="name">mrp.picking_list_summary.view.form</field>
+            <field name="model">mrp.picking_list_summary</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <field name="state_pkl" widget="statusbar" />
+                    </header>
+                    <header>
+                        <button string="Entregar Material" attrs="{'invisible':[('state_pkl','in',['done','confirmed'])]}" name="validar_picking_list" type="object" class="oe_highlight" />
+                        <button string="Recibir Material" attrs="{'invisible':[('state_pkl','in',['draft','confirmed'])]}" name="create_work_orders_pkl" type="object" class="oe_highlight" />
+                    </header>
+                    <sheet>
+                                                <div name="button_box" position="before">
+                                <div class=" oe_button_box " name="button_box">
+                                    <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive">
+                                        <field name="active" widget="boolean_button" options="{&quot;terminology&quot;: &quot;archive&quot;}" />
+                                    </button>
+                                </div>
+                            </div>
+                        <group>
+                            <group>
+                                <field name="entrega" />
+                                <field name="recibe" attrs="{'readonly':[('recibe','!=','False')]}" />
+                            </group>
+                            <field name="production_ids" readonly="1" widget="many2many_tags" />                            
+                            <field name="configuration_id" />
+                            <group>
+                                <button string="Ver MO's" name="get_linked_mos" type="object" class="oe_highlight" />
+                            </group>
+                        </group>
+                        <notebook>
+                            <page name="operations" string="Operaciones Detalladas">
+                                <field name="picking_list_summary_lines" limit="9000">
+                                    <tree editable="top">
+                                        <field name="product_id" readonly="1" />
+                                        <field name="qty_available" readonly="1" />
+                                        <field name="ordered_qty" />
+                                        <!-- <field name="date_planned_start" /> -->
+                                    </tree>
+                                </field>
+                            </page>
+                            <!-- <page name="configurations" string="Configuraciones">
+                                <group>                                
+                                    <field name="picking_type_code" invisible="1" />
+                                    <field name="company_id" groups="base.group_multi_company" options="{'no_create': True}" />
+                                    <field name="scheduled_date" attrs="{'readonly': [('id', '=', False)], 'required': [('id', '!=', False)]}" />
+                                    <field name="location_id" groups="stock.group_stock_multi_locations" attrs="{'invisible': [('picking_type_code', '=', 'incoming')]}" domain="['|', ('company_id', '=', company_id), ('company_id', '=', False)]" />
+                                    <field name="location_dest_id" groups="stock.group_stock_multi_locations" attrs="{'invisible': [('picking_type_code', '=', 'outgoing')]}" domain="['|', ('company_id', '=', company_id), ('company_id', '=', False)]" />
+                                    <field name="move_type" attrs="{'invisible': [('picking_type_code', '=', 'incoming')]}" />
+                                    <field name="picking_type_id" attrs="{'readonly': [('state', '!=', 'draft')]}" />
+                                </group>
+                            </page> -->
+                        </notebook>
+
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers" />
+                        <field name="message_ids" widget="mail_thread" />
+                        <field name="activity_ids" widget="mail_activity" />
+                    </div>
+                </form>
+            </field>
+        </record>
+
+
+        <record id="mrp.sequence_picking_list" model="ir.sequence">
+            <field name="name">Picking List</field>
+            <field name="code">mrp.picking_list</field>
+            <field name="prefix">PKL</field>
+            <field name="padding">4</field>
+            <field name="number_increment">1</field>
+            <field name="company_id" eval="False" />
+        </record>
+
+
+        <record id="mrp.picking_list_list_action" model="ir.actions.act_window">
+            <field name="name">Historial Picking List</field>
+            <field name="res_model">mrp.picking_list_summary</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="4g_production.picking_list_list" name="Historial Picking List" action="mrp.picking_list_list_action" parent="4g_production.picking_list_menu" sequence="9" />
+
+        <!-- <record id="mrp.cust_act" model="ir.actions.server">
+            <field name="name">Mi Accion WWWW</field>
+            <field name="model_id" ref="4g_production.model_mrp_picking_list_summary" />
+            <field name="binding_model_id" ref="4g_production.model_mrp_picking_list_summary" />
+            <field name="state">code</field>
+            <field name="code">
+action = records.my_func()
+            </field>
+        </record> -->
+    </data>
+</odoo>

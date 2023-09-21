@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+        <template id="graph_template">
+            <t t-call="website.layout">
+
+                <head>
+                    <title>Graph Web Controller Example</title>
+                </head>
+
+                <body>
+                    <div class="container">
+                        <div class="page">
+                            <div class="row">
+                                <canvas id="line-chart" width="200" height="50"></canvas>
+                            </div>
+                            <!-- <li t-if="company.email">
+                                Correo Electrónico:
+                                <span t-field="company.email" />
+                            </li> -->
+                        </div>
+                    </div>
+
+                    <div class="container">
+                        <div class="page">
+                            <div class="row">
+                                <form>
+                                    <input type="centro_de_produccion" name="centro_de_produccion" />
+                                    <input type="text" name="horas_capacidad_instalada" value="Critical"></input>
+                                    <input type="submit" value="Submit"></input>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+                    <script>
+                        var x_axis =
+                        <t t-esc="x_axis" />
+                        ;
+                        var y_axis =
+                        <t t-esc="y_axis" />
+                        ;
+    
+                        new Chart(document.getElementById("line-chart"), {
+                          type: 'line',
+                          data: {
+                            labels: x_axis,
+                            datasets: [{ 
+                                data: y_axis,
+                                label: "Actual Curve",
+                                borderColor: "#3e95cd",
+                                fill: false
+                              }                      
+                            ]
+                          },
+    
+                          options: {
+                          
+                            title: {
+                              display: false,
+                              text: 'World population per region (in millions)'
+                            }
+                          }
+                        });
+                    </script>
+                </body>
+            </t>
+        </template>
+    </data>
+
+</odoo>

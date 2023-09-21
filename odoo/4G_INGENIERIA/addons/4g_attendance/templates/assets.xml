@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+    <template id="assets_backend_new" inherit_id="web.assets_backend">
+    	<xpath expr=".">
+           <script type="text/javascript" src="/4g_attendance/static/src/js/list_view.js"/>
+       	</xpath>
+    </template>
+  </data>  
+</openerp>

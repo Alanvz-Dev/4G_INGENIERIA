@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+        <record id="cfdi_traslado_ext.config_action" model="ir.actions.act_window">
+            <field name="name">CFDI Traslado Configuraciones</field>
+            <field name="res_model">cfdi_traslado_ext.config</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+        </record>
+    </data>
+
+    <menuitem id="cfdi_traslado_ext.cfdi_traslado_ext_config" name="CFDI Traslado Configuraciones" action="cfdi_traslado_ext.config_action" parent="account.menu_finance_receivables" sequence="112"/>
+</odoo>

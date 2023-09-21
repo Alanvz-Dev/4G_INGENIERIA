@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+		<record model="ir.ui.view" id="product_template_price_id">
+			<field name="name">product.template.product.form</field>
+			<field name="model">product.template</field>
+			<field name="type">form</field>
+			<field name="inherit_id" ref="product.product_template_only_form_view"/>
+			<field name="arch" type="xml">
+
+
+				<field name="name" position="replace">
+					<field name="name" />
+				</field>
+
+				<!-- field name="barcode" position="after">
+					<field name="category_product_id"/>
+				</field -->
+				<field name="uom_id" position="replace">
+					<field name="uom_id" on_change="onchange_uom(uom_id,uom_po_id)" groups="product.group_uom" options="{'no_create':True}"/>
+				</field>
+				<field name="uom_po_id" position="replace">
+					<field name="uom_po_id" groups="product.group_uom" options="{'no_create':True}"/>
+				</field>
+			</field>
+		</record>
+
+        <record model="ir.ui.view" id="product_supplierinfo_real_cost_id">
+            <field name="name">product.supplierinfo.form</field>
+            <field name="model">product.supplierinfo</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="product.product_supplierinfo_form_view"/>
+            <field name="arch" type="xml">
+                <field name="price" position="after">
+                    <div>
+                        <!--field name="real_price" class="oe_inline" / -->
+                        <label for="real_price" string="Peso por tramo"/>
+                    </div>
+                </field>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="categorycost_product_form_id">
+            <field name="name">categorycost.product.form</field>
+            <field name="model">categorycost.product</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Formulario de Registro">
+                    <header>
+                        <button name="update_costs_supplierinfo" type="object" icon="gtk-execute" string="Actualizar costos" />
+                        <button name="print_report_account_invoice" type="object" icon="gtk-execute" string="Actualizar costos" />
+                    </header>
+                    <sheet>
+                        <group colspan="4">
+                            <group>
+                                <field style="text-align:left;font-size:14px" name="name"/>
+                                <field style="text-align:left;font-size:14px" name="cost"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+    	<!-- <record model="ir.ui.view" id="tree_template_price_id">
+            <field name="name">categorycost.product.tree</field>
+            <field name="model">categorycost.product</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Campos de Tipo de cambio de aceros">
+                    <field style="text-align:left;font-size:14px" name="name"/>
+                    <field style="text-align:left;font-size:14px" name="cost"/>
+                </tree>
+            </field>
+        </record> -->
+
+    <record model="ir.actions.act_window" id="tipo_cambio_id">
+            <field name="name">Generales Costos de Aceros</field>
+            <field name="res_model">categorycost.product</field>
+            <field name="view_mode">tree,form,pivot,graph</field>
+    </record>
+
+        <menuitem id="id_principal_1" name="Costos de Acero" web_icon="cambios_costos,costos_acero.jpg"/>
+        
+        <menuitem id="id_principal_2" parent='id_principal_1' name="Registro de categorias de producto" sequence="0"/>
+
+
+        <menuitem id="id_principal_3" parent='id_principal_2' name="Alta de categoria" action="tipo_cambio_id" sequence="0"/>
+
+    </data>
+</odoo>

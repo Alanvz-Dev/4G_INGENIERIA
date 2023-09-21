@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="invoice_tax_legend"
+            inherit_id="4g_invoice_report.report_invoice_document">
+            <xpath expr="//table[last()]" position="after">
+                <t t-if="o.tax_legend_id">
+                    <br /> Complemento leyenda <div style="border:solid 2px black;font-size:8px;">
+                        <table class="borderless" cellspacing="0"
+                            style="width:100%;border:none;border-collapse:separate;border-spacing: 2px;">
+                            <tr>
+                                <td>
+                                    <strong>Disposición fiscal</strong>
+                                </td>
+                                <td>
+                                    <span t-field="o.tax_legend_id.tax_provision" />
+                                </td>
+                            </tr>
+        
+        
+                            <tr>
+                                <td>
+                                    <strong>Norma</strong>
+                                </td>
+                                <td>
+                                    <span t-field="o.tax_legend_id.rule" />
+                                </td>
+                            </tr>
+        
+                            <tr>
+                                <td>
+                                    <strong>Texto leyenda</strong>
+                                </td>
+                                <td>
+                                    <span t-field="o.tax_legend_id.legend" />
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </t>
+            </xpath>
+        </template>
+    </data>
+</odoo>

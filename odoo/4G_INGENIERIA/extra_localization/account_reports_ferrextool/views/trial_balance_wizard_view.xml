@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+        <!-- TRIAL BALANCE -->
+        <record id="trial_balance_wizard_ferrextool" model="ir.ui.view">
+            <field name="name">Balanza de comprobación</field>
+            <field name="model">trial.balance.report.wizard.contabilidad.cfdi</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group name="main_info">
+                        <field name="company_id" options="{'no_create': True}" groups="base.group_multi_company" />
+                    </group>
+                    <div>
+                        <group name="filters">
+
+                            <field name="year" />
+                            <field name="month" />
+                            <field name="report_type" required="1"/>
+                            <field name="fy_start_date" invisible="1" />
+
+                        </group>
+                    </div>
+
+
+                    <group colspan="4" attrs="{'invisible': [('report_type', '!=', 'custom')]}">                        
+                        <separator string="Cuentas Contables" colspan="4" />
+                        <newline />
+                        <field name="account_ids" nolabel="1" >
+                            <tree>
+                                <field name="name" />
+                                <field name="code" />
+                                <field name="group_id" />
+                                <field name="cuenta_tipo" />
+                                <field name="deprecated" />
+                                <field name="reconcile" />                                
+                                <field name="create_uid" />                                
+                            </tree>
+                        </field>
+                    </group>
+                   
+                    <footer>
+                        <div>
+                            <button name="button_export_html" string="Generar" type="object" default_focus="1" class="oe_highlight" attrs="{'invisible': [('report_type', 'in',('reporte'))]}"/>
+                            
+                           
+                            <button name="generar_reporte_perdidas_y_ganancias_y_estado_financiero" string="Generar Reportes de Situacion Financiera y Perdidas y Ganancias" type="object" attrs="{'invisible': [('report_type', '!=', 'reporte')]}"/>
+                           
+                            <button string="Cancelar" class="oe_link" special="cancel" />
+                        </div>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+
+        <report
+        id="contabilidad_cfdi.situacion_financiera"
+        model="trial.balance.report.wizard.contabilidad.cfdi"
+        string="Situación Financiera"
+        report_type="xlsx"
+        name="contabilidad_cfdi.situacion_financiera_report"
+        file="Reporte situacion Financiera"
+        attachment_use="True"
+    />
+
+        <act_window id="account_reports_ferrextool.action_trial_balance_wizard_ferrextool" name="Balanza de comprobación FERREXTOOL" res_model="trial.balance.report.wizard.contabilidad.cfdi" view_type="form" view_mode="form" view_id="account_reports_ferrextool.trial_balance_wizard_ferrextool" target="new" />
+
+        <menuitem parent="contabilidad_cfdi.menu_contabilidad_electonica" action="account_reports_ferrextool.action_trial_balance_wizard_ferrextool" id="account_reports_ferrextool.menu_trial_balance_wizard_ferrextool" name="Balanza de comprobación FERREXTOOL" sequence="20" groups="group_account_rep_ferrex"/>
+
+
+    </data>
+
+
+</odoo>

@@ -1,0 +1,50 @@
+<odoo>
+  <data>
+
+    <record id="search_view_horas_de_trabajo_tree" model="ir.ui.view">
+      <field name="name">hr_payroll_4g.horas_de_trabajo.report_tree</field>
+      <field name="model">hr_payroll_4g.horas_de_trabajo</field>
+      <field name="priority">20</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="operador"/>
+          <field name="detalle_horas_de_trabajo_ids" invisible="1"/>
+          <field name="incidencia" invisible="1"/>
+          <field name="total_de_horas"/>
+        </tree>
+      </field>
+    </record>
+    <!-- 
+                        <tree decoration-danger="state == 'refuse'" decoration-info="state == 'draft'" string="Leaves Summary"> -->
+
+
+    <record id="view_horas_de_trabajo_search" model="ir.ui.view">
+      <field name="name">res.partner.search</field>
+      <field name="model">hr_payroll_4g.horas_de_trabajo</field>
+      <field name="arch" type="xml">
+        <search string="Search contacts">
+          <field name="operador"/>
+          <!-- <filter string="Has VAT number" domain="[('id', '>', 1)]" name="has_vat"></filter>                                         -->
+          <!-- <filter string="Has tags" domain="[('category_id', '!=', False)]" name="has_tags"></filter>                                         -->
+          <group expand="0" string="Group By">
+            <!-- <filter string="Company" name="operador" context="{'group_by': 'operador'}"></filter>                                             -->
+            <!-- <filter string="Country" name="country_id" context="{'group_by': 'country_id'}"></filter>                                            
+        <filter string="Sales person" name="salesperson_id" context="{'group_by': 'user_id'}"></filter>                                         -->
+          </group>
+        </search>
+      </field>
+    </record>
+
+
+    <record id="hr_payroll_4g.action_view_search_horas_de_trabajo" model="ir.actions.act_window">
+      <field name="name">Contacts</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">hr_payroll_4g.horas_de_trabajo</field>
+      <field name="view_mode">tree,form</field>
+      <field name="search_view_id" ref="view_horas_de_trabajo_search"></field>
+      <!-- <field name="context">{'search_default_parent_id': 1}</field>                             -->
+    </record>
+
+
+  </data>
+</odoo>              

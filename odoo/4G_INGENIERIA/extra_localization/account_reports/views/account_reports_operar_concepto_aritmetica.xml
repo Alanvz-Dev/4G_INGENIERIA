@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+        <record id="account_reports_operar_concepto_aritmetica_tree" model="ir.ui.view">
+            <field name="name">account_reports.operar_concepto_aritmetica.view.tree</field>
+            <field name="model">account_reports.operar_concepto_aritmetica</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="operar_concepto_id" />
+                    <field name="aritmetica_de_la_operacion" />
+                    <field name="total" />
+                </tree>
+            </field>
+        </record>
+    </data>
+</odoo>

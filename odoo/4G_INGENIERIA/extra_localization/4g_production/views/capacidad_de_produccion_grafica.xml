@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- De esa vista de lista reprogramar al dar click y cambiar la fecha -->
+
+    <record id="mrp.mrp_capacidad_list" model="ir.ui.view">
+        <field name="name">mrp.production.graph_list</field>
+        <field name="model">capacidad_de_produccion.grafica</field>
+        <field name="arch" type="xml">
+            <tree string="Manufacturing Orders">
+                <field name="producto" />
+                <field name="centro_de_produccion"  />
+                <field name="mo" />
+                <field name="tiempo_estimado" sum="Tiempo Total de Operacion"/>
+                <field name="vigente_desde"  />
+                <!-- <field name="capacidad_disponible"  /> -->
+                <!-- <field name="capacidad_instalada"  /> -->
+            </tree>
+        </field>
+    </record>
+
+        <record id="mrp.mrp_capacidad_" model="ir.ui.view">
+            <field name="name">mrp.production.graph_d</field>
+            <field name="model">capacidad_de_produccion.grafica</field>
+            <field name="arch" type="xml">
+                <graph string="Manufacturing Orders">
+                    <field name="tiempo_estimado" />
+                    <field name="vigente_desde"  />
+                    <!-- <field name="capacidad_disponible"  /> -->
+                    <!-- <field name="capacidad_instalada"  /> -->
+                </graph>
+            </field>
+        </record>
+
+
+
+        <record id="mrp.mrp_capacidad_piv" model="ir.ui.view">
+            <field name="name">mrp.production.graph_piv</field>
+            <field name="model">capacidad_de_produccion.grafica</field>
+            <field name="arch" type="xml">
+                <pivot string="Manufacturing Orders">
+                    <field name="tiempo_estimado" type="measure"/>
+                    <!-- <field name="capacidad_instalada"  type="measure"/> -->
+                    <field name="vigente_desde"  />
+                    <!-- <field name="capacidad_disponible"  type="measure"/>                 -->
+                </pivot>
+            </field>
+        </record>
+
+
+
+    <record id="mrp.mrp_capacidad_prod_view_form" model="ir.ui.view">
+        <field name="name">Capacidad de Producción de Fabricación(MRP)</field>
+        <field name="model">capacidad_de_produccion.grafica</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="producto" readonly="True"/>
+                        <field name="centro_de_produccion"  readonly="True"/>
+                        <field name="mo" readonly="False"/>
+                        <field name="tiempo_estimado" readonly="True"/>
+                        <field name="vigente_desde"  />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record model="ir.actions.server" id="mrp.mrp_capacidad_prod_action_server">
+      <field name="name">Capacidad de Producción de Fabricación(MRP)</field>
+      <field name="model_id" ref="4g_production.model_capacidad_de_produccion_grafica"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = model.return_views()
+      </field>
+    </record>
+    
+
+
+    <record model="ir.actions.act_window" id="mrp.capacidad_de_produccion_grafica_act">
+        <field name="name">Capacidad de Producción de Fabricación(MRP)</field>
+        <field name="res_model">capacidad_de_produccion.grafica</field>
+        <field name="view_mode">tree,graph,pivot,form</field>
+      </record>
+</odoo>

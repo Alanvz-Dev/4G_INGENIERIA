@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+
+        <!--
+            
+            Modificiones de Carta Porte 4G Ingenieria
+            =========================================
+            
+            Inherited Views
+            
+            - - - - - - - - - account.invoice
+            - Model·········: account.invoice
+            - Base Module···: account
+            - Mode··········: primary|extension
+            - View priority·: 16
+            - - - - - - - - - account.invoice
+            
+            -->
+
+        <!-- primary|extension Inherited .:Form:. view for "account.invoice" -->
+        <record id="cfdi_traslado_ext.invoice_form_cfdi_traslado_ext" model="ir.ui.view">
+            <field name="name">Carta Porte</field>
+            <field name="model">account.invoice</field>
+            <!-- Please veryfiy, that the following inherited view really sticks to the naming convention. -->
+            <field name="inherit_id" ref="account.invoice_form" />
+            <field name="type">form</field>
+            <field name="mode">extension</field>
+            <field name="priority" eval="16" />
+            <field name="active" eval="True" />
+            <field name="arch" type="xml">
+                <xpath expr="//header[1]" position="inside">
+                    <button string="Carta Porte" attrs="{'invisible': [('porte_count','>=',1)]}" type="object" class="oe_highlight" name="create_cfdi_traslado_ext" context="{
+                        'sale_order_origin': origin,                        
+                        'invoice_id': id}" />
+                </xpath>
+               
+                    <div name="button_box" position="inside">
+                        <button class="oe_stat_button" type="object" name="get_cfdi_porte_recs"
+                            icon="fa-envelope">
+                            <field string="Carta Porte" name="porte_count" widget="statinfo"/>
+                        </button>                        
+                    </div>    
+   
+            </field>
+        </record>
+
+
+    </data>
+</odoo>

@@ -1,0 +1,154 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+
+    <record model="ir.ui.view" id="dining_service.list">
+      <field name="name">Servicio de Comedor</field>
+      <field name="model">dining_service.detail</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name" string="Semana" />
+          <field name="state" string="Estado" />
+        </tree>
+      </field>
+    </record>
+
+
+    <!-- Explicit form definition -->
+    <record id="dining_service.form" model="ir.ui.view">
+      <field name="name">Servicio de Comedor</field>
+      <field name="model">dining_service.detail</field>
+      <field name="arch" type="xml">
+        <form>
+          <header>
+            <button string="Descontar Servicio" name="discount" states="draft" type="object" class="oe_highlight"/>
+            <button string="Cambiar a Borrador" name="revert" states="done" type="object"/>
+            <field name="state" widget="statusbar"/>
+          </header>
+          <group>
+            <div class="oe_button_box" name="button_box">
+                <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive">
+                    <field name="active" widget="boolean_button" options="{&quot;terminology&quot;: &quot;archive&quot;}"/>
+                </button>
+            </div>
+                        <group class="oe_right">
+              <field name="total_4g" string="4G INGENIERIA" readonly="1"/>
+              <field name="total_ferrextool" string="FERREXTOOL" readonly="1"/>
+              <field name="total_invitados" string="INV/PRACT" readonly="1"/>
+                            <field name="total" readonly="1" string="Total de Servicios"/>
+
+            </group>
+        </group>
+
+
+          <notebook>
+            <page string="Servicios">
+              <field name="dining_service_line" mode="tree" string="Fecha y hora de Servicios">
+                <tree>
+                  <field name="name"/>
+                  <field name="company"/>
+                  <field name="last_update"/>
+                  <field name="date_time_service_line"/>        
+                  <field name="write_uid" string="Última modificación"/>
+                  <field name="employee_contract_id"/>
+                </tree>
+              </field>
+            </page>
+          </notebook>
+
+        </form>
+      
+      </field>
+    </record>
+
+    <!-- actions opening views on models -->
+
+    <record model="ir.actions.act_window" id="dining_service.action_window">
+      <field name="name">Servicio de Comedor</field>
+      <field name="res_model">dining_service.detail</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <act_window id="dining_service_barcode_scanner_action" name="Servicio de Comedor" res_model="barcode.action" view_mode="form" view_type="form" context="{'default_model': 'dining_service.detail', 'default_method': 'find_res_partner_by_ref_using_barcode'}" target="new" />
+
+
+    <!-- Explicit form definition -->
+    <record id="dining_service.form_barcode" model="ir.ui.view">
+      <field name="name">Generación de Código de Barras Empleados</field>
+      <field name="model">dining_service.barcode</field>
+      <field name="arch" type="xml">
+        <form>
+          <header>
+            <button string="Limpiar registros" name="clear_data" type="object" class="oe_highlight" />
+          </header>
+          <field name="binary" attrs="{'invisible': [('binary', '=', False)]}" widget="binary" filename="binary_fname" />
+          <field name="binary_fname" invisible="1" />
+          <center>
+            <h1>Generación de Códigos de Barra</h1>
+            <h4>Genera códigos de barra de empleados con contrato activo</h4>
+          </center>
+          <group>
+            <h2>Seleccione uno a varios empleados:</h2>
+
+          </group>
+          <field name="contracts_info" />
+          <button string="Generar" name="barcode_by_contract" type="object" class="oe_highlight" />
+
+
+          <br></br>
+          <br></br>
+          <br></br>
+          <group>
+            <h2>Todos los empleados con contrato:</h2>
+          </group>
+          <button string="Generar" name="barcode_by_company" type="object" class="oe_highlight" />
+
+        </form>
+      </field>
+    </record>
+
+
+
+
+    <record model="ir.actions.act_window" id="_barcode">
+      <field name="name">Generar códigos de Barra</field>
+      <field name="res_model">dining_service.barcode</field>
+      <field name="view_mode">form</field>
+      <!-- <field name="target">inline</field> -->
+    </record>
+  
+
+
+
+
+    <!-- Wizard -->
+    <!-- server action to the one above -->
+
+    
+
+
+    <!-- Top menu item -->
+
+    <menuitem name="Servicio de Comedor" id="dining_service.menu_root" web_icon="dining_service,src/comedor.jpg" />
+
+    <!-- menu categories -->
+
+    <menuitem name="Servicio de Comedor" id="dining_service.menu_1" parent="dining_service.menu_root" action="dining_service.action_window"  />
+    <menuitem name="Generación de códigos de barra" id="dining_service.menu_2" parent="dining_service.menu_root"  action="_barcode"/>
+
+
+    <!-- actions -->
+
+    
+    <!-- <menuitem name="Invitado" id="dining_service" parent="dining_service.menu_2" action="dining_service.action_server" /> -->
+
+
+    
+
+
+
+    <!-- <menuitem name="Empleado Registro Manual" id="dining_service.menu_3_barcode" parent="dining_service.menu_2" action="dining_service.manual_register" /> -->
+
+  </data>
+</odoo>

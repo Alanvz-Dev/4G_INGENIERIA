@@ -1,0 +1,9 @@
+version: '2'
+services:
+  comedor4g:
+    container_name: comedor4g
+    image: jrmpacheco/comedor4g
+    ports:
+      - "5000:5000"
+    tty: true
+    restart: always

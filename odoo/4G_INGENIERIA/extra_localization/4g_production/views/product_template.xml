@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="product_tmpl_form_view_4g_production" model="ir.ui.view">
+        <field name="name">product.tmpl.hoja.de.proyecto.view.4g_production</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+
+
+            <xpath expr="//group[@name='group_general']"  position="after">
+                <group string="Datos CDPR">
+                <group>
+                <field name="habilitar_tiempo_de_fabricacion" />
+                <field name="tiempo_de_fabricacion" attrs="{'invisible': [('habilitar_tiempo_de_fabricacion','!=', True)]}"/> 
+                
+                </group>
+                <group>
+                    
+                    <field name="espesor" attrs="{'invisible': [('habilitar_tiempo_de_fabricacion','!=', False)]}"></field> 
+                    <field name="dobleces"></field>
+                    </group>
+                    <group>
+                    <field name="calcular_perimetro"  attrs="{'invisible':[('habilitar_tiempo_de_fabricacion','!=', False)]}"/>
+                    <field name="perimetro"  attrs="{'invisible': [('habilitar_tiempo_de_fabricacion','!=', False)],'readonly':[('calcular_perimetro','!=', False)]}"/>
+                    <field name="alto" attrs="{'invisible': ['|',('calcular_perimetro','!=', True),('habilitar_tiempo_de_fabricacion','!=', False)]}"/>
+                    <field name="largo" attrs="{'invisible': ['|',('calcular_perimetro','!=', True),('habilitar_tiempo_de_fabricacion','!=', False)]}"/>
+                    </group>
+                 </group>
+
+
+            </xpath>
+
+
+            
+
+        </field>
+    </record>
+</odoo>

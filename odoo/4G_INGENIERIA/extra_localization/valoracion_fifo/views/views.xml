@@ -1,0 +1,63 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+
+    <record model="ir.ui.view" id="valoracion_fifo.list">
+      <field name="name">valoracion_fifo list</field>
+      <field name="model">valoracion_fifo.valoracion_fifo</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="product_id" />          
+          <field name="ubicacion" />
+          <field name="cantidad" />
+          <field name="precio_unitario"  string="Precio Por Pieza"/>
+          <field name="valor" sum="Valor de Inventario" />
+        </tree>
+      </field>
+    </record>
+
+
+    <record id="valoracion_fifo.valoracion_fifo_view_form" model="ir.ui.view">
+      <field name="name">valoracion_fifo form</field>
+      <field name="model">valoracion_fifo.valoracion_fifo</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+            <group>
+              <field name="product_id" />
+              <field name="cantidad" />
+              <field name="ubicacion" />
+              <field name="precio_unitario" string="Precio Por Pieza"/>
+              <field name="valor" />
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <!-- actions opening views on models -->
+
+    <record model="ir.actions.act_window" id="valoracion_fifo.action_window">
+      <field name="name">valoracion_fifo window</field>
+      <field name="res_model">valoracion_fifo.valoracion_fifo</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <!-- server action to the one above -->
+    <record model="ir.actions.server" id="valoracion_fifo.valoracion_de_inventario_act">
+      <field name="name">Valoración de Inventario</field>
+      <field name="model_id" ref="model_valoracion_fifo_valoracion_fifo"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = model.return_views()
+      </field>
+    </record>
+
+    <!-- Top menu item -->
+
+    <menuitem name="Valoración de Inventario" id="valoracion_fifo.valoracion_inv" parent="stock.menu_stock_root" action="valoracion_fifo.valoracion_de_inventario_act"/>
+
+
+  </data>
+</odoo>

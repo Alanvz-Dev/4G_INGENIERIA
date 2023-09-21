@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+
+
+	<record model="ir.ui.view" id="modifica_expense">
+		<field name="name">hr.expense.sheet.form</field>
+		<field name="model">hr.expense.sheet</field>
+		<field name="type">form</field>
+		<field name="inherit_id" ref="hr_expense.view_hr_expense_sheet_form"/>
+		<field name="arch" type="xml">
+			<field name='payment_mode' position='after'>
+
+				<field name="reference_expense"/>
+				<field name="bono"/>
+				<field name="cantidad_bono"/>
+				<field name="finalizado"/>
+				<field name="comprobado"/>
+				<field name="bono_paid"/>
+			</field>
+
+		</field>
+	</record>
+
+	<!-- record model="ir.ui.view" id="modifica_expense_tree">
+		<field name="name">hr.expense.tree</field>
+		<field name="model">hr.expense</field>
+		<field name="type">form</field>
+		<field name="inherit_id" ref="hr_expense.view_hr_expense_sheet_tree"/>
+		<field name="arch" type="xml">
+			<field name='name' position='before'>
+				<field name="id" />
+			</field>
+		</field>
+	</record -->
+
+	<record model="ir.ui.view" id="modifica_expense_tree">
+		<field name="name">hr.expense.tree</field>
+		<field name="model">hr.expense</field>
+		<field name="type">form</field>
+		<field name="inherit_id" ref="hr_expense.view_expenses_tree"/>
+		<field name="arch" type="xml">
+			<field name='name' position='before'>
+				<field name="id" />
+			</field>
+		</field>
+	</record>
+
+
+
+
+
+    </data>
+</odoo>

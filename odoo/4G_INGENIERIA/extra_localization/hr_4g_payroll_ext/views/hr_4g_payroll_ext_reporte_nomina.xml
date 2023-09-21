@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+
+        <record id="hr_4g_payroll_ext.reporte_nomina_view_tree" model="ir.ui.view">
+            <field name="name">hr_4g_payroll_ext.reporte_nomina.view.tree</field>
+            <field name="model">hr_4g_payroll_ext.reporte_nomina</field>
+            <field name="arch" type="xml">
+                <tree string="">
+                    <field name="name" />
+                    <field name="nomina" />
+                    <field name="incidency_ids" /> 
+                </tree>
+            </field>
+        </record>
+
+        <record id="hr_4g_payroll_ext.reporte_nomina_view_form" model="ir.ui.view">
+            <field name="name">hr_4g_payroll_ext.reporte_nomina.view.form</field>
+            <field name="model">hr_4g_payroll_ext.reporte_nomina</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <sheet>
+                        <group>
+                            <button string="Generar Reporte INC" name="generar_reporte" type="object" class="oe_highlight"/>
+                        </group>
+                        <group>
+                            <field name="name" />
+                            <field name="nomina" />
+                            <field name="incidency_ids" />                        
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <record id="hr_4g_payroll_ext.reporte_nomina_action" model="ir.actions.act_window">
+            <field name="name">Action Name</field>
+            <field name="res_model">hr_4g_payroll_ext.reporte_nomina</field>
+            <field name="view_mode">tree,form</field>
+            <!-- <field name="domain">[]</field>
+            <field name="context">{}</field>
+            <field name="help" type="html">
+                
+            </field> -->
+        </record>
+
+        <!-- <menuitem id="hr_4g_payroll_ext.reporte_nomina_menu" name="Reporte INC>Por Nómina" action="hr_4g_payroll_ext.reporte_nomina_action" parent="hr_4g_payroll_ext.root_menu" sequence="10" /> -->
+    </data>
+</odoo>

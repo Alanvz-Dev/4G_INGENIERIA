@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+Custom1,Custommm1,cuentas_por_pagar.complemento_de_pago_proveedor.model,1,1,1,1
+Custom2,Custommm2,cuentas_por_pagar.cumplimiento_de_pago.model,1,1,1,1
+Custom3,Custommm3,cuentas_por_pagar.proveedor.model,1,1,1,1

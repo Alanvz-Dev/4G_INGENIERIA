@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_account_deliver_4g_account_deliver_4g,account_deliver_4g.account_deliver_4g,model_account_deliver_4g_account_deliver_4g,,1,0,0,0

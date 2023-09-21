@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="report_excessinventory_form">
+            <field name="name">report.excessinventory.form</field>
+            <field name="model">report.excessinventory</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Formulario de exceso de inventario">
+                    <sheet>
+                        <group colspan="2">
+                            <group>
+                                <field style="text-align:right;font-size:14px" name="fecha_inicio"/>
+				</group>
+				<group>
+
+              			<button name="print_excessinventory" type="object" string="Imprimir Reporte"/>
+ 				</group>
+				<group>
+				<button name="limpiar_consulta" type="object" string="Limpiar Consulta"/>	
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="report_excess_id">
+            <field name="name">Product Excess Inventory</field>
+            <field name="res_model">report.excessinventory</field>
+            <field name="view_mode">form</field>
+        </record>
+
+ 	<menuitem id="id_kr_1" name="Products Information Excess"/>        
+        <menuitem id="id_kr_2" parent='id_kr_1' name="Informe de exceso de inventario" sequence="0"/>
+
+    </data>
+</odoo>

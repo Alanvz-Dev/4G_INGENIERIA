@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="capacidad_de_produccion_calibres_validos_view_tree" model="ir.ui.view">
+        <field name="name">capacidad_de_produccion.calibres_list.view.tree</field>
+        <field name="model">capacidad_de_produccion.calibres_list</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="id" />
+                <field name="calibre" />
+                <field name="write_uid" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="capacidad_de_produccion_calibres_validos_view_form" model="ir.ui.view">
+        <field name="name">capacidad_de_produccion.calibres_list.view.form</field>
+        <field name="model">capacidad_de_produccion.calibres_list</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <sheet>
+                    <group>
+                <field name="id" />
+                <field name="calibre" />
+                <field name="write_uid" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="4g_production.calibres_validos_act">
+        <field name="name">Configuración de Calibres Válidos</field>
+        <field name="res_model">capacidad_de_produccion.calibres_list</field>    
+        <field name="view_mode">tree,form</field>
+      </record>
+
+</odoo>

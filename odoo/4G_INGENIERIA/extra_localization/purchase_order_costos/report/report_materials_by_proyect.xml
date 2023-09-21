@@ -1,0 +1,207 @@
+<odoo>
+    <data>
+        <template id="template_material_report">
+            <t t-call="report.html_container">
+                <t t-call="l10n_mx_einvoice_report.l10n_mx_einvoice_report_layout">
+                <t t-foreach="docs" t-as="o">
+                    <t t-set="total_valores_oc_draft" t-value="0" />
+                    <t t-set="total_valores_oc_colocadas" t-value="0" />
+                    <t t-set="total_valores_recibidos" t-value="0" />
+                    <t t-set="total_valores_facturados" t-value="0" />
+                    <t t-set="suma_valores_oc_draft" t-value="0" />                    
+                    <t t-set="suma_valores_oc_colocadas" t-value="0" />                    
+                    <t t-set="suma_valores_recibidos" t-value="0" />                    
+                    <t t-set="suma_valores_facturados" t-value="0" />                    
+                    <div class="page">
+                        <h5>Reporte de productos comprados por poryecto:</h5>
+                        <span t-esc="o.account_analytic_account_id.name"/>
+                        <div t-foreach="docs" t-as="o" class="row mt4 mb4">
+                               <table class="table table-condensed">
+                                    <tr class="border-black">
+                                        <td class="text-center" style="font-size:6px;"><strong>Fecha de Orden*</strong></td>
+                                        <td class="text-center" style="font-size:6px;"><strong>Proveedor*</strong></td>
+                                        <td class="text-center" style="font-size:6px;"><strong>OC Pendiente*</strong></td>
+                                        <td class="text-center" style="font-size:6px;"><strong>Productos*</strong></td>
+                                        <td class="text-center" style="font-size:6px;"><strong>Cantidad*</strong></td>
+                                        <td class="text-center" style="font-size:6px;"><strong>Precio Unitario*</strong></td>
+                                        <td class="text-center" style="font-size:6px;"><strong>Moneda*</strong></td>
+                                        <td class="text-center" style="font-size:6px;"><strong>Subtotal*</strong></td>
+                                    </tr>
+                                    <tr t-foreach="o.show_data_report()" t-as="item">
+                                        <t t-if="item.order_id.state == 'draft' or item.order_id.state == 'to approve'">
+                                            <td style="font-size:2px;">
+                                                <t style="font-size:6px;" t-esc="item.create_date[:10]"/>*
+                                            </td>
+                                            <td style="font-size:2px;">
+                                                <t style="font-size:6px;" t-esc="item.partner_id.name"/>*
+                                            </td>
+                                            <td style="font-size:2px;">
+                                                <t style="font-size:6px;" t-esc="item.order_id.name"/>*
+                                            </td>
+                                            <td style="font-size:2px;">
+                                                <t style="font-size:6px;" t-esc="item.name"/>*
+                                            </td>
+                                            <td style="font-size:2px;">
+                                                <t style="font-size:6px;" t-esc="item.product_qty"/>*
+                                            </td>
+                                            <td style="font-size:2px;">
+                                                <t style="font-size:6px;" t-esc="item.price_unit"/>*
+                                            </td>
+                                            <td style="font-size:2px;">
+                                                <t style="font-size:6px;" t-esc="item.currency_id.rate2"/> <t style="font-size:2px;" t-esc="item.currency_id.name"/>*
+                                            </td>
+                                            <td style="font-size:2px;">
+                                                <t style="font-size:2px;" t-esc="item.product_qty * item.price_unit * item.currency_id.rate2"/>*
+                                                <t t-set="suma_valores_oc_draft" t-value="item.product_qty * item.price_unit * item.currency_id.rate2"/>  
+                                            </td>
+                                            <t t-set="total_valores_oc_draft" t-value="total_valores_oc_draft + suma_valores_oc_draft"/>
+                                        </t>
+                                    </tr>
+                                </table>
+
+                               <table class="table table-condensed">
+                                    <tr class="border-black">
+                                        <td>
+                                            <strong>Total de OC Por Aprobar:*</strong><t t-esc="'{:,.2f}'.format(total_valores_oc_draft)" />
+                                        </td>
+                                    </tr>
+                                </table>
+
+                               <table class="table table-condensed">
+                                    <tr class="border-black">
+                                        <td class="text-center" style="font-size:6px;"><strong>Fecha_de_Orden*</strong></td>
+                                        <td class="text-center" style="font-size:6px;"><strong>Proveedor*</strong></td>
+                                        <td class="text-center" style="font-size:6px;"><strong>OC_Colocada*</strong></td>
+                                        <td class="text-center" style="font-size:6px;"><strong>Productos*</strong></td>
+                                        <td class="text-center" style="font-size:6px;"><strong>Cantidad*</strong></td>
+                                        <td class="text-center" style="font-size:6px;"><strong>Precio_Unitario*</strong></td>
+                                        <td class="text-center" style="font-size:6px;"><strong>Moneda*</strong></td>
+                                        <td class="text-center" style="font-size:6px;"><strong>Subtotal*</strong></td>
+                                        <td class="text-center" style="font-size:6px;"><strong>Cantidad_recibida*</strong></td>
+                                        <td class="text-center" style="font-size:6px;"><strong>Cantidad_facturada*</strong></td>
+                                    </tr>
+                                    <tr t-foreach="o.show_data_report()" t-as="item">
+                                        <t t-if="item.order_id.state == 'purchase'">
+                                            <td style="font-size:6px;">
+                                                <t style="font-size:2px;" t-esc="item.create_date[:10]"/>*
+                                            </td>
+                                            <td style="font-size:2px;">
+                                                <t style="font-size:2px;" t-esc="item.partner_id.name"/>*
+                                            </td>
+                                            <td style="font-size:2px;">
+                                                <t style="font-size:2px;" t-esc="item.order_id.name"/>*
+                                            </td>
+                                            <td style="font-size:2px;">
+                                                <t style="font-size:2px;" t-esc="item.name"/>*
+                                            </td>
+                                            <td style="font-size:2px;">
+                                                <t style="font-size:2px;" t-esc="item.product_qty"/>*
+                                            </td>
+                                            <td style="font-size:2px;">
+                                                <t style="font-size:2px;" t-esc="item.price_unit"/>*
+                                            </td>
+                                            <td style="font-size:2px;">
+                                                <t style="font-size:2px;" t-esc="item.currency_id.rate2"/> <t style="font-size:2px;" t-esc="item.currency_id.name"/>*
+                                            </td>
+                                            <td style="font-size:2px;">
+                                                <t style="font-size:2px;" t-esc="item.product_qty * item.price_unit * item.currency_id.rate2"/>*
+                                                <t t-set="suma_valores_oc_colocadas" t-value="item.product_qty * item.price_unit * item.currency_id.rate2"/>  
+                                            </td>
+                                            <td style="font-size:2px;">
+                                                <t style="font-size:2px;" t-esc="item.qty_received"/>*
+                                                <t t-set="suma_valores_recibidos" t-value=" item.qty_received * item.price_unit * item.currency_id.rate2"/>
+                                            </td>
+                                            <td style="font-size:2px;">
+                                                <t style="font-size:2px;" t-esc="item.qty_invoiced"/>*
+                                                <t t-set="suma_valores_facturados" t-value="item.qty_invoiced * item.price_unit * item.currency_id.rate2"/>
+                                            </td>
+
+                                            <t t-set="total_valores_oc_colocadas" t-value="total_valores_oc_colocadas + suma_valores_oc_colocadas"/>
+                                            <t t-set="total_valores_recibidos" t-value="total_valores_recibidos + suma_valores_recibidos"/>
+                                            <t t-set="total_valores_facturados" t-value="total_valores_facturados + suma_valores_facturados"/>
+                                        </t>
+                                    </tr>
+                                </table>
+
+                               <table class="table table-condensed">
+                                    <tr class="border-black">
+                                        <td>
+                                            <strong>Total de OC Colocada:*</strong><t t-esc="'{:,.2f}'.format(total_valores_oc_colocadas)" />
+                                        </td>
+                                    </tr>
+                                    <tr class="border-black">
+                                        <td>
+                                            <strong>Total Recibido:*</strong><t t-esc="'{:,.2f}'.format(total_valores_recibidos)" />
+                                        </td>
+                                    </tr>
+                                    <tr class="border-black">
+                                        <td>
+                                            <strong>Total Facturado:*</strong><t t-esc="'{:,.2f}'.format(total_valores_facturados)" />
+                                        </td>
+                                    </tr>
+                                </table>
+
+                                <table class="table table-condensed">
+                                    <tr class="border-black">
+                                        <td>TOTAL DEL PROYECTO: XXXXXXXXXXXXX
+                                            <!--<t t-set="total_proyecto" t-value="total_valores_recibidos + suma_valores_recibidos"/>
+                                            <strong>TOTAL DEL PROYECTO:*</strong><t t-esc="'{:,.2f}'.format(total_valores_oc_colocadas)" />-->
+                                        </td>
+                                    </tr>
+                                </table>
+                                <!--positivas <div class="col-md-6"><t t-esc="item[0]" /></div>
+                                totales <div class="col-md-6"><t t-esc="item[1]" /></div>-->
+                            </div>
+    
+                        <!--<div t-foreach="docs" t-as="o" class="row mt4 mb4">
+                            <div t-foreach="o.print_report_ev_proveedores(o.array)" t-as="item" class="row mt4 mb4">
+                                <div class="col-md-6"><t t-esc="item" /></div>
+                            </div>
+                        </div>-->
+                    </div>
+                </t>
+                </t>
+            </t>
+        </template>                      
+                        
+
+        <report 
+            id="template_material_report_id"
+            string="Reporte de Productos comprados por proyecto"
+            model="report.materials.purchase"
+            report_type="qweb-pdf"
+            file="purchaseorder_costos.template_material_report"
+            name="purchaseorder_costos.template_material_report"
+        />
+
+    </data>
+</odoo>
+
+<!--
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="template_evaluacion_proveedores" name="purchaseorder_costos.template_evaluacion_proveedores">
+            <t t-call="report.html_container">
+                <div t-foreach="docs" t-as="o" class="row mt4 mb4">
+                    <div class="page">
+                        <div class="row">
+                            <div>
+                                <span t-esc="o.ev_total"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </template>
+        <report 
+            id="report_ev_proveedores"
+            string="Reporte de Proveedores"
+            model="ev.proveedores" 
+            report_type="qweb-pdf"
+            file="purchaseorder_costos.template_material_report" 
+            name="purchaseorder_costos.template_material_report"
+        />
+    </data>
+</odoo>
+-->

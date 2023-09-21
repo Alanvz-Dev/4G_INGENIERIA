@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_costo_de_ventas_vista,account_reports_ferrextool.vista,model_costo_de_ventas_vista,group_account_rep_ferrex,1,1,1,1
+access_costo_de_ventas_line,account_reports_ferrextool.line,model_costo_de_ventas_line,group_account_rep_ferrex,1,1,1,1

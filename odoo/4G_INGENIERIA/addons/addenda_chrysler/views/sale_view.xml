@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_sale_order_chrysler" model="ir.ui.view">
+        <field name="name">sale.order.form.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="cdfi_invoice.view_sale_order_form_inherit" />
+        <field name="arch" type="xml">
+            <field name="uso_cfdi" position="after">
+                    <field name="chrysler_addenda" />
+            </field>
+            <xpath expr="//page[@name='info_cdfi']/group" position="inside">
+
+            <group cols="2" string="Chrysler" attrs="{'invisible':[('chrysler_addenda','=', False)]}" >
+                       <field name="codigo_envio"/>
+                       <field name="orden_compra"/>
+                       <field name="requicision_liberacion"/>
+                       <field name="fca_tipodocumento"/>
+                    </group> 
+            </xpath>
+           <xpath expr="/form/sheet/notebook/page/field[@name='order_line']/tree/field[@name='tax_id']" position="before">
+            	<field name="no_parte" attrs="{'column_invisible': [('parent.chrysler_addenda', '!=', True)], }"/>
+            	<field name="line_item" attrs="{'column_invisible': [('parent.chrysler_addenda', '!=', True)], }"/>
+            </xpath> 
+            
+        </field>
+    </record>
+</odoo>

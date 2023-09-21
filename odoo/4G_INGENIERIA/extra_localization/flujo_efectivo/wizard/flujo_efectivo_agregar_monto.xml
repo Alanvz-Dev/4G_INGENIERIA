@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+        <record id="flujo_efectivo.agregar_monto_form" model="ir.ui.view">
+            <field name="name">Agregar Monto Flujo de Efectivo</field>
+            <field name="model">flujo_efectivo.agregar_monto</field>
+            <field name="arch" type="xml">
+                <form string="Agregar Monto">
+                    <header></header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="tipo_de_flujo" />
+                                <field name="tipo" />
+                                <field name="partner_id" attrs="{'invisible': [('tipo_de_flujo', '!=', 'ldc')], 'required': [('tipo_de_flujo', 'not in', ['sdb'])]}" />
+                                <field name="fecha_pago" attrs="{'invisible': [('tipo_de_flujo', '!=', 'ldc')], 'required': [('tipo_de_flujo', 'not in', ['sdb'])]}" />
+                                <field name="bank_id" attrs="{'invisible': [('tipo_de_flujo', '!=', 'sdb')], 'required': [('tipo_de_flujo', 'in', ['sdb'])]}" />
+                                <field name="tipo_credito" attrs="{'invisible': [('tipo_de_flujo', '!=', 'ldc')], 'required': [('tipo_de_flujo', 'not in', ['sdb'])]}" />
+                            </group>
+                            <group>
+                                <field name="date" />
+                                <field name="required_amount" />
+                                <field name="descripcion" />
+                            </group>
+                        </group>
+
+                    </sheet>
+                    <footer>
+                        <button name="agregar_monto" string="Agregar Monto" type="object" class="btn-primary" />
+                        <button string="Cancel" class="btn-default" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+    
+        <menuitem name="Arrendamientos" web_icon="arrendamiento,static/description/icon.png"  id="arrendamiento.menu_root"/>
+    
+        <!-- menu categories -->
+        
+        <menuitem name="Vehiculos" id="arrendamiento.vehicular_menu" parent="arrendamiento.menu_root" action="vehicular_action_window"/> 
+        <menuitem name="Maquinaria" id="arrendamiento.maquinaria_menu" parent="arrendamiento.menu_root" action="maquinaria_action_window"/>
+    
+    </data>
+    
+</odoo>

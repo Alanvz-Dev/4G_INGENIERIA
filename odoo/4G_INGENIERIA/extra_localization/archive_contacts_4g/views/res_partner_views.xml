@@ -1,0 +1,14 @@
+<odoo>
+    <data >
+        <record id="view_partner_form_inherit_contacts" model="ir.ui.view">
+            <field name="name">res.partner.view.partner.form</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='toggle_active']" position="attributes">            
+                    <attribute name="groups">contacts.archive_users_partner</attribute>        
+                </xpath> 
+            </field>
+        </record>
+    </data>
+</odoo>

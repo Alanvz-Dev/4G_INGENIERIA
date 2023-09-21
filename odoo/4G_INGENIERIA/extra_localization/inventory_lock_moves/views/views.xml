@@ -1,0 +1,58 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+    
+    <record model="ir.ui.view" id="inventory_lock_moves.list">
+      <field name="name">inventory_lock_moves list</field>
+      <field name="model">inventory_lock_moves.inventory_lock_moves</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="user"/>
+        </tree>
+      </field>
+    </record>
+   
+
+    <!-- actions opening views on models -->
+    
+    <record model="ir.actions.act_window" id="inventory_lock_moves.action_window">
+      <field name="name">inventory_lock_moves window</field>
+      <field name="res_model">inventory_lock_moves.inventory_lock_moves</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+   
+
+    <!-- server action to the one above -->
+    
+    <record model="ir.actions.server" id="inventory_lock_moves.action_server">
+      <field name="name">inventory_lock_moves server</field>
+      <field name="model_id" ref="model_inventory_lock_moves_inventory_lock_moves"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": self._name,
+        }
+      </field>
+    </record>
+   
+
+    <!-- Top menu item -->
+    
+    <menuitem name="inventory_lock_moves" id="inventory_lock_moves.menu_root"/>
+   
+    <!-- menu categories -->
+    
+    <menuitem name="Menu 1" id="inventory_lock_moves.menu_1" parent="inventory_lock_moves.menu_root"/>
+    <menuitem name="Menu 2" id="inventory_lock_moves.menu_2" parent="inventory_lock_moves.menu_root"/>
+   
+    <!-- actions -->
+    
+    <menuitem name="List" id="inventory_lock_moves.menu_1_list" parent="inventory_lock_moves.menu_1"
+              action="inventory_lock_moves.action_window"/>
+    <menuitem name="Server to list" id="inventory_lock_moves" parent="inventory_lock_moves.menu_2"
+              action="inventory_lock_moves.action_server"/>
+   
+  </data>
+</odoo>

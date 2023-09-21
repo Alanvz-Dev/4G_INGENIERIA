@@ -1,0 +1,1 @@
+python3.7 -m ptvsd --host localhost --port 5678 /opt/odoo/odoo/odoo-bin --config /etc/odoo/odoo.conf --xmlrpc-port=12345 --addons-path=/opt/odoo/odoo/addons,/opt/odoo/odoo/extra_localization --workers=0

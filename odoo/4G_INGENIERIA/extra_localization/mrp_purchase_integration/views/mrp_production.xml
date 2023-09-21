@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="mrp_production_form_view_analytic_account">
+            <field name="name">mrp.production_analytic</field>
+            <field name="model">mrp.production</field>
+            <field name="inherit_id" ref="mrp.mrp_production_form_view" />
+            <field name="arch" type="xml">
+                <field name="location_src_id" position="replace"></field>
+                <field name="location_dest_id" position="replace"></field>
+                <notebook position="before">
+                    <group>
+                        <group groups="stock.group_locations">
+                            <field name="location_src_id" domain="[('usage','=','internal')]"
+                                on_change="location_id_change(location_src_id,location_dest_id)" />
+                            <field name="location_dest_id" domain="[('usage','=','internal')]" />
+                        </group>
+                        <group>
+                            <field name="analytic_account_id" readonly="0" />
+                            <field name="quotation_request_create" invisible="1" />
+                            <field name="quotation_name_list"
+                                attrs="{'invisible':[('quotation_request_create','=',False)]}" />
+                        </group>
+                    </group>
+                </notebook>
+                <field name="state" position="before">
+                    <button name='%(asistente_material_required_form_act)d' type='action'
+                        string='Solicitud de Abastecimiento' states='confirmed,ready' icon="fa-cogs" />
+                </field>
+            </field>
+        </record>
+    </data>
+</odoo>

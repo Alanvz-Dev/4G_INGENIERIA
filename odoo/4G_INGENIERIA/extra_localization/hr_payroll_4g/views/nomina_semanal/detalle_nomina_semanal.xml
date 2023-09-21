@@ -1,0 +1,69 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="hr_payroll_4g.detalle_nomina_list">
+            <field name="name">Nómina</field>
+            <field name="model">hr_payroll_4g.detalle_nomina_semanal</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="hr_payslip_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="hr_payroll_4g.detalle_nomina_action_window">
+            <field name="name">Nómina</field>
+            <field name="res_model">hr_payroll_4g.detalle_nomina_semanal</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+
+        <record id="hr_payroll_4g_detalle_nomina_form_view" model="ir.ui.view">
+            <field name="name">Detalle Nómina</field>
+            <field name="model">hr_payroll_4g.detalle_nomina_semanal</field>
+            <field name="arch" type="xml">
+                <form string="22222" create="true" edit="true">
+                    <header>
+                        <button name="action_validar" string="Validar a nómina" type="object" class="btn-primary"/>
+                        <!-- <button name="action_validar" string="Validar a nómina" type="object" states="draft" class="btn-primary"/> -->
+                    </header>
+                    <group>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive">
+                                <field name="active" widget="boolean_button" options="{&quot;terminology&quot;: &quot;archive&quot;}"/>
+                            </button>
+                        </div>
+                    </group>
+                    <group>
+                        <field name="hr_payslip_id" string="Nómina" />
+                        <field name="start_date" string="De" force_save='1' readonly="1" />
+                        <field name="end_date" string="A" force_save='1' readonly="1"/>
+                    </group>
+                    <notebook>
+                        <page string="Incidencias">
+                            <field name="horas_de_trabajo_id" readonly = "0" mode="tree">
+                                <tree options='{"bg_color": "red"}' mode="tree" editable="1">
+                                    <field name="departamento" />
+                                    <field name="operador" />
+                                    <field name="dia1" />
+                                    <field name="dia2" />
+                                    <field name="dia3" />
+                                    <field name="dia4" />
+                                    <field name="dia5" />
+                                    <field name="dia6"/>
+                                    <field name="dia7"/>
+                                    <field name="incidencias"/>
+                                    <field name="notas"/>
+                                    <field name="bono_asistencia" invisible = "0" />
+                                    <field name="bono_puntualidad" invisible = "0" />
+                                    <field name="horas_a_pagar" invisible = "0" />
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>
