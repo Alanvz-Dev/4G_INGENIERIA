@@ -310,6 +310,7 @@ class Project(models.Model):
             (true,'COMPRA DE MATERIAL PARA PROTOTIPO','<p> </p>',"+str(ids_etapas[3])+",'normal',"+str(project.id)+",true), \
             (true,'COMPRA DE MATERIALES CRÍTICOS','<p></p>',"+str(ids_etapas[3])+",'normal',"+str(project.id)+",true), \
             (true,'IMPORTACIÓN DE MATERIALES','<p></p>',"+str(ids_etapas[3])+",'normal',"+str(project.id)+",true),  \
+            (true,'COMPRA Y ARRIBO DE MATERIALES PARA PROTOTIPO Y ESCANTILLONES','<p></p>',"+str(ids_etapas[3])+",'normal',"+str(project.id)+",true),  \
             (true,'COMPRA DE MATERIAL PARA INICIO DE PRODUCCIÓN','<p></p>',"+str(ids_etapas[3])+",'normal',"+str(project.id)+",true), \
             (true,'FABRICACIÓN DE ESCANTILLONES','<p></p>',"+str(ids_etapas[4])+",'normal',"+str(project.id)+",true), \
             (true,'ARRANQUE DE FABRICACIÓN','<p></p>',"+str(ids_etapas[4])+",'normal',"+str(project.id)+",true), \
@@ -319,40 +320,59 @@ class Project(models.Model):
             (true,'DESPLIEGUE DEL PLAN DE CONTROL','<p></p>',"+str(ids_etapas[5])+",'normal',"+str(project.id)+",true), \
             (true,'PLAN DE CONTROL','<p></p>',"+str(ids_etapas[5])+",'normal',"+str(project.id)+",true), \
             (true,'VALIDACIÓN DE PRIMERA PIEZA','<p></p>',"+str(ids_etapas[0])+",'normal',"+str(project.id)+",true), \
-            (true, 'ENTREGA DE FLOTA', '<p></p>', "+str(ids_etapas[6])+", 'normal', "+str(project.id)+",true), \
-            (true,'GENERAR Y ENVIAR LISTA DE IMPORTACIONES Y MATERIALES CRITICOS','<p></p>',"+str(ids_etapas[2])+",'normal',"+str(project.id)+",true), \
             (true,'MODELADO DEL PRODUCTO','<p></p>',"+str(ids_etapas[2])+",'normal',"+str(project.id)+",true), \
             (true,'DEFINICIÓN DE SOLDADURA','<p></p>',"+str(ids_etapas[2])+",'normal',"+str(project.id)+",true), \
             (true,'DEFINICIÓN DE TOLERANCIAS Y CARACTERISTICAS CRITICAS DEL PRODUCTO','<p></p>',"+str(ids_etapas[2])+",'normal',"+str(project.id)+",true), \
             (true,'JUNTA CONCURRENTE DE PRODUCTO','<p></p>',"+str(ids_etapas[2])+",'normal',"+str(project.id)+",true), \
             (true,'ACTUALIZAR DISEÑO EN BASE A OBSERVACIONES DE LA JUNTA','<p></p>',"+str(ids_etapas[2])+",'normal',"+str(project.id)+",true), \
+            (true,'GENERAR Y ENVIAR LISTA DE IMPORTACIONES Y MATERIALES CRITICOS','<p></p>',"+str(ids_etapas[2])+",'normal',"+str(project.id)+",true), \
+            (true,'LISTA DE MATERIALES DEL PRODUCTO PARA PROTOTIPO','<p></p>',"+str(ids_etapas[2])+",'normal',"+str(project.id)+",true), \
+            (true,'REVISIÓN Y LIBERACIÓN DE LISTA DE MATERIALES PARA PROTOTIPO','<p></p>',"+str(ids_etapas[2])+",'normal',"+str(project.id)+",true), \
+            (true,'CAPTURA DE LISTA DE MATERIALES A ODOO','<p></p>',"+str(ids_etapas[2])+",'normal',"+str(project.id)+",true), \
+            (true,'LISTAS DE CORTE Y HABILITADOS Y DISTRIBUCIONES','<p></p>',"+str(ids_etapas[2])+",'normal',"+str(project.id)+",true), \
+            (true,'REALIZAR PLANOS DE MANUFACTURA DEL PRODUCTO','<p></p>',"+str(ids_etapas[2])+",'normal',"+str(project.id)+",true), \
+            (true,'VALIDAR QUE LOS DISEÑOS SE ACTUALICEN AL 100 %','<p></p>',"+str(ids_etapas[2])+",'normal',"+str(project.id)+",true), \
+            (true,'CNC DE PRODUCTO','<p></p>',"+str(ids_etapas[2])+",'normal',"+str(project.id)+",true), \
+            (true,'REVISIÓN Y FIRMA DE DIBUJOS DEL PRODUCTO','<p></p>',"+str(ids_etapas[2])+",'normal',"+str(project.id)+",true), \
+            (true,'MODELADO DEL PRODUCTO','<p></p>',"+str(ids_etapas[2])+",'normal',"+str(project.id)+",true), \
+            (true,'DEFINICIÓN DE SOLDADURA','<p></p>',"+str(ids_etapas[2])+",'normal',"+str(project.id)+",true), \
+            (true,'DEFINICIÓN DE TOLERANCIAS Y CARACTERISTICAS CRITICAS DEL PRODUCTO','<p></p>',"+str(ids_etapas[2])+",'normal',"+str(project.id)+",true), \
+            (true,'JUNTA CONCURRENTE DE PRODUCTO','<p></p>',"+str(ids_etapas[2])+",'normal',"+str(project.id)+",true), \
+            (true,'ACTUALIZAR DISEÑO EN BASE A OBSERVACIONES DE LA JUNTA','<p></p>',"+str(ids_etapas[2])+",'normal',"+str(project.id)+",true), \
+            (true,'GENERAR Y ENVIAR LISTA DE IMPORTACIONES Y MATERIALES CRITICOS','<p></p>',"+str(ids_etapas[2])+",'normal',"+str(project.id)+",true), \
+            (true,'LISTA DE MATERIALES DEL PRODUCTO PARA PROTOTIPO','<p></p>',"+str(ids_etapas[2])+",'normal',"+str(project.id)+",true), \
+            (true,'REVISIÓN Y LIBERACIÓN DE LISTA DE MATERIALES PARA PROTOTIPO','<p></p>',"+str(ids_etapas[2])+",'normal',"+str(project.id)+",true), \
+            (true,'CAPTURA DE LISTA DE MATERIALES A ODOO','<p></p>',"+str(ids_etapas[2])+",'normal',"+str(project.id)+",true), \
+            (true,'LISTAS DE CORTE Y HABILITADOS Y DISTRIBUCIONES','<p></p>',"+str(ids_etapas[2])+",'normal',"+str(project.id)+",true), \
+            (true,'REALIZAR PLANOS DE MANUFACTURA DEL PRODUCTO','<p></p>',"+str(ids_etapas[2])+",'normal',"+str(project.id)+",true), \
+            (true,'VALIDAR QUE LOS DISEÑOS SE ACTUALICEN AL 100 %','<p></p>',"+str(ids_etapas[2])+",'normal',"+str(project.id)+",true), \
+            (true,'CNC DE PRODUCTO','<p></p>',"+str(ids_etapas[2])+",'normal',"+str(project.id)+",true), \
+            (true,'REVISIÓN Y FIRMA DE DIBUJOS DEL PRODUCTO','<p></p>',"+str(ids_etapas[2])+",'normal',"+str(project.id)+",true), \
             (true,'ANALISIS DE LOS TIEMPOS DE ARMADO (para definir cantidad de escantillones a producir)','<p></p>',"+str(ids_etapas[2])+",'normal',"+str(project.id)+",true), \
             (true,'LISTA DE ESCANTILLONES','<p></p>',"+str(ids_etapas[2])+",'normal',"+str(project.id)+",true), \
             (true,'DISEÑO DE LOS ESCANTILLONES, PLANTILLAS Y PASA NO PASA','<p></p>',"+str(ids_etapas[2])+",'normal',"+str(project.id)+",true), \
-            (true,'PROPUESTA DE LAY OUT PARA MONTAJE EN LINEA 1','<p></p>',"+str(ids_etapas[2])+",'normal',"+str(project.id)+",true), \
+            (true,'PROPUESTA DE LAY OUT PARA MONTAJE EN LÍNEA','<p></p>',"+str(ids_etapas[2])+",'normal',"+str(project.id)+",true), \
             (true,'JUNTA CONCURRENTE DE ESCANTILLONES','<p></p>',"+str(ids_etapas[2])+",'normal',"+str(project.id)+",true), \
-            (true,'ACTUALIZAR DISEÑO DE ESCANTILLONES Y LAY OUT EN BASE A OBSERVACIONES DE LA JUNTA','<p></p>',"+str(ids_etapas[2])+",'normal',"+str(project.id)+",true), \
-            (true,'REVISIÓN Y LIBERACIÓN DE LISTA DE MATERIALES PARA PROTOTIPO','<p></p>',"+str(ids_etapas[2])+",'normal',"+str(project.id)+",true), \
-            (true,'REVISIÓN Y FIRMA DE DIBUJOS DEL PRODUCTO','<p></p>',"+str(ids_etapas[2])+",'normal',"+str(project.id)+",true), \
-            (true,'REVISIÓN Y LIBERACIÓN DE LISTAS DE MATERIALES PARA ESCANTILLONES','<p></p>',"+str(ids_etapas[2])+",'normal',"+str(project.id)+",true), \
-            (true,'REVISIÓN Y FIRMA DE DIBUJOS DE ESCANTILLONES','<p></p>',"+str(ids_etapas[2])+",'normal',"+str(project.id)+",true), \
-            (true,'VALIDAR QUE LOS DISEÑOS SE ACTUALICEN AL 100 %','<p></p>',"+str(ids_etapas[2])+",'normal',"+str(project.id)+",true), \
-            (true,'VALIDACIÓN DE MONTAJES','<p></p>',"+str(ids_etapas[2])+",'normal',"+str(project.id)+",true), \
-            (true,'REALIZAR PLANOS DE MANUFACTURA DEL PRODUCTO','<p></p>',"+str(ids_etapas[2])+",'normal',"+str(project.id)+",true), \
-            (true,'LISTA DE MATERIALES DEL PRODUCTO PARA PROTOTIPO','<p></p>',"+str(ids_etapas[2])+",'normal',"+str(project.id)+",true), \
-            (true,'CAPTURA DE LISTA DE MATERIALES A ODOO','<p></p>',"+str(ids_etapas[2])+",'normal',"+str(project.id)+",true), \
-            (true,'LISTAS DE CORTE Y HABILITADOS Y DISTRIBUCIONES','<p></p>',"+str(ids_etapas[2])+",'normal',"+str(project.id)+",true), \
-            (true,'CNC DE PRODUCTO','<p></p>',"+str(ids_etapas[2])+",'normal',"+str(project.id)+",true), \
             (true,'LISTA DE MATERIALES DE ESCANTILLONES','<p></p>',"+str(ids_etapas[2])+",'normal',"+str(project.id)+",true), \
-            (true,'CNC DE ESCANTILLONES','<p></p>',"+str(ids_etapas[2])+",'normal',"+str(project.id)+",true), \
+            (true,'REVISIÓN Y LIBERACIÓN DE LISTAS DE MATERIALES PARA ESCANTILLONES','<p></p>',"+str(ids_etapas[2])+",'normal',"+str(project.id)+",true), \
+            (true,'ACTUALIZAR DISEÑO DE ESCANTILLONES','<p></p>',"+str(ids_etapas[2])+",'normal',"+str(project.id)+",true), \
+            (true,'REVISIÓN Y FIRMA DE DIBUJOS DE ESCANTILLONES','<p></p>',"+str(ids_etapas[2])+",'normal',"+str(project.id)+",true), \
             (true,'PLANOS DE MANUFACTURA ESCANTILLONES','<p></p>',"+str(ids_etapas[2])+",'normal',"+str(project.id)+",true), \
+            (true,'CNC DE ESCANTILLONES','<p></p>',"+str(ids_etapas[2])+",'normal',"+str(project.id)+",true), \
             (true,'ACTUALIZACIÓN DE DISEÑOS EN BASE A VALIDACIONES','<p></p>',"+str(ids_etapas[2])+",'normal',"+str(project.id)+",true), \
-            (true,'VALIDACIÓN DE CONSUMOS (PINTURA/PEGAMENTOS/RECUBRIMIENTOS)','<p></p>',"+str(ids_etapas[2])+",'normal',"+str(project.id)+",true), \
-            (true,'CORTE Y HABILITADO DE PROTOTIPO','<p></p>',"+str(ids_etapas[2])+",'normal',"+str(project.id)+",true), \
-            (true,'ARMADO DE PROTOTIPO','<p></p>',"+str(ids_etapas[2])+",'normal',"+str(project.id)+",true), \
-            (true,'PINTURA Y VESTIDURA DE PROTOTIPO','<p></p>',"+str(ids_etapas[2])+",'normal',"+str(project.id)+",true), \
-            (true,'VALIDACIÓN DE PROTOTIPO','<p></p>',"+str(ids_etapas[2])+",'normal',"+str(project.id)+",true), \
-            (true, 'ENTREGA DE PRIMERA PIEZA', '<p></p>', "+str(ids_etapas[6])+", 'normal', "+str(project.id)+",true);"
+            (true,'CORTE Y HABILITADO DE PROTOTIPO','<p></p>',"+str(ids_etapas[4])+",'normal',"+str(project.id)+",true), \
+            (true,'ARMADO DE PROTOTIPO','<p></p>',"+str(ids_etapas[4])+",'normal',"+str(project.id)+",true), \
+            (true,'PINTURA Y VESTIDURA DE PROTOTIPO','<p></p>',"+str(ids_etapas[4])+",'normal',"+str(project.id)+",true), \
+            (true,'VALIDACIÓN DE PROTOTIPO','<p></p>',"+str(ids_etapas[4])+",'normal',"+str(project.id)+",true), \
+            (true,'VALIDACIÓN DE CONSUMOS (PINTURA/PEGAMENTOS/RECUBRIMIENTOS)','<p></p>',"+str(ids_etapas[4])+",'normal',"+str(project.id)+",true), \
+            (true,'CORTE Y HABILITADO DE MATERIAL PARA ESCANTILLONES','<p></p>',"+str(ids_etapas[4])+",'normal',"+str(project.id)+",true), \
+            (true,'FABRICACION DE ESCANTILLONES','<p></p>',"+str(ids_etapas[4])+",'normal',"+str(project.id)+",true), \
+            (true,'FABRICACIÓN PILOTO ESTATICO','<p></p>',"+str(ids_etapas[4])+",'normal',"+str(project.id)+",true), \
+            (true,'MONTAJE DEL PROCESO','<p></p>',"+str(ids_etapas[4])+",'normal',"+str(project.id)+",true), \
+            (true,'FABRICACIÓN PILOTO DINÁMICO','<p></p>',"+str(ids_etapas[4])+",'normal',"+str(project.id)+",true), \
+            (true,'VALIDACIÓN DE MONTAJES','<p></p>',"+str(ids_etapas[4])+",'normal',"+str(project.id)+",true), \
+            (true,'ENTREGA DE PRIMERA PIEZA','<p></p>', "+str(ids_etapas[6])+", 'normal', "+str(project.id)+",true);"
+
 
           
 # ... (continuar con las subtareas)
